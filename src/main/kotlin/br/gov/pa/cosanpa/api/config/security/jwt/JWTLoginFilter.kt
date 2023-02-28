@@ -1,7 +1,7 @@
 package br.gov.pa.cosanpa.api.config.security.jwt
 
-import br.gov.pa.cosanpa.api.domain.usuario.UsuarioDetail
-import br.gov.pa.cosanpa.api.domain.usuario.credentials.Credentials
+import br.gov.pa.cosanpa.api.dominio.seguranca.UsuarioDetail
+import br.gov.pa.cosanpa.api.dominio.seguranca.credentials.Credentials
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
@@ -35,7 +35,7 @@ class JWTLoginFilter(
         response?.status = HttpServletResponse.SC_OK
         response?.writer?.write(
             JSONObject()
-                .put("idUsuario", "${usuarioDetail.id}")
+                .put("idUsuario", usuarioDetail.id)
                 .put("token", "$generatedToken")
                 .put("tipo", "Bearer")
                 .toString()

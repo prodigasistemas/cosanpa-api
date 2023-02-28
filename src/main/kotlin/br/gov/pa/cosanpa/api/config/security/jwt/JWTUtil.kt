@@ -1,15 +1,12 @@
 package br.gov.pa.cosanpa.api.config.security.jwt
 
-import br.gov.pa.cosanpa.api.domain.usuario.UsuarioDetail
+import br.gov.pa.cosanpa.api.dominio.seguranca.UsuarioDetail
 import br.gov.pa.cosanpa.api.exceptions.TokenInvalidoException
-import br.gov.pa.cosanpa.api.service.usuario.UsuarioService
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.exceptions.JWTCreationException
 import com.auth0.jwt.exceptions.JWTVerificationException
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.LocalDateTime

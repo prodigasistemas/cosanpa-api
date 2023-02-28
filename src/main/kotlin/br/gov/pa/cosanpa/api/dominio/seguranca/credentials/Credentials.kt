@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.domain.usuario.credentials
+package br.gov.pa.cosanpa.api.dominio.seguranca.credentials
 
 data class Credentials(
     val login: String = "",

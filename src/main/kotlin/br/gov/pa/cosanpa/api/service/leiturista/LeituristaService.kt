@@ -1,20 +1,27 @@
 package br.gov.pa.cosanpa.api.service.leiturista
 
+import br.gov.pa.cosanpa.api.repository.leiturista.LeituristaRepository
 import br.gov.pa.cosanpa.api.view.leiturista.LeituristaView
 import br.gov.pa.cosanpa.api.view.leiturista.LeituristaViewMapper
-import br.gov.pa.cosanpa.api.repository.leiturista.LeituristaRepository
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
-class LeituristaService (
+class LeituristaService(
     private val repository: LeituristaRepository,
     private val viewMapper: LeituristaViewMapper
 ) {
 
-    fun buscarLeituristaPorUsuarioId(usuarioId: Int): List<LeituristaView> {
+    fun buscarLeituristaPorUsuarioId(usuarioId: Int): ResponseEntity<List<LeituristaView>> {
         val leituristas = repository.findAllByUsuarioId(usuarioId)
-        return leituristas.map {leiturista ->
+        val leituristaViewList = leituristas.map { leiturista ->
             viewMapper.map(leiturista)
+        }
+        return if (leituristas.isEmpty()) {
+            ResponseEntity.noContent().build()
+        } else {
+
+            ResponseEntity.ok().body(leituristaViewList)
         }
     }
 }

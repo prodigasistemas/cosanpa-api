@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.view.leiturista
 
-import br.gov.pa.cosanpa.api.domain.leiturista.Leiturista
+import br.gov.pa.cosanpa.api.dominio.micromedicao.Leiturista
 import br.gov.pa.cosanpa.api.util.Mapper
 import org.springframework.stereotype.Component
 
@@ -9,7 +9,7 @@ class LeituristaViewMapper : Mapper<Leiturista, LeituristaView> {
     override fun map(leiturista: Leiturista): LeituristaView {
         return LeituristaView(
             id = leiturista.id,
-            nomeLeiturista = leiturista.funcionario.nome,
+            nomeLeiturista = leiturista.usuario.nome,
             nomeEmpresa = leiturista.empresa.nome
         )
     }

@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.service.usuario
 
-import br.gov.pa.cosanpa.api.domain.usuario.UsuarioDetail
+import br.gov.pa.cosanpa.api.dominio.seguranca.UsuarioDetail
 import br.gov.pa.cosanpa.api.exceptions.NaoEncontradoException
 import br.gov.pa.cosanpa.api.repository.usuario.UsuarioRepository
 import org.springframework.security.core.userdetails.UserDetails

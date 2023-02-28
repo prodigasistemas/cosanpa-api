@@ -6,6 +6,7 @@ import br.gov.pa.cosanpa.api.config.security.jwt.JWTUtil
 import jakarta.servlet.http.HttpServletResponse
 import org.json.JSONObject
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
@@ -23,6 +24,7 @@ import java.util.*
 
 @Configuration
 @EnableWebSecurity
+@ComponentScan
 class SecurityConfiguration (
     private val configuration: AuthenticationConfiguration,
     private val jwtAuthenticationFilter: JWTAutenticacaoFilter,

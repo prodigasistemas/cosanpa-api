@@ -1,6 +1,5 @@
-package br.gov.pa.cosanpa.api.domain.usuario
+package br.gov.pa.cosanpa.api.dominio.seguranca
 
-import br.gov.pa.cosanpa.api.domain.usuario.usuariogrupo.UsuarioGrupo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority

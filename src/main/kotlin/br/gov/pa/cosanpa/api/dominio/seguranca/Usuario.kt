@@ -1,6 +1,5 @@
-package br.gov.pa.cosanpa.api.domain.usuario
+package br.gov.pa.cosanpa.api.dominio.seguranca
 
-import br.gov.pa.cosanpa.api.domain.usuario.usuariogrupo.UsuarioGrupo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
@@ -14,6 +13,8 @@ data class Usuario(
     val login: String = "",
     @Column(name = "usur_nmsenha")
     val senha: String = "",
+    @Column(name = "usur_nmusuario")
+    val nome: String = "",
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER)

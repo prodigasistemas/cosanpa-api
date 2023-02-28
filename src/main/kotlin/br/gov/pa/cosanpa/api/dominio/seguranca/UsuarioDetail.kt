@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.domain.usuario
+package br.gov.pa.cosanpa.api.dominio.seguranca
 
 import org.springframework.security.core.userdetails.UserDetails
 

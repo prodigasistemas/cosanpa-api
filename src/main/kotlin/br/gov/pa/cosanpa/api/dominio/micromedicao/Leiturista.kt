@@ -1,8 +1,7 @@
-package br.gov.pa.cosanpa.api.domain.leiturista
+package br.gov.pa.cosanpa.api.dominio.micromedicao
 
-import br.gov.pa.cosanpa.api.domain.empresa.Empresa
-import br.gov.pa.cosanpa.api.domain.funcionario.Funcionario
-import br.gov.pa.cosanpa.api.domain.usuario.Usuario
+import br.gov.pa.cosanpa.api.dominio.cadastro.Empresa
+import br.gov.pa.cosanpa.api.dominio.seguranca.Usuario
 import jakarta.persistence.*
 
 @Entity
@@ -12,9 +11,6 @@ data class Leiturista(
     @Column(name = "leit_id")
     val id: Int? = null,
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "func_id")
-    val funcionario: Funcionario,
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empr_id")
     val empresa: Empresa,
