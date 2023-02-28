@@ -1,11 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
 	id("org.springframework.boot") version "3.0.2"
 	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.7.22"
-	kotlin("plugin.spring") version "1.7.22"
-	kotlin("plugin.jpa") version "1.7.22"
+	kotlin("jvm") version "1.8.10"
+	kotlin("plugin.spring") version "1.8.10"
+	kotlin("plugin.jpa") version "1.8.10"
 }
 
 group = "br.gov.pa.cosanpa"
@@ -26,6 +27,8 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	implementation("com.auth0:java-jwt:4.3.0")
+	implementation("org.json:json:20220924")
 }
 
 tasks.withType<KotlinCompile> {
@@ -37,4 +40,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.named<BootRun>("bootRun") {
+	args("--spring.profiles.active=${project.properties["profile"] ?: "prod"}")
 }
