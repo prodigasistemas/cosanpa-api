@@ -13,6 +13,8 @@ data class Rota(
     val id: Int? = null,
     @Column(name = "rota_cdrota")
     val codigo: Int = 0,
+    @Column(name = "rota_icuso")
+    val indicadorUso: Int = 0,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empr_id")

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 
 interface RotaRepository: JpaRepository<Rota, Int> {
-    fun findAllByLeituristaId(id: Int): List<Rota>
+    fun findAllByLeituristaIdAndIndicadorUsoEqualsOrderByGrupoId(id: Int, indicadorUso: Int): List<Rota>
 }
