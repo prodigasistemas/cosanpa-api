@@ -1,7 +1,7 @@
 package br.gov.pa.cosanpa.api.dominio.micromedicao
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.Empresa
-import br.gov.pa.cosanpa.api.dominio.cadastro.SetorComercial
+import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
 import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoGrupo
 import jakarta.persistence.*
 
@@ -20,7 +20,7 @@ data class Rota(
     @JoinColumn(name = "empr_id")
     val empresa: Empresa,
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leit_id")
     val leiturista: Leiturista,
 

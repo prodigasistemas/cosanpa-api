@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.dominio.cadastro
+package br.gov.pa.cosanpa.api.dominio.cadastro.localidade
 
 import jakarta.persistence.*
 
@@ -11,7 +11,7 @@ data class SetorComercial(
     @Column(name = "stcm_cdsetorcomercial")
     val codigo: Int = 0,
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loca_id")
     val localidade: Localidade
 )

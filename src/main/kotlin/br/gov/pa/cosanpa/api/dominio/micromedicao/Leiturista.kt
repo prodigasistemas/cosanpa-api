@@ -14,7 +14,7 @@ data class Leiturista(
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empr_id")
     val empresa: Empresa,
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usur_id")
     val usuario: Usuario
 
