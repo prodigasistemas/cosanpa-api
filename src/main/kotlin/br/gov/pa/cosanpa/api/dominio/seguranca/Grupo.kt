@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority
 data class Grupo(
     @Id
     @Column(name = "grup_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "grup_dsgrupo")
     val descricao: String,
 

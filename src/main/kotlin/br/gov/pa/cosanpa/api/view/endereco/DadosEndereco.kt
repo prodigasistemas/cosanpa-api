@@ -1,38 +1,25 @@
 package br.gov.pa.cosanpa.api.view.endereco
 
+import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
+import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteEndereco
+import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.*
+import br.gov.pa.cosanpa.api.dominio.cadastro.geografico.Bairro
+import br.gov.pa.cosanpa.api.dominio.cadastro.geografico.Municipio
+import br.gov.pa.cosanpa.api.dominio.cadastro.geografico.UnidadeFederacao
+
 data class DadosEndereco(
-    val logradouroNome: String?,
-    val logradouroTipoDescricao: String?,
-    val logradouroTituloDescricao: String?,
-    val bairroId: Int?,
-    val bairroNome: String?,
-    val municipioId: Int?,
-    val municipioNome: String?,
-    val unidadeFederacaoId: Int?,
-    val unidadeFederacaoSigla: String?,
-    val enderecoReferenciaDescricao: String?,
-    val cepId: Int?,
-    val cepLogradouro: String?,
-    val cepDescricaoTipoLogradouro: String?,
-    val cepBairro: String?,
-    val cepMunicipio: String?,
-    val cepSigla: String?,
-    val cepCodigo: Int?,
-    val imovelNumero: String?,
-    val imovelComplementoEndereco:  String?,
-    val logradouroId: Int?,
-    val logradouroCepId: Int?,
-    val logradouroBairroId: Int?,
-    val logradouroTipoDescricaoAbreviada: String?,
-    val logradouroTituloDescricaoAbreviada: String?,
-    val enderecoReferenciaDescricaoAbreviada: String?,
-    val enderecoReferenciaId: Int?,
-    val perimetroInicialId: Int?,
-    val perimetroInicialNome: String,
-    val logradouroTipoPerimetroInicialDescricaoAbreviada: String,
-    val logradouroTituloPerimetroInicialDescricaoAbreviada: String,
-    val perimetroFinalId: Int?,
-    val perimetroFinalNome: String?,
-    val logradouroTipoPerimetroFinalDescricaoAbreviada: String?,
-    val logradouroTituloPerimetroFinalDescricaoAbreviada: String?,
+    val logradouro: Logradouro?,
+    val logradouroTipo: LogradouroTipo?,
+    val logradouroTitulo: LogradouroTitulo?,
+    val bairro: Bairro?,
+    val municipio: Municipio?,
+    val unidadeFederacao: UnidadeFederacao?,
+    val enderecoReferencia: EnderecoReferencia?,
+    val cep: Cep?,
+    val imovel: Imovel? = null,
+    val clienteEndereco: ClienteEndereco? = null,
+    val logradouroCep: LogradouroCep?,
+    val logradouroBairro: LogradouroBairro?,
+    val perimetroInicial: Logradouro?,
+    val perimetroFinal: Logradouro?,
 )

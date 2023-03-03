@@ -8,7 +8,7 @@ import jakarta.persistence.*
 data class Logradouro(
     @Id
     @Column(name = "logr_id", insertable = false, updatable = false, nullable = false)
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "logr_nmlogradouro")
     val nome: String = "",
 
@@ -21,12 +21,12 @@ data class Logradouro(
     val logradouroBairro: List<LogradouroBairro>,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "logr_id", insertable = false, updatable = false)
-    val logradouroTipo: LogradouroTipo,
+    @JoinColumn(name = "lgtp_id")
+    val logradouroTipo: LogradouroTipo?,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "logr_id", insertable = false, updatable = false)
-    val logradouroTitulo: LogradouroTitulo,
+    @JoinColumn(name = "lgtt_id")
+    val logradouroTitulo: LogradouroTitulo?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "logr_id", insertable = false, updatable = false)

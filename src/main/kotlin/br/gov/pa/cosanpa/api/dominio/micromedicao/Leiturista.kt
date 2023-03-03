@@ -9,7 +9,7 @@ import jakarta.persistence.*
 data class Leiturista(
     @Id
     @Column(name = "leit_id")
-    val id: Int? = null,
+    val id: Int = 0,
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empr_id")

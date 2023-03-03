@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class UnidadeFederacao(
     @Id
     @Column(name = "unfe_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "unfe_dsufsigla")
     val sigla: String = ""
 )

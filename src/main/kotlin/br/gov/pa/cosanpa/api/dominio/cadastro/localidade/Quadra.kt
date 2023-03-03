@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class Quadra(
     @Id
     @Column(name = "qdra_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "qdra_nnquadra")
     val numero: Int = 0
 )

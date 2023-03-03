@@ -1,7 +1,7 @@
 package br.gov.pa.cosanpa.api.view.leiturista
 
 data class LeituristaView(
-    val id: Int?,
+    val Int = 0?,
     val nomeLeiturista: String,
     val nomeEmpresa: String
 )

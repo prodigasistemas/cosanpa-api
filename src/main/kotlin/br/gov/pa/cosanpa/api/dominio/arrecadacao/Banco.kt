@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.dominio.cadastro
+package br.gov.pa.cosanpa.api.dominio.arrecadacao
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -6,11 +6,11 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = "funcionario", schema = "cadastro")
-data  class Funcionario(
+@Table(name = "banco", schema = "arrecadacao")
+data class Banco(
     @Id
-    @Column(name = "func_id")
+    @Column(name = "bnco_id")
     val id: Int = 0,
-    @Column(name = "func_nmfuncionario")
+    @Column(name = "bnco_nmbanco")
     val nome: String = ""
 )

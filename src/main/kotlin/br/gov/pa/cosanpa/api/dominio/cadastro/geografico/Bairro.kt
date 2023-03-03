@@ -7,7 +7,7 @@ import jakarta.persistence.*
 data class Bairro(
     @Id
     @Column(name = "bair_id", nullable = false)
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "bair_nmbairro")
     val nome: String = "",
 

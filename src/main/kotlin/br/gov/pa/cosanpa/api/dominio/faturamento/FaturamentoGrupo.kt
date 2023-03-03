@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class FaturamentoGrupo(
     @Id
     @Column(name = "ftgr_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "ftgr_amreferencia")
     val referencia: Int =0
 )

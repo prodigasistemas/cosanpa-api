@@ -10,7 +10,7 @@ import jakarta.persistence.*
 data class Rota(
     @Id
     @Column(name = "rota_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "rota_cdrota")
     val codigo: Int = 0,
     @Column(name = "rota_icuso")

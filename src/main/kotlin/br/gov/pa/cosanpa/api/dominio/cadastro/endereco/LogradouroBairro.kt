@@ -8,7 +8,7 @@ import jakarta.persistence.*
 data class LogradouroBairro(
     @Id
     @Column(name = "lgbr_id")
-    val id: Int? = null,
+    val id: Int = 0,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "logr_id")

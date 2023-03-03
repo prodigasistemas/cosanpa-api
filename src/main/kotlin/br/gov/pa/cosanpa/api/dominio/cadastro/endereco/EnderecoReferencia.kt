@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class EnderecoReferencia(
     @Id
     @Column(name = "edrf_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "edrf_dsenderecoreferencia")
     val descricao: String = "",
     @Column(name = "edrf_dsabreviado")

@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class Cep(
     @Id
     @Column(name = "cep_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "cep_nmlogradouro")
     val logradouro: String = "",
     @Column(name = "cep_dslogradourotipo")
@@ -22,6 +22,6 @@ data class Cep(
     @Column(name = "cep_dsufsigla")
     val sigla: String = "",
     @Column(name = "cep_cdcep")
-    val codigo: Int
+    val codigo: Int = 0
 
 )

@@ -1,9 +1,14 @@
-package br.gov.pa.cosanpa.api.dominio.cadastro
+package br.gov.pa.cosanpa.api.dominio.cadastro.imovel
 
+import br.gov.pa.cosanpa.api.dominio.atendimento_publico.LigacaoAguaSituacao
+import br.gov.pa.cosanpa.api.dominio.atendimento_publico.LigacaoEsgotoSituacao
+import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.Cliente
+import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteImovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.EnderecoReferencia
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.Logradouro
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroBairro
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroCep
+import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.ImovelPerfil
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
@@ -15,7 +20,7 @@ import jakarta.persistence.*
 data class Imovel(
     @Id
     @Column(name = "imov_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "imov_nnlote")
     val lote: Int = 0,
     @Column(name = "imov_nnsublote")
@@ -24,6 +29,14 @@ data class Imovel(
     val numero: String = "",
     @Column(name = "imov_dscomplementoendereco")
     val complementoEndereco: String = "",
+    @Column(name = "imov_idimovelcondominio")
+    val idImovelCondominio: Int = 0,
+    @Column(name = "imov_icimovelcondominio")
+    val indicadorImovelCondominio: Int = 0,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "iper_id")
+    val imovel: ImovelPerfil,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loca_id")
@@ -37,15 +50,17 @@ data class Imovel(
     @JoinColumn(name = "stcm_id")
     val setorComercial: SetorComercial,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "last_id")
+    val ligacaoAguaSituacao: LigacaoAguaSituacao,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lest_id")
+    val ligacaoEsgotoSituacao: LigacaoEsgotoSituacao,
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "cliente_imovel",
-        schema = "cadastro",
-        joinColumns = [JoinColumn(name = "imov_id")],
-        inverseJoinColumns = [JoinColumn(name = "clie_id")]
-    )
-    val cliente: List<Cliente>,
+    @JoinColumn(name = "imov_id")
+    val cliente: List<ClienteImovel>,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
@@ -65,10 +80,10 @@ data class Imovel(
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "logr_idinicioperimetro", referencedColumnName = "logr_id", insertable = false, updatable = false)
-    val perimetroInicial: Logradouro,
+    val perimetroInicial: Logradouro?,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "logr_idfimperimetro", referencedColumnName = "logr_id", insertable = false, updatable = false)
-    val perimetroFinal: Logradouro
+    val perimetroFinal: Logradouro?
 
 )

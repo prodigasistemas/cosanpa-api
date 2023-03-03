@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class GerencialRegional(
     @Id
     @Column(name = "greg_id")
-    val id: Int? = null,
+    val id: Int = 0,
     @Column(name = "greg_nmregional")
     val nome: String = ""
 )

@@ -7,7 +7,7 @@ import jakarta.persistence.*
 data class SetorComercial(
     @Id
     @Column(name = "stcm_id")
-    val id: Int? = null,
+    val id: Int,
     @Column(name = "stcm_cdsetorcomercial")
     val codigo: Int = 0,
 
