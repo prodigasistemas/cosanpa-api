@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class Banco(
     @Id
     @Column(name = "bnco_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "bnco_nmbanco")
-    val nome: String = ""
+    val nome: String?
 )

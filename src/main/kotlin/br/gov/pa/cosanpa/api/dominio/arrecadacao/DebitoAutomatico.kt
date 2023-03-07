@@ -11,9 +11,9 @@ data class DebitoAutomatico(
     @Column(name = "deba_id")
     val id: Int = 0,
     @Column(name = "deba_dsidentificacaoclientebco")
-    val identificacaoClienteBanco: String,
+    val identificacaoClienteBanco: String?,
     @Column(name = "deba_dtexclusao")
-    val dataExclusao: Date,
+    val dataExclusao: Date?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")

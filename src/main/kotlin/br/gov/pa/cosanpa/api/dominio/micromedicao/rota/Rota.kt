@@ -1,8 +1,9 @@
-package br.gov.pa.cosanpa.api.dominio.micromedicao
+package br.gov.pa.cosanpa.api.dominio.micromedicao.rota
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.Empresa
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
 import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoGrupo
+import br.gov.pa.cosanpa.api.dominio.micromedicao.rota.Leiturista
 import jakarta.persistence.*
 
 @Entity
@@ -10,11 +11,11 @@ import jakarta.persistence.*
 data class Rota(
     @Id
     @Column(name = "rota_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "rota_cdrota")
-    val codigo: Int = 0,
+    val codigo: Int,
     @Column(name = "rota_icuso")
-    val indicadorUso: Int = 0,
+    val indicadorUso: Short?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empr_id")

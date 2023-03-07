@@ -15,7 +15,7 @@ import java.util.*
 data class Conta(
     @Id
     @Column(name = "cnta_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "cnta_dtvencimento")
     val dataVencimento: Date,
     @Column(name = "cnta_dtvalidade")
@@ -43,7 +43,7 @@ data class Conta(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
-    val imovel: Imovel,
+    val imovel: Imovel?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "last_id")

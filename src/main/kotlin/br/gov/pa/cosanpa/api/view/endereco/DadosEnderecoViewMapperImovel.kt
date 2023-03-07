@@ -7,17 +7,17 @@ import org.springframework.stereotype.Component
 @Component
 class DadosEnderecoViewMapperImovel : Mapper<Imovel, DadosEndereco> {
     override fun map(entity: Imovel): DadosEndereco {
-        val logradouro = entity.logradouroCep.logradouro
-        val bairro = entity.logradouroBairro.bairro
+        val logradouro = entity.logradouroCep?.logradouro
+        val bairro = entity.logradouroBairro?.bairro
         return DadosEndereco(
             logradouro = logradouro,
-            logradouroTipo = logradouro.logradouroTipo,
-            logradouroTitulo = logradouro.logradouroTitulo,
+            logradouroTipo = logradouro?.logradouroTipo,
+            logradouroTitulo = logradouro?.logradouroTitulo,
             bairro = bairro,
-            municipio = bairro.municipio,
-            unidadeFederacao = bairro.municipio.unidadeFederacao,
+            municipio = bairro?.municipio,
+            unidadeFederacao = bairro?.municipio?.unidadeFederacao,
             enderecoReferencia = entity.enderecoReferencia,
-            cep = entity.logradouroCep.cep,
+            cep = entity.logradouroCep?.cep,
             imovel = entity,
             logradouroCep = entity.logradouroCep,
             logradouroBairro = entity.logradouroBairro,

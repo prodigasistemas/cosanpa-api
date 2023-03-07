@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.dominio.micromedicao
+package br.gov.pa.cosanpa.api.dominio.micromedicao.rota
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.Empresa
 import br.gov.pa.cosanpa.api.dominio.seguranca.Usuario
@@ -9,13 +9,13 @@ import jakarta.persistence.*
 data class Leiturista(
     @Id
     @Column(name = "leit_id")
-    val id: Int = 0,
+    val id: Int,
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empr_id")
     val empresa: Empresa,
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usur_id")
-    val usuario: Usuario
+    val usuario: Usuario?
 
 )

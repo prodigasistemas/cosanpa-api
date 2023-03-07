@@ -9,9 +9,9 @@ import org.springframework.security.core.GrantedAuthority
 data class Grupo(
     @Id
     @Column(name = "grup_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "grup_dsgrupo")
-    val descricao: String,
+    val descricao: String?,
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER)

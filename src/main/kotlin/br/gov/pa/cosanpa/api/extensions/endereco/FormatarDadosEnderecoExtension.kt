@@ -23,8 +23,8 @@ fun DadosEndereco.formatarEndereco(): String {
             }
 
             imovel?.let {
-                if(it.numero.isNotEmpty()) endereco += " " + it.numero.trim()
-                if (it.complementoEndereco.isNotEmpty()) endereco += " " + it.complementoEndereco.trim()
+                if(!it.numero.isNullOrEmpty()) endereco += " " + it.numero.trim()
+                if (!it.complementoEndereco.isNullOrEmpty()) endereco += " " + it.complementoEndereco.trim()
             }
 
             clienteEndereco?.let {

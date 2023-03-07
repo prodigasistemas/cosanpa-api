@@ -7,9 +7,9 @@ import jakarta.persistence.*
 data class Agencia(
     @Id
     @Column(name = "agen_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "agen_cdagencia")
-    val codigo: String = "",
+    val codigo: String?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bnco_id")

@@ -10,9 +10,9 @@ import jakarta.persistence.Table
 data class LigacaoAguaSituacao(
     @Id
     @Column(name = "last_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "last_dsligacaoaguasituacao")
-    val descricao: String = "",
+    val descricao: String?,
     @Column(name = "last_icfaturamento")
-    val indicadorFaturamentoSituacao: Short = 0
+    val indicadorFaturamentoSituacao: Short
 )

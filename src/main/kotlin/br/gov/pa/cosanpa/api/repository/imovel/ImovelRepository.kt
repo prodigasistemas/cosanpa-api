@@ -1,6 +1,7 @@
 package br.gov.pa.cosanpa.api.repository.imovel
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
+import br.gov.pa.cosanpa.api.view.imovel.ImovelView
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
@@ -30,4 +31,12 @@ interface ImovelRepository : JpaRepository<Imovel, Int> {
     )
     fun pesquisarEnderecoFormatado(id: Int) : Imovel
 
+
+    @Query(
+        value = "select new br.gov.pa.cosanpa.api.view.imovel.ImovelView(imovel.id as id, consumoTarifa.id as consumoTarifa) " +
+                "from Imovel imovel " +
+                "left join imovel.consumoTarifa consumoTarifa " +
+                "where imovel.id = :id"
+    )
+    fun pesquisarConsumoTarifa(id: Int) : ImovelView
 }

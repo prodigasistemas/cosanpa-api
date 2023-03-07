@@ -12,6 +12,6 @@ data class Bairro(
     val nome: String = "",
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "bair_id", insertable = false, updatable = false)
+    @JoinColumn(name = "muni_id", insertable = false, updatable = false)
     val municipio: Municipio
 )

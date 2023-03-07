@@ -8,13 +8,13 @@ import jakarta.persistence.*
 data class Usuario(
     @Id
     @Column(name = "usur_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "usur_nmlogin")
-    val login: String = "",
+    val login: String,
     @Column(name = "usur_nmsenha")
-    val senha: String = "",
+    val senha: String?,
     @Column(name = "usur_nmusuario")
-    val nome: String = "",
+    val nome: String,
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER)

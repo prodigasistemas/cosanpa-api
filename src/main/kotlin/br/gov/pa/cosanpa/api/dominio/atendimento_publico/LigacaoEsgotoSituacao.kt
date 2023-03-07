@@ -12,7 +12,7 @@ data class LigacaoEsgotoSituacao(
     @Column(name = "lest_id")
     val id: Int = 0,
     @Column(name = "lest_dsligacaoesgotosituacao")
-    val descricao: String = "",
+    val descricao: String?,
     @Column(name = "lest_icfaturamento")
-    val indicadorFaturamentoSituacao: Short = 0
+    val indicadorFaturamentoSituacao: Short
 )
