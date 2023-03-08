@@ -9,7 +9,7 @@ class LeituristaViewMapper : Mapper<Leiturista, LeituristaView> {
     override fun map(entity: Leiturista): LeituristaView {
         return LeituristaView(
             id = entity.id,
-            nomeLeiturista = entity.usuario.nome,
+            nomeLeiturista = entity.usuario?.nome,
             nomeEmpresa = entity.empresa.nome
         )
     }

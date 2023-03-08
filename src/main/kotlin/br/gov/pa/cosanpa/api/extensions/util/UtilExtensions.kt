@@ -26,3 +26,7 @@ fun LocalDate.conveterLocalDateParaReferencia(): Int {
     val data = this.format(DateTimeFormatter.BASIC_ISO_DATE) // yyyyMMdd
     return data.substring(0, 6).toInt()
 }
+
+fun Any?.isNullOuVazio(): Boolean {
+    return this == null || this == ""
+}

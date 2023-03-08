@@ -40,7 +40,7 @@ class JWTUtil {
         mapGrupo: MutableMap<String, String>
     ) {
         usuario.authorities.forEach { grupo ->
-            mapGrupo.putIfAbsent(grupo.id!!.toString(), grupo.descricao)
+            mapGrupo.putIfAbsent(grupo.id.toString(), grupo.descricao!!)
         }
     }
 

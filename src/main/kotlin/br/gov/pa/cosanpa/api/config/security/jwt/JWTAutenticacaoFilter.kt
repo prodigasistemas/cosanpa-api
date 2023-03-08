@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.config.security.jwt
 
-import br.gov.pa.cosanpa.api.service.usuario.UsuarioService
+import br.gov.pa.cosanpa.api.service.seguranca.usuario.UsuarioService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

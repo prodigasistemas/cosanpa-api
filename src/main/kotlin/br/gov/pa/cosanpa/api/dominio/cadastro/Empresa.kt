@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class Empresa(
     @Id
     @Column(name = "empr_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "empr_nmempresa")
-    val nome: String = ""
+    val nome: String?
 )

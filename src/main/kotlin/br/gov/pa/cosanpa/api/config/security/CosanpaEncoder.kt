@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.config.security
 
-import br.gov.pa.cosanpa.api.extensions.converteParaHash
+import br.gov.pa.cosanpa.api.extensions.util.converteParaHash
 import org.springframework.security.crypto.password.PasswordEncoder
 
 class CosanpaEncoder : PasswordEncoder {

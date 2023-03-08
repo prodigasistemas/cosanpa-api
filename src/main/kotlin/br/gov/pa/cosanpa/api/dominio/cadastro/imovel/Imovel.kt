@@ -2,21 +2,17 @@ package br.gov.pa.cosanpa.api.dominio.cadastro.imovel
 
 import br.gov.pa.cosanpa.api.dominio.atendimento_publico.LigacaoAguaSituacao
 import br.gov.pa.cosanpa.api.dominio.atendimento_publico.LigacaoEsgotoSituacao
-import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.Cliente
 import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteImovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.EnderecoReferencia
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.Logradouro
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroBairro
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroCep
-import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.ImovelPerfil
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
 import br.gov.pa.cosanpa.api.dominio.faturamento.Conta
-import br.gov.pa.cosanpa.api.dominio.micromedicao.consumo.ConsumoTarifa
+import br.gov.pa.cosanpa.api.dominio.faturamento.consumo.ConsumoTarifa
 import jakarta.persistence.*
-import org.hibernate.annotations.LazyToOne
-import org.hibernate.annotations.LazyToOneOption
 
 @Entity
 @Table(name = "imovel", schema = "cadastro")
@@ -63,11 +59,11 @@ data class Imovel(
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
-    val cliente: List<ClienteImovel>?,
+    val clientes: List<ClienteImovel>?,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
-    val conta: List<Conta>?,
+    val contas: List<Conta>?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lgcp_id")
@@ -91,6 +87,11 @@ data class Imovel(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cstf_id")
-    val consumoTarifa: ConsumoTarifa?
+    val consumoTarifa: ConsumoTarifa?,
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "imov_id")
+    val subcategorias: List<ImovelSubcategoria>?
+
 
 )
