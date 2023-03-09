@@ -35,9 +35,9 @@ class JWTLoginFilter(
         response?.status = HttpServletResponse.SC_OK
         response?.writer?.write(
             JSONObject()
-                .put("idUsuario", usuarioDetail.id)
+                .put("id", usuarioDetail.id)
+                .put("nome", usuarioDetail.nome)
                 .put("token", "$generatedToken")
-                .put("tipo", "Bearer")
                 .toString()
         )
     }

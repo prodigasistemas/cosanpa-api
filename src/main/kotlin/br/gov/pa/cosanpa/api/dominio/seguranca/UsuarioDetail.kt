@@ -6,6 +6,8 @@ class UsuarioDetail(private val usuario: Usuario) : UserDetails {
 
     val id: Int? = usuario.id
 
+    val nome: String? = usuario.nome
+
     override fun getAuthorities() = usuario.grupos
 
     override fun getPassword() = usuario.senha
