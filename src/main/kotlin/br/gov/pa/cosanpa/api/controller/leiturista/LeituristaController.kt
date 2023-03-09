@@ -1,6 +1,5 @@
 package br.gov.pa.cosanpa.api.controller.leiturista
 
-import br.gov.pa.cosanpa.api.view.leiturista.LeituristaView
 import br.gov.pa.cosanpa.api.service.leiturista.LeituristaService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,5 +14,5 @@ class LeituristaController(
 ) {
 
     @GetMapping("/usuario/{id}")
-    fun buscarPorUsuarioId(@PathVariable id: Int): ResponseEntity<*> = service.buscarLeituristaPorUsuarioId(id)
+    fun buscarPorUsuario(@PathVariable id: Int): ResponseEntity<*> = service.buscarPorUsuario(id)
 }

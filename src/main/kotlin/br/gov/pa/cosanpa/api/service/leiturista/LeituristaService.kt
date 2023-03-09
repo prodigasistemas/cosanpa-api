@@ -12,7 +12,7 @@ class LeituristaService(
     private val viewMapper: LeituristaViewMapper
 ) {
 
-    fun buscarLeituristaPorUsuarioId(usuarioId: Int): ResponseEntity<List<LeituristaView>> {
+    fun buscarPorUsuario(usuarioId: Int): ResponseEntity<List<LeituristaView>> {
         val leituristas = repository.findAllByUsuarioId(usuarioId)
         val leituristaViewList = leituristas.map { leiturista ->
             viewMapper.map(leiturista)
