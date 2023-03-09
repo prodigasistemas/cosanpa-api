@@ -12,8 +12,8 @@ class RotaService(
     private val viewMapper: RotaViewMapper
 ) {
 
-    fun buscarRotaPorLeituristaId(id: Int): ResponseEntity<List<RotaView>> {
-        val rotas = repository.findAllByLeituristaIdAndIndicadorUsoEqualsOrderByGrupoId(id, 1)
+    fun buscarRotasPorUsuario(id: Int): ResponseEntity<List<RotaView>> {
+        val rotas = repository.buscarPorUsuario(id)
         val listaRotasView = rotas.map { rota ->
             viewMapper.map(rota)
         }

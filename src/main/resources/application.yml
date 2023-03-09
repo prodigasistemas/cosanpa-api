@@ -8,8 +8,8 @@ spring:
       ddl-auto: none
     properties:
       hibernate:
-#        format-sql: true
-#    show-sql: true
+        format-sql: true
+    show-sql: true
 api:
   security:
     token:
