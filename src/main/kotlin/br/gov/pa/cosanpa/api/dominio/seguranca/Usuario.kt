@@ -1,7 +1,9 @@
 package br.gov.pa.cosanpa.api.dominio.seguranca
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 
 @Entity
 @Table(name = "usuario", schema = "seguranca")
@@ -15,9 +17,4 @@ data class Usuario(
     val senha: String = "",
     @Column(name = "usur_nmusuario")
     val nome: String = "",
-
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(name ="usuario_grupo", schema = "seguranca", joinColumns = [JoinColumn(name = "usur_id")], inverseJoinColumns = [JoinColumn(name = "grup_id")])
-    val grupos: List<Grupo> = listOf()
 )

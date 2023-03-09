@@ -19,45 +19,29 @@ class JWTUtil {
     private lateinit var secret: String
     private lateinit var algoritmo: Algorithm
 
-    fun gerarToken(usuario: UsuarioDetail): String? {
+    fun gerarToken(usuario: UsuarioDetail) = try {
         algoritmo = Algorithm.HMAC256(secret)
-        val mapGrupo: MutableMap<String, String> = mutableMapOf()
-        converterEmMap(usuario, mapGrupo)
-        return try {
-            JWT.create()
-                .withIssuer("br.gov.pa COSANPA-API")
-                .withSubject(usuario.username)
-                .withClaim("grupos", mapGrupo)
-                .withExpiresAt(dataExpiracao())
-                .sign(algoritmo)
-        } catch (exception: JWTCreationException) {
-            throw RuntimeException("erro ao gerar token jwt", exception)
-        }
+
+        JWT.create()
+            .withIssuer("br.gov.pa COSANPA-API")
+            .withSubject(usuario.username)
+            .withExpiresAt(dataExpiracao)
+            .sign(algoritmo)
+    } catch (exception: JWTCreationException) {
+        throw RuntimeException("erro ao gerar token jwt", exception)
     }
 
-    private fun converterEmMap(
-        usuario: UsuarioDetail,
-        mapGrupo: MutableMap<String, String>
-    ) {
-        usuario.authorities.forEach { grupo ->
-            mapGrupo.putIfAbsent(grupo.id!!.toString(), grupo.descricao)
-        }
-    }
-
-    fun recuperaUsuario(tokenJWT: String?): String {
+    fun recuperarUsuario(tokenJWT: String?) = try {
         algoritmo = Algorithm.HMAC256(secret)
-        return try {
-            JWT.require(algoritmo)
-                .withIssuer("br.gov.pa COSANPA-API")
-                .build()
-                .verify(tokenJWT)
-                .subject
-        } catch (exception: JWTVerificationException) {
-            throw TokenInvalidoException("Token JWT inválido ou expirado!")
-        }
+
+        JWT.require(algoritmo)
+            .withIssuer("br.gov.pa COSANPA-API")
+            .build()
+            .verify(tokenJWT)
+            .subject
+    } catch (exception: JWTVerificationException) {
+        throw TokenInvalidoException("Token JWT inválido ou expirado!")
     }
 
-    fun dataExpiracao(): Instant? {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"))
-    }
+    val dataExpiracao: Instant? = LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"))
 }
