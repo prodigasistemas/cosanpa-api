@@ -20,5 +20,6 @@ class ConsumoTarifaVigenciaRepositoryTest {
     fun `dado um id vigencia e uma data atual, retorna lista de dtos com vigencia mais atual`() {
         val lista = repo.obterConsumoTarifaVigencia(1, Date())
         assertNotNull(lista)
+        print(lista)
     }
 }

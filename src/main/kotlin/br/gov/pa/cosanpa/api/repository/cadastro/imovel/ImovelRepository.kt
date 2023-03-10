@@ -45,7 +45,6 @@ interface ImovelRepository : JpaRepository<Imovel, Int> {
         value = " select new br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO " +
                 " (c.id as id, " +
                 "   c.descricao as descricao, " +
-                "       c.fatorEconomias as fatorEconomias, " +
                 "           sum(isb.quantidadeEconomias) as quantidadeEconomias) " +
                 " from ImovelSubcategoria isb  " +
                 " inner join isb.subcategoria sb  " +

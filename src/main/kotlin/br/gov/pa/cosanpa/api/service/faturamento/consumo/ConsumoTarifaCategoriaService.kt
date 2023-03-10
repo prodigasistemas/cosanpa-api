@@ -8,7 +8,7 @@ class ConsumoTarifaCategoriaService(
     private val repository: ConsumoTarifaCategoriaRepository
 ) {
 
-    fun obterNumeroConsumoMinimoTarifaCategoria(idConsumoTarifaVigencia: Int?, idCategoria: Int?): Int {
+    fun obterNumeroConsumoMinimoTarifaCategoria(idConsumoTarifaVigencia: Int, idCategoria: Int): Int {
         return repository.obterConsumoMinimoTarifaCategoria(idConsumoTarifaVigencia, idCategoria)
     }
 

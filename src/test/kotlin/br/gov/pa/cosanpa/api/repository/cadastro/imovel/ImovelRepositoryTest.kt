@@ -48,5 +48,6 @@ class ImovelRepositoryTest {
 
         assertNotNull(lista)
         assertFalse(lista.isEmpty())
+        print(lista)
     }
 }

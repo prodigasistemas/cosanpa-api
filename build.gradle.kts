@@ -30,6 +30,7 @@ dependencies {
 	testImplementation("com.h2database:h2:2.1.214")
 	implementation("com.auth0:java-jwt:4.3.0")
 	implementation("org.json:json:20220924")
+	testImplementation("io.mockk:mockk:1.13.4")
 }
 
 tasks.withType<KotlinCompile> {

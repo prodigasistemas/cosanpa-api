@@ -21,35 +21,14 @@ class ObterMediaConsumoAguaEsgoto(
         val amReferenciaFinal: LocalDate = anoMesReferencia.converterReferenciaParaLocalDate().minusMonths(1)
         val amReferenciaInicial: LocalDate = amReferenciaFinal.minusMonths(sp.numeroMesesMediaConsumo.toLong())
 
-        val quantidadeMesesPeriodoInformado =
-            amReferenciaInicial.datesUntil(amReferenciaFinal, Period.ofMonths(1)).count().toInt()
-
-        val consumoHistoricoList = consumoHistoricoService.obterVolumeMedioAguaOuEsgoto(
+        val consumoHistoricoList = consumoHistoricoService.obterListaConsumos(
             idImovel,
             idLigacaoTipo,
             amReferenciaInicial.conveterLocalDateParaReferencia(),
             amReferenciaFinal.conveterLocalDateParaReferencia()
         )
 
-        return calcularMediaConsumo(consumoHistoricoList)
+        return consumoHistoricoList.sumOf { it.numeroCalculoConsumoMedia!! } / consumoHistoricoList.size
 
-    }
-
-    private fun calcularMediaConsumo(
-        consumoHistoricoList: List<ConsumoHistoricoDTO>?,
-    ): Int {
-        var mediaConsumo = 0
-        var consumo = 0
-        var quantidadeMesesConsiderados = 0
-
-        consumoHistoricoList?.let { dadosConsumo ->
-            dadosConsumo.forEach { dado ->
-                dado.numeroCalculoConsumoMedia?.let { consumo += it }
-                quantidadeMesesConsiderados++
-            }
-
-            mediaConsumo = consumo / quantidadeMesesConsiderados
-        }
-        return mediaConsumo
     }
 }

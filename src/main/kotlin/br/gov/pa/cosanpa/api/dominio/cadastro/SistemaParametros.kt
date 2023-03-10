@@ -10,11 +10,9 @@ import jakarta.persistence.Table
 data class SistemaParametros(
     @Id
     @Column(name = "parm_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "parm_nnmesescalcmediacons")
-    val numeroMesesMediaConsumo: Int = 0,
-    @Column(name = "parm_nnmesesmaximocalculomedia")
-    val numeroMesesMaximoCalculoMediaConsumo: Int = 0
+    val numeroMesesMediaConsumo: Int
 ) {
     companion object {
         const val ID: Int = 1

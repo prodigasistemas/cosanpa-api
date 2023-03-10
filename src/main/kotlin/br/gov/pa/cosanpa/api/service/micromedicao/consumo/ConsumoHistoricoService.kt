@@ -9,10 +9,10 @@ class ConsumoHistoricoService(
     private val repository: ConsumoHistoricoRepository
 ) {
 
-    fun obterVolumeMedioAguaOuEsgoto(
+    fun obterListaConsumos(
         idImovel: Int,
         idLigacao: Int,
         amReferenciaInicial: Int,
         amReferenciaFinal: Int
-    ): List<ConsumoHistoricoDTO>? = repository.obterVolumeMedioAguaEsgoto(idImovel, idLigacao, amReferenciaInicial, amReferenciaFinal)
+    ): List<ConsumoHistoricoDTO> = repository.obterVolumeMedioAguaEsgoto(idImovel, idLigacao, amReferenciaInicial, amReferenciaFinal)
 }
