@@ -9,5 +9,5 @@ class SistemaParametrosService(
     private val repository: SistemaParametrosRepository
 ) {
 
-    fun retornaParametrosDoSistema() : SistemaParametros = repository.findById(SistemaParametros.ID).get()
+    fun retornaParametrosDoSistema() : SistemaParametros = repository.findById(SistemaParametros.ID.toInt()).get()
 }

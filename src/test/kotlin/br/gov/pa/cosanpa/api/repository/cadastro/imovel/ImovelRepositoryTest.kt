@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.repository.cadastro.imovel
 
-import br.gov.pa.cosanpa.api.repository.cadastro.imovel.ImovelRepository
+import br.gov.pa.cosanpa.api.extensions.cadastro.endereco.formatarEndereco
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -38,8 +38,9 @@ class ImovelRepositoryTest {
 
     @Test
     fun `dado uma matricula de imovel, deve retornar uma instancia ImovelView com atributos`() {
-        val imovel = repo.obterDadosEndereco(matricula)
-        assertNotNull(imovel)
+        val enderecoDTO = repo.obterDadosEndereco(matricula)
+        assertNotNull(enderecoDTO)
+        print(enderecoDTO.formatarEndereco())
     }
 
     @Test

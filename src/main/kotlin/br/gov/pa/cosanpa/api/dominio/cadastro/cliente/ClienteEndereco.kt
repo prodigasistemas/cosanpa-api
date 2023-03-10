@@ -42,10 +42,20 @@ data class ClienteEndereco(
     val enderecoReferencia: EnderecoReferencia,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "logr_idinicioperimetro", referencedColumnName = "logr_id", insertable = false, updatable = false)
+    @JoinColumn(
+        name = "logr_idinicioperimetro",
+        referencedColumnName = "logr_id",
+        insertable = false,
+        updatable = false
+    )
     val perimetroInicial: Logradouro,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "logr_idfimperimetro", referencedColumnName = "logr_id", insertable = false, updatable = false)
     val perimetroFinal: Logradouro
-)
+) {
+    companion object {
+        const val INDICADOR_ENDERECO_CORRESPONDENCIA: Short = 1
+    }
+}
+
