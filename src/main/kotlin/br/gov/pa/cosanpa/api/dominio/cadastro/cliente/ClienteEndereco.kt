@@ -17,13 +17,13 @@ import jakarta.persistence.Table
 data class ClienteEndereco(
     @Id
     @Column(name = "cled_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "cled_nnimovel")
-    val numero: String = "",
+    val numero: String?,
     @Column(name = "cled_dscomplementoendereco")
-    val complementoEndereco: String = "",
+    val complementoEndereco: String?,
     @Column(name = "cled_icenderecocorrespondencia")
-    val indicadorEnderecoCorrespondencia: Int = 0,
+    val indicadorEnderecoCorrespondencia: Short?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clie_id")
@@ -56,6 +56,7 @@ data class ClienteEndereco(
 ) {
     companion object {
         const val INDICADOR_ENDERECO_CORRESPONDENCIA: Short = 1
+        const val INDICADOR_NAO_ENDERECO_CORRESPONDENCIA: Short = 2
     }
 }
 

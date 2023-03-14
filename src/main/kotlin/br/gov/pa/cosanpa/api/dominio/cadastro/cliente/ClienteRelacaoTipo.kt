@@ -10,7 +10,13 @@ import jakarta.persistence.Table
 data class ClienteRelacaoTipo(
     @Id
     @Column(name = "crtp_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "crtp_dsclienterelacaotipo")
-    val descricao: String = ""
-)
+    val descricao: String?
+) {
+    companion object{
+        const val PROPRIETARIO: Short = 1
+        const val USUARIO: Short = 2
+        const val RESPONSAVEL: Short = 3
+    }
+}

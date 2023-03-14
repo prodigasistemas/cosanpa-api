@@ -1,7 +1,9 @@
 package br.gov.pa.cosanpa.api.dominio.cadastro.imovel
 
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.LigacaoAguaSituacao
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.LigacaoEsgotoSituacao
+import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua.LigacaoAgua
+import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua.LigacaoAguaSituacao
+import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoesgoto.LigacaoEsgoto
+import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoesgoto.LigacaoEsgotoSituacao
 import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteImovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.EnderecoReferencia
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.Logradouro
@@ -10,7 +12,7 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroCep
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
-import br.gov.pa.cosanpa.api.dominio.faturamento.Conta
+import br.gov.pa.cosanpa.api.dominio.faturamento.conta.Conta
 import br.gov.pa.cosanpa.api.dominio.faturamento.consumo.ConsumoTarifa
 import jakarta.persistence.*
 
@@ -25,37 +27,47 @@ data class Imovel(
     @Column(name = "imov_nnsublote")
     val sublote: Int,
     @Column(name = "imov_nnimovel")
-    val numero: String?,
+    val numero: String,
     @Column(name = "imov_dscomplementoendereco")
     val complementoEndereco: String?,
     @Column(name = "imov_idimovelcondominio")
     val idImovelCondominio: Int?,
     @Column(name = "imov_icimovelcondominio")
-    val indicadorImovelCondominio: Int?,
+    val indicadorImovelCondominio: Int,
+    @Column(name = "imov_nnsequencialrota")
+    val numeroSequencialRota: Int?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iper_id")
-    val imovelPerfil: ImovelPerfil?,
+    val imovelPerfil: ImovelPerfil,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loca_id")
-    val localidade: Localidade?,
+    val localidade: Localidade,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "qdra_id")
-    val quadra: Quadra?,
+    val quadra: Quadra,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stcm_id")
-    val setorComercial: SetorComercial?,
+    val setorComercial: SetorComercial,
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId("lagu_id")
+    val ligacaoAgua: LigacaoAgua,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "last_id")
-    val ligacaoAguaSituacao: LigacaoAguaSituacao?,
+    val ligacaoAguaSituacao: LigacaoAguaSituacao,
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId("lesg_id")
+    val ligacaoEsgoto: LigacaoEsgoto,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lest_id")
-    val ligacaoEsgotoSituacao: LigacaoEsgotoSituacao?,
+    val ligacaoEsgotoSituacao: LigacaoEsgotoSituacao,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
@@ -67,31 +79,37 @@ data class Imovel(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lgcp_id")
-    val logradouroCep: LogradouroCep?,
+    val logradouroCep: LogradouroCep,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lgbr_id")
-    val logradouroBairro: LogradouroBairro?,
+    val logradouroBairro: LogradouroBairro,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "edrf_id")
-    val enderecoReferencia: EnderecoReferencia?,
+    val enderecoReferencia: EnderecoReferencia,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "logr_idinicioperimetro", referencedColumnName = "logr_id", insertable = false, updatable = false)
-    val perimetroInicial: Logradouro?,
+    val perimetroInicial: Logradouro,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "logr_idfimperimetro", referencedColumnName = "logr_id", insertable = false, updatable = false)
-    val perimetroFinal: Logradouro?,
+    val perimetroFinal: Logradouro,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cstf_id")
-    val consumoTarifa: ConsumoTarifa?,
+    val consumoTarifa: ConsumoTarifa,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
-    val subcategorias: List<ImovelSubcategoria>?
+    val subcategorias: List<ImovelSubcategoria>?,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "icte_id")
+    val imovelContaEnvio: ImovelContaEnvio,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "poco_id")
+    val pocoTipo: PocoTipo
 )

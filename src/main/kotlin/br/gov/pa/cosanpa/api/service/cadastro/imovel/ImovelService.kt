@@ -10,5 +10,5 @@ class ImovelService(
 ) {
     fun obterConsumoTarifaImovel(idImovel: Int) : ImovelDTO = repository.obterConsumoTarifa(idImovel)
     
-    fun obterCategorias(idImovel: Int) = repository.obterCategoriasPorImovel(idImovel)
+    fun obterDadosCategoriasPorImovel(idImovel: Int) = repository.obterDadosCategoriasPorImovel(idImovel)
 }

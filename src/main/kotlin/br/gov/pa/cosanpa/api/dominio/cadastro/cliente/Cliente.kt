@@ -7,11 +7,11 @@ import jakarta.persistence.*
 data class Cliente(
     @Id
     @Column(name = "clie_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "clie_nmcliente")
-    val nome: String = "",
+    val nome: String?,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "clie_id")
-    val imovel: List<ClienteImovel>
+    val imovel: List<ClienteImovel>?
 )

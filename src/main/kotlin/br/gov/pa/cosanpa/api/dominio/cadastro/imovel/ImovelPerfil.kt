@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class ImovelPerfil(
     @Id
     @Column(name = "iper_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "iper_dsimovelperfil")
-    val descricao: String = ""
+    val descricao: String?
 )

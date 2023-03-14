@@ -10,9 +10,9 @@ import jakarta.persistence.Table
 data class LogradouroTipo(
     @Id
     @Column(name = "lgtp_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "lgtp_dslogradourotipo")
-    val descricao: String = "",
+    val descricao: String,
     @Column(name = "lgtp_dsabreviado")
-    val descricaoAbreviada: String = ""
+    val descricaoAbreviada: String?
 )

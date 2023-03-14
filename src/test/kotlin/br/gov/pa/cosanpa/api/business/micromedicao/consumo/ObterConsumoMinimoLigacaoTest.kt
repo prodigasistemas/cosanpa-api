@@ -16,7 +16,7 @@ class ObterConsumoMinimoLigacaoTest {
 
     val imovelService: ImovelService = mockk {
         every { obterConsumoTarifaImovel(any()) } returns ImovelDTO(id = 7389353, consumoTarifa = 1)
-        every { obterCategorias(any()) } returns listOf(CategoriaDTO(1, "RESIDENCIAL", quantidadeEconomias = 3))
+        every { obterDadosCategoriasPorImovel(any()) } returns listOf(CategoriaDTO(id = 1, descricao = "RESIDENCIAL", quantidadeEconomias = 3))
     }
     val consumoTarifaVigenciaService: ConsumoTarifaVigenciaService = mockk {
         every { obterTarifaVigenciaCorrente(any()) } returns ConsumoTarifaVigenciaDTO(id = 89, Date())

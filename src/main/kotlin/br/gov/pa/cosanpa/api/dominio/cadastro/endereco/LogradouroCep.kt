@@ -7,7 +7,7 @@ import jakarta.persistence.*
 data class LogradouroCep(
     @Id
     @Column(name = "lgcp_id")
-    val id: Int = 0,
+    val id: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "logr_id")

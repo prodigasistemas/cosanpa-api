@@ -10,18 +10,18 @@ import jakarta.persistence.Table
 data class Cep(
     @Id
     @Column(name = "cep_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "cep_nmlogradouro")
-    val logradouro: String = "",
+    val logradouro: String?,
     @Column(name = "cep_dslogradourotipo")
     val descricaoTipoLogradouro: String,
     @Column(name = "cep_nmbairro")
-    val bairro: String = "",
+    val bairro: String?,
     @Column(name = "cep_nmmunicipio")
-    val municipio: String = "",
+    val municipio: String?,
     @Column(name = "cep_dsufsigla")
-    val sigla: String = "",
+    val sigla: String?,
     @Column(name = "cep_cdcep")
-    val codigo: Int = 0
+    val codigo: Int?
 
 )

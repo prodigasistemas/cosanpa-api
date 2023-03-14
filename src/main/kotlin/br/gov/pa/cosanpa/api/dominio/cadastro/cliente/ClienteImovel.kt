@@ -8,9 +8,9 @@ import jakarta.persistence.*
 data class ClienteImovel(
     @Id
     @Column(name = "clim_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "clim_icnomeconta")
-    val indicadorNomeConta: Int = 0,
+    val indicadorNomeConta: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clie_id")

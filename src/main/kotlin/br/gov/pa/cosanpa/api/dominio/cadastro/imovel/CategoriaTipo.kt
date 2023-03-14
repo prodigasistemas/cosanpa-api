@@ -13,4 +13,9 @@ data class CategoriaTipo(
     val id: Int,
     @Column(name = "cgtp_dscategoriatipo")
     val descricao: String?
-)
+) {
+    companion object {
+        const val PARTICULAR = 1
+        const val PUBLICO = 2
+    }
+}

@@ -10,7 +10,7 @@ class LeituristaViewMapper : Mapper<Leiturista, LeituristaView> {
         return LeituristaView(
             id = entity.id,
             nomeLeiturista = entity.usuario?.nome,
-            nomeEmpresa = entity.empresa.nome
+            nomeEmpresa = entity.empresa.descricao
         )
     }
 }

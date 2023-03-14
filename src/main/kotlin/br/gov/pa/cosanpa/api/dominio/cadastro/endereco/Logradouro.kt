@@ -8,25 +8,25 @@ import jakarta.persistence.*
 data class Logradouro(
     @Id
     @Column(name = "logr_id", insertable = false, updatable = false, nullable = false)
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "logr_nmlogradouro")
-    val nome: String = "",
+    val nome: String,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "logr_id", insertable = false, updatable = false)
-    val logradouroCep: List<LogradouroCep>,
+    val logradouroCep: List<LogradouroCep>?,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "logr_id", insertable = false, updatable = false)
-    val logradouroBairro: List<LogradouroBairro>,
+    val logradouroBairro: List<LogradouroBairro>?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lgtp_id")
-    val logradouroTipo: LogradouroTipo?,
+    val logradouroTipo: LogradouroTipo,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lgtt_id")
-    val logradouroTitulo: LogradouroTitulo?,
+    val logradouroTitulo: LogradouroTitulo,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "logr_id", insertable = false, updatable = false)

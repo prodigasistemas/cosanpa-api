@@ -9,7 +9,7 @@ data class SetorComercial(
     @Column(name = "stcm_id")
     val id: Int,
     @Column(name = "stcm_cdsetorcomercial")
-    val codigo: Int = 0,
+    val codigo: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loca_id")

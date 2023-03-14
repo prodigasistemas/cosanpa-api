@@ -45,7 +45,7 @@ class ImovelRepositoryTest {
 
     @Test
     fun `dado uma matricula de imovel, entao retorna lista de categorias do imovel`(){
-        val lista = repo.obterCategoriasPorImovel(matricula)
+        val lista = repo.obterDadosCategoriasPorImovel(matricula)
 
         assertNotNull(lista)
         assertFalse(lista.isEmpty())

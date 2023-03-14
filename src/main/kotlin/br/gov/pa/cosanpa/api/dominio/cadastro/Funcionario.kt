@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data  class Funcionario(
     @Id
     @Column(name = "func_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "func_nmfuncionario")
-    val nome: String = ""
+    val nome: String
 )

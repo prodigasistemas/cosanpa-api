@@ -62,15 +62,25 @@ interface ImovelRepository : JpaRepository<Imovel, Int> {
     @Query(
         value = " SELECT new br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO " +
                 " (c.id as id, " +
-                "   c.descricao as descricao, " +
-                "           sum(isb.quantidadeEconomias) as quantidadeEconomias) " +
+                "  c.descricao as descricao, " +
+                "  sum(isb.quantidadeEconomias) as quantidadeEconomias," +
+                "  c.consumoAlto as consumoAlto," +
+                "  c.consumoEstouro as consumoEstouro," +
+                "  c.numeroConsumoMaximoEc as numeroConsumoMaximoEc," +
+                "  c.mediaBaixoConsumo as mediaBaixoConsumo," +
+                "  c.vezesMediaAltoConsumo as vezesMediaAltoConsumo," +
+                "  c.vezesMediaEstouro as vezesMediaEstouro," +
+                "  c.porcentagemMediaBaixoConsumo as porcentagemMediaBaixoConsumo) " +
                 " FROM ImovelSubcategoria isb  " +
                 " INNER JOIN isb.subcategoria sb  " +
                 " INNER JOIN sb.categoria c  " +
                 " INNER JOIN c.categoriaTipo ct  " +
                 " WHERE isb.imovel.id = :id " +
-                " GROUP by c.id, c.descricao, c.fatorEconomias, c.categoriaTipo.id, c.categoriaTipo.descricao " +
+                " GROUP by c.id, c.descricao, c.consumoEstouro, c.vezesMediaEstouro," +
+                " isb.imovel.id, c.consumoAlto, c.mediaBaixoConsumo, c.vezesMediaAltoConsumo," +
+                " c.porcentagemMediaBaixoConsumo,c.numeroConsumoMaximoEc," +
+                " c.fatorEconomias, c.categoriaTipo.id, c.categoriaTipo.descricao " +
                 " ORDER BY c.id "
     )
-    fun obterCategoriasPorImovel(id: Int): List<CategoriaDTO>
+    fun obterDadosCategoriasPorImovel(id: Int): List<CategoriaDTO>
 }

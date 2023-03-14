@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.dominio.cadastro.cliente
 
-import br.gov.pa.cosanpa.api.dominio.faturamento.Conta
+import br.gov.pa.cosanpa.api.dominio.faturamento.conta.Conta
 import jakarta.persistence.*
 
 @Entity
@@ -8,9 +8,9 @@ import jakarta.persistence.*
 data class ClienteConta(
     @Id
     @Column(name = "clct_id")
-    val id: Int = 0,
+    val id: Int,
     @Column(name = "clct_icnomeconta")
-    val indicadorNomeConta: Int = 0,
+    val indicadorNomeConta: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clie_id")
