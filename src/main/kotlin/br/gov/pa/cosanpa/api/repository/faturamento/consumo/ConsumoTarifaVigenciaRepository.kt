@@ -9,15 +9,15 @@ import java.util.Date
 interface ConsumoTarifaVigenciaRepository : JpaRepository<ConsumoTarifaVigencia, Int> {
 
     @Query(
-        value = "select new br.gov.pa.cosanpa.api.dto.faturamento.consumo"
+        value = "SELECT  new br.gov.pa.cosanpa.api.dto.faturamento.consumo"
                 + ".ConsumoTarifaVigenciaDTO(ctv.id as id, ctv.dataVigencia as dataVigencia) "
-                + "from ConsumoTarifaVigencia ctv  "
-                + "inner join ctv.consumoTarifa ct "
-                + "where ct.id = :idConsumoTarifa "
+                + "FROM ConsumoTarifaVigencia ctv  "
+                + "INNER JOIN ctv.consumoTarifa ct "
+                + "WHERE ct.id = :idConsumoTarifa "
                 + "and ctv.dataVigencia in "
-                + "(select max(ctv2.dataVigencia) from ConsumoTarifaVigencia ctv2 "
-                + "inner join ctv2.consumoTarifa ct2 "
-                + "where ct2.id = :idConsumoTarifa and ctv2.dataVigencia  <= :dataCorrente)"
+                + "(SELECT  max(ctv2.dataVigencia) FROM ConsumoTarifaVigencia ctv2 "
+                + "INNER JOIN ctv2.consumoTarifa ct2 "
+                + "WHERE ct2.id = :idConsumoTarifa and ctv2.dataVigencia  <= :dataCorrente)"
     )
     fun obterConsumoTarifaVigencia(idConsumoTarifa: Int?, dataCorrente: Date): ConsumoTarifaVigenciaDTO
 }

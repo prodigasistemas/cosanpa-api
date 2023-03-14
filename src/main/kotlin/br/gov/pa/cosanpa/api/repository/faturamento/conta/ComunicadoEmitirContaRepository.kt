@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query
 interface ComunicadoEmitirContaRepository: JpaRepository<ComunicadoEmitirConta, Int> {
     
     @Query(
-        value = "select count(comunicado.id) from ComunicadoEmitirConta comunicado " +
-                " inner join comunicado.imovel imovel " +
-                " where imovel.id = :idImovel " +
+        value = " SELECT COUNT(comunicado.id) FROM ComunicadoEmitirConta comunicado " +
+                " INNER JOIN comunicado.imovel imovel " +
+                " WHERE imovel.id = :idImovel " +
                 " and comunicado.tipoComunicado = :tipoComunicado " +
                 " and comunicado.indicadorEmitido = :indicadorEmitido " +
                 " and comunicado.referencia = :referencia "

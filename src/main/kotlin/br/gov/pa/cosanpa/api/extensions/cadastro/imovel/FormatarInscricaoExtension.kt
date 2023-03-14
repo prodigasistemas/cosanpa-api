@@ -1,19 +1,20 @@
 package br.gov.pa.cosanpa.api.extensions.cadastro.imovel
 
-import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
-import br.gov.pa.cosanpa.api.extensions.util.adicionarZerosEsqueda
+import br.gov.pa.cosanpa.api.dto.cadastro.imovel.InscricaoDTO
+import br.gov.pa.cosanpa.api.extensions.util.adicionarZerosEsquerda
 
-fun Imovel.formatarInscricao(): String {
+fun InscricaoDTO.formatarInscricao(): String {
     var inscricao: String
 
-    val localidade = localidade?.id.toString().adicionarZerosEsqueda(3)
-    val setorComercial = setorComercial?.codigo.toString().adicionarZerosEsqueda(3)
-    val quadra = quadra?.numero.toString().adicionarZerosEsqueda(3)
-    val lote = lote.toString().adicionarZerosEsqueda(3)
+    val localidade = localidadeId.toString().adicionarZerosEsquerda(3)
+    val setorComercial = setorComercialCodigo.toString().adicionarZerosEsquerda(3)
+    val quadra = quadraNumero.toString().adicionarZerosEsquerda(3)
+    val lote = lote.toString().adicionarZerosEsquerda(4)
+    val sublote = sublote.toString().adicionarZerosEsquerda(3)
 
-    inscricao = localidade+
-                setorComercial+
-                quadra + lote + sublote
+    inscricao = localidade +
+            setorComercial +
+            quadra + lote + sublote
 
     return inscricao
 }

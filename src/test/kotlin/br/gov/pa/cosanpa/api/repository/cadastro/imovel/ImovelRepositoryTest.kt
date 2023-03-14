@@ -1,6 +1,7 @@
 package br.gov.pa.cosanpa.api.repository.cadastro.imovel
 
 import br.gov.pa.cosanpa.api.extensions.cadastro.endereco.formatarEndereco
+import br.gov.pa.cosanpa.api.extensions.cadastro.imovel.formatarInscricao
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -50,5 +51,14 @@ class ImovelRepositoryTest {
         assertNotNull(lista)
         assertFalse(lista.isEmpty())
         print(lista)
+    }
+
+    @Test
+    fun `dado uma matricula de imovel, entao retorna DTO com dados de Inscricao`(){
+        val dto = repo.obterDadosInscricao(2658984)
+        assertNotNull(dto)
+
+        val inscricao = dto.formatarInscricao()
+        assertEquals("00100819010080000", inscricao)
     }
 }

@@ -11,6 +11,7 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroBairro
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroCep
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
+import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.QuadraFace
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
 import br.gov.pa.cosanpa.api.dominio.faturamento.conta.Conta
 import br.gov.pa.cosanpa.api.dominio.faturamento.consumo.ConsumoTarifa
@@ -48,6 +49,10 @@ data class Imovel(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "qdra_id")
     val quadra: Quadra,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "qdfa_id")
+    val quadraFace: QuadraFace,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stcm_id")

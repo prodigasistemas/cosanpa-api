@@ -19,20 +19,20 @@ interface LocalidadeRepository : JpaRepository<Localidade, Int> {
                 "  municipio.nome as municipioNome,   " +
                 "  unidadeFederacao.sigla as unidadeFederacaoSigla,   " +
                 "  cep.codigo as cepCodigo) " +
-                "  from Localidade localidade   " +
-                "  left join localidade.logradouroCep logradouroCep   " +
-                "  left join logradouroCep.cep cep   " +
-                "  left join logradouroCep.logradouro logradouro   " +
-                "  left join logradouro.logradouroTipo logradouroTipo   " +
-                "  left join logradouro.logradouroTitulo logradouroTitulo   " +
-                "  left join localidade.logradouroBairro logradouroBairro   " +
-                "  left join logradouroBairro.bairro bairro   " +
-                "  left join logradouro.municipio municipio   " +
-                "  left join bairro.municipio municipioBairro   " +
-                "  left join municipio.unidadeFederacao unidadeFederacao   " +
-                "  left join localidade.enderecoReferencia enderecoReferencia   " +
-                "  left join municipioBairro.unidadeFederacao unidadeFederacaoBairro   " +
-                "  where localidade.id = :idLocalidade"
+                "  FROM Localidade localidade   " +
+                "  LEFT JOIN localidade.logradouroCep logradouroCep   " +
+                "  LEFT JOIN logradouroCep.cep cep   " +
+                "  LEFT JOIN logradouroCep.logradouro logradouro   " +
+                "  LEFT JOIN logradouro.logradouroTipo logradouroTipo   " +
+                "  LEFT JOIN logradouro.logradouroTitulo logradouroTitulo   " +
+                "  LEFT JOIN localidade.logradouroBairro logradouroBairro   " +
+                "  LEFT JOIN logradouroBairro.bairro bairro   " +
+                "  LEFT JOIN logradouro.municipio municipio   " +
+                "  LEFT JOIN bairro.municipio municipioBairro   " +
+                "  LEFT JOIN municipio.unidadeFederacao unidadeFederacao   " +
+                "  LEFT JOIN localidade.enderecoReferencia enderecoReferencia   " +
+                "  LEFT JOIN municipioBairro.unidadeFederacao unidadeFederacaoBairro   " +
+                "  WHERE localidade.id = :idLocalidade"
     )
     fun obterDadosEnderecoAtendimento(idLocalidade: Int): EnderecoDTO
 }

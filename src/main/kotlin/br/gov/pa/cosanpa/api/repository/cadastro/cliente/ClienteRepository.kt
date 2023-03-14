@@ -26,27 +26,27 @@ interface ClienteRepository : JpaRepository<Cliente, Int> {
                 " logradouroTipoPerimetroFinal.descricaoAbreviada as perimetroFinalLogradouroTipoDescricaoAbreviada, " +
                 " logradouroTituloPerimetroFinal.descricaoAbreviada as perimetroFinalLogradouroTituloDescricaoAbreviada, " +
                 " perimetroFinal.nome as perimetroFinalNome)  " +
-                " from ClienteEndereco clienteEndereco " +
-                " left join clienteEndereco.logradouroCep logradouroCep " +
-                " left join logradouroCep.cep cep " +
-                " left join logradouroCep.logradouro logradouro " +
-                " left join logradouro.logradouroTipo logradouroTipo " +
-                " left join logradouro.logradouroTitulo logradouroTitulo " +
-                " left join clienteEndereco.logradouroBairro logradouroBairro " +
-                " left join logradouroBairro.bairro bairro " +
-                " left join logradouro.municipio municipio " +
-                " left join bairro.municipio municipioBairro " +
-                " left join municipio.unidadeFederacao unidadeFederacao " +
-                " left join clienteEndereco.enderecoReferencia enderecoReferencia " +
-                " left join municipioBairro.unidadeFederacao unidadeFederacaoBairro " +
-                " left join clienteEndereco.perimetroInicial perimetroInicial " +
-                " left join perimetroInicial.logradouroTipo logradouroTipoPerimetroInicial " +
-                " left join perimetroInicial.logradouroTitulo logradouroTituloPerimetroInicial " +
-                " left join clienteEndereco.perimetroFinal perimetroFinal " +
-                " left join perimetroFinal.logradouroTipo logradouroTipoPerimetroFinal " +
-                " left join perimetroFinal.logradouroTitulo logradouroTituloPerimetroFinal " +
-                " inner join clienteEndereco.cliente cliente " +
-                " where cliente.id = :idCliente AND " +
+                " FROM ClienteEndereco clienteEndereco " +
+                " LEFT JOIN clienteEndereco.logradouroCep logradouroCep " +
+                " LEFT JOIN logradouroCep.cep cep " +
+                " LEFT JOIN logradouroCep.logradouro logradouro " +
+                " LEFT JOIN logradouro.logradouroTipo logradouroTipo " +
+                " LEFT JOIN logradouro.logradouroTitulo logradouroTitulo " +
+                " LEFT JOIN clienteEndereco.logradouroBairro logradouroBairro " +
+                " LEFT JOIN logradouroBairro.bairro bairro " +
+                " LEFT JOIN logradouro.municipio municipio " +
+                " LEFT JOIN bairro.municipio municipioBairro " +
+                " LEFT JOIN municipio.unidadeFederacao unidadeFederacao " +
+                " LEFT JOIN clienteEndereco.enderecoReferencia enderecoReferencia " +
+                " LEFT JOIN municipioBairro.unidadeFederacao unidadeFederacaoBairro " +
+                " LEFT JOIN clienteEndereco.perimetroInicial perimetroInicial " +
+                " LEFT JOIN perimetroInicial.logradouroTipo logradouroTipoPerimetroInicial " +
+                " LEFT JOIN perimetroInicial.logradouroTitulo logradouroTituloPerimetroInicial " +
+                " LEFT JOIN clienteEndereco.perimetroFinal perimetroFinal " +
+                " LEFT JOIN perimetroFinal.logradouroTipo logradouroTipoPerimetroFinal " +
+                " LEFT JOIN perimetroFinal.logradouroTitulo logradouroTituloPerimetroFinal " +
+                " INNER JOIN clienteEndereco.cliente cliente " +
+                " WHERE cliente.id = :idCliente AND " +
                 " clienteEndereco.indicadorEnderecoCorrespondencia = :indicadorEnderecoCorrespondencia"
     )
     fun obterDadosEnderecoCorrespondencia(idCliente: Int, indicadorEnderecoCorrespondencia: Short) : EnderecoDTO

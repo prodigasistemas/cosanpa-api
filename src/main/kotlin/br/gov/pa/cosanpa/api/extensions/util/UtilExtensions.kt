@@ -3,7 +3,7 @@ package br.gov.pa.cosanpa.api.extensions.util
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-fun String.adicionarZerosEsqueda(tamanho: Int): String {
+fun String.adicionarZerosEsquerda(tamanho: Int): String {
     var zeros = ""
 
     for (a in 0 until tamanho - length) {
@@ -11,6 +11,7 @@ fun String.adicionarZerosEsqueda(tamanho: Int): String {
     }
 
     return zeros + this
+
 }
 
 fun Int.converterReferenciaParaLocalDate(): LocalDate {
