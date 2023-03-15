@@ -14,19 +14,19 @@ import java.util.*
 
 class ObterConsumoMinimoLigacaoTest {
 
-    val imovelService: ImovelService = mockk {
+    private val imovelService: ImovelService = mockk {
         every { obterConsumoTarifaImovel(any()) } returns ImovelDTO(id = 7389353, consumoTarifa = 1)
         every { obterDadosCategoriasPorImovel(any()) } returns listOf(CategoriaDTO(id = 1, descricao = "RESIDENCIAL", quantidadeEconomias = 3))
     }
-    val consumoTarifaVigenciaService: ConsumoTarifaVigenciaService = mockk {
+    private val consumoTarifaVigenciaService: ConsumoTarifaVigenciaService = mockk {
         every { obterTarifaVigenciaCorrente(any()) } returns ConsumoTarifaVigenciaDTO(id = 89, Date())
     }
 
-    val consumoTarifaCategoriaService: ConsumoTarifaCategoriaService = mockk {
+    private val consumoTarifaCategoriaService: ConsumoTarifaCategoriaService = mockk {
         every { obterNumeroConsumoMinimoTarifaCategoria(any(), any()) } returns 10
     }
 
-    val obterConsumoMinimoLigacao = ObterConsumoMinimoLigacao(
+    private val obterConsumoMinimoLigacao = ObterConsumoMinimoLigacao(
         imovelService = imovelService,
         consumoTarifaVigenciaService = consumoTarifaVigenciaService,
         consumoTarifaCategoriaService = consumoTarifaCategoriaService

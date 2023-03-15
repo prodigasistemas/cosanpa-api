@@ -15,6 +15,6 @@ data class SistemaParametros(
     val numeroMesesMediaConsumo: Int
 ) {
     companion object {
-        const val ID: Short = 1
+        const val ID = 1
     }
 }

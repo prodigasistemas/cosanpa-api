@@ -19,11 +19,11 @@ interface ContaMensagemRepository : JpaRepository<ContaMensagem, Int> {
                     " LEFT JOIN contaMensagem.faturamentoGrupo faturamentoGrupo  " +
                     " LEFT JOIN contaMensagem.quadra quadra  " +
                     " WHERE contaMensagem.anoMesReferenciaFaturamento = :amReferencia  " +
-                    " AND faturamentoGrupo.id = :idFaturamentoGrupo " +
-                    " AND gerenciaRegional.id = :idGerenciaRegional " +
-                    " AND localidade.id = :idLocalidade " +
-                    " AND setorComercial.id = :idSetorComercial " +
-                    " AND quadra.id = :idQuadra "
+                    " AND (faturamentoGrupo.id = :idFaturamentoGrupo OR faturamentoGrupo.id IS NULL) " +
+                    " AND (gerenciaRegional.id = :idGerenciaRegional OR gerenciaRegional.id IS NULL)" +
+                    " AND (localidade.id = :idLocalidade OR localidade.id IS NULL) " +
+                    " AND (setorComercial.id = :idSetorComercial OR setorComercial.id IS NULL)" +
+                    " AND (quadra.id = :idQuadra OR quadra.id IS NULL)"
     )
     fun obterContaMensagem3Partes(amReferencia: Int,
                                   idFaturamentoGrupo: Int?,

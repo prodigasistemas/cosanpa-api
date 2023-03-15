@@ -1,9 +1,7 @@
 package br.gov.pa.cosanpa.api.dominio.cadastro.localidade
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import br.gov.pa.cosanpa.api.dominio.operacional.DistritoOperacional
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "quadra_face", schema = "cadastro")
@@ -12,5 +10,9 @@ data class QuadraFace(
         @Column(name = "qdfa_id")
         val id: Int,
         @Column(name = "qdfa_nnfacequadra")
-        val numero: Int
+        val numero: Int,
+
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "diop_id")
+        val distritoOperacional: DistritoOperacional
 )

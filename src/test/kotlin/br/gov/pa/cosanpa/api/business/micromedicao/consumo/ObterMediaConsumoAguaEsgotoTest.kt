@@ -6,17 +6,16 @@ import br.gov.pa.cosanpa.api.service.cadastro.SistemaParametrosService
 import br.gov.pa.cosanpa.api.service.micromedicao.consumo.ConsumoHistoricoService
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class ObterMediaConsumoAguaEsgotoTest {
 
-    val sistemaParametros: SistemaParametrosService = mockk {
+    private val sistemaParametros: SistemaParametrosService = mockk {
         every { retornaParametrosDoSistema() } returns SistemaParametros(1, 6)
     }
 
-    val consumoHistoricoService: ConsumoHistoricoService = mockk {
+    private val consumoHistoricoService: ConsumoHistoricoService = mockk {
         every { obterListaConsumos(any(), any(), any(), any()) } returns listOf(
             ConsumoHistoricoDTO(referencia = 202211, numeroCalculoConsumoMedia = 10),
             ConsumoHistoricoDTO(referencia = 202210, numeroCalculoConsumoMedia = 20),

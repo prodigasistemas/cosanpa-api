@@ -1,20 +1,20 @@
 package br.gov.pa.cosanpa.api.dto.cadastro.endereco
 
 data class EnderecoDTO(
-    val logradouroTipoDescricao: String? = null,
-    val logradouroTituloDescricao: String? = null,
-    val logradouroNome: String? = null,
-    val enderecoReferenciaDescricao: String? = null,
-    val numeroImovel: String? = null,
-    val complementoEndereco: String? = null,
-    val bairroNome: String? = null,
-    val municipioNome: String? = null,
-    val unidadeFederacaoSigla: String? = null,
+    val logradouroTipoDescricao: String? = "",
+    val logradouroTituloDescricao: String? = "",
+    val logradouroNome: String? = "",
+    val enderecoReferenciaDescricao: String? = "",
+    val numeroImovel: String? = "",
+    val complementoEndereco: String? = "",
+    val bairroNome: String? = "",
+    val municipioNome: String? = "",
+    val unidadeFederacaoSigla: String? = "",
     val cepCodigo: Int? = null,
-    val perimetroInicialLogradouroTipoDescricaoAbreviada: String? = null,
-    val perimetroInicialLogradouroTituloDescricaoAbreviada: String? = null,
-    val perimetroInicialNome: String? = null,
-    val perimetroFinalLogradouroTipoDescricaoAbreviada: String? = null,
-    val perimetroFinalLogradouroTituloDescricaoAbreviada: String? = null,
-    val perimetroFinalNome: String? = null
+    val perimetroInicialLogradouroTipoDescricaoAbreviada: String? = "",
+    val perimetroInicialLogradouroTituloDescricaoAbreviada: String? = "",
+    val perimetroInicialNome: String? = "",
+    val perimetroFinalLogradouroTipoDescricaoAbreviada: String? = "",
+    val perimetroFinalLogradouroTituloDescricaoAbreviada: String? = "",
+    val perimetroFinalNome: String? = ""
 )

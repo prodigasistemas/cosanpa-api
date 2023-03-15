@@ -39,9 +39,9 @@ class ImovelRepositoryTest {
 
     @Test
     fun `dado uma matricula de imovel, deve retornar uma instancia ImovelView com atributos`() {
-        val enderecoDTO = repo.obterDadosEndereco(matricula)
+        val enderecoDTO = repo.obterDadosEndereco(2326426)
         assertNotNull(enderecoDTO)
-        print(enderecoDTO.formatarEndereco())
+        println(enderecoDTO.formatarEndereco())
     }
 
     @Test
