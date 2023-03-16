@@ -25,7 +25,6 @@ class JWTUtil {
         JWT.create()
             .withIssuer("br.gov.pa COSANPA-API")
             .withSubject(usuario.username)
-            .withExpiresAt(dataExpiracao)
             .sign(algoritmo)
     } catch (exception: JWTCreationException) {
         throw RuntimeException("erro ao gerar token jwt", exception)
@@ -40,8 +39,7 @@ class JWTUtil {
             .verify(tokenJWT)
             .subject
     } catch (exception: JWTVerificationException) {
-        throw TokenInvalidoException("Token JWT inválido ou expirado!")
+        throw TokenInvalidoException("Token JWT inválido!")
     }
 
-    val dataExpiracao: Instant? = LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"))
 }
