@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 class ObterMediaConsumoAguaEsgotoTest {
 
     private val sistemaParametros: SistemaParametrosService = mockk {
-        every { retornaParametrosDoSistema() } returns SistemaParametros(1, 6)
+        every { retornaParametrosDoSistema() } returns SistemaParametros(1, 6, 2)
     }
 
     private val consumoHistoricoService: ConsumoHistoricoService = mockk {

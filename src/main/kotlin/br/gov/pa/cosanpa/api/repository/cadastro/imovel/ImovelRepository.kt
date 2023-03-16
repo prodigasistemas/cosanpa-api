@@ -5,6 +5,7 @@ import br.gov.pa.cosanpa.api.dto.cadastro.endereco.EnderecoDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.imovel.ImovelDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.imovel.InscricaoDTO
+import br.gov.pa.cosanpa.api.dto.cadastro.imovel.SubcategoriaDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 
@@ -99,4 +100,29 @@ interface ImovelRepository : JpaRepository<Imovel, Int> {
                     " WHERE i.id = :id "
     )
     fun obterDadosInscricao(id: Int): InscricaoDTO
+
+    @Query(
+        value = " SELECT new br.gov.pa.cosanpa.api.dto.cadastro.imovel.SubcategoriaDTO(" +
+                " sb.id as id, " +
+                " sb.codigo as codigo," +
+                " sb.descricao as descricao, " +
+                " sum(isb.quantidadeEconomias) as quantidadeEconomias, " +
+                " sb.codigoTarifaSocial as codigoTarifaSocial, " +
+                " sb.numeroFatorFiscalizacao as numeroFatorFiscalizacao, " +
+                " sb.indicadorTarifaConsumo as indicadorTarifaConsumo, " +
+                " sb.indicadorSazonalidade as indicadorSazonalidade, " +
+                " sb.descricaoAbreviada as descricaoAbreviada) " +
+                " FROM ImovelSubcategoria isb " +
+                " INNER JOIN isb.subcategoria sb " +
+                " WHERE isb.imovel.id = :idImovel " +
+                " GROUP BY sb.id, " +
+                " sb.codigo,sb.descricao, " +
+                " sb.codigoTarifaSocial, " +
+                " sb.numeroFatorFiscalizacao, " +
+                " sb.indicadorTarifaConsumo, isb.imovel.id, " +
+                " sb.indicadorSazonalidade, " +
+                " sb.descricaoAbreviada " +
+                " HAVING isb.imovel.id = :idImovel "
+    )
+    fun obterDadosSubcategoriasPorImovel(idImovel: Int): List<SubcategoriaDTO>
 }

@@ -45,12 +45,12 @@ class ImovelRepositoryTest {
     }
 
     @Test
-    fun `dado uma matricula de imovel, entao retorna lista de categorias do imovel`(){
+    fun `dado uma matricula de imovel, entao retorna lista de dtos de categorias do imovel`(){
         val lista = repo.obterDadosCategoriasPorImovel(matricula)
 
         assertNotNull(lista)
         assertFalse(lista.isEmpty())
-        print(lista)
+        println(lista)
     }
 
     @Test
@@ -60,5 +60,14 @@ class ImovelRepositoryTest {
 
         val inscricao = dto.formatarInscricao()
         assertEquals("00100819010080000", inscricao)
+    }
+
+    @Test
+    fun `dado uma matricula de imovel, entao retorna lista de dtos de subcategorias do imovel`(){
+        val lista = repo.obterDadosSubcategoriasPorImovel(matricula)
+
+        assertNotNull(lista)
+        assertFalse(lista.isEmpty())
+        println(lista)
     }
 }

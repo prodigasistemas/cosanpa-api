@@ -10,6 +10,10 @@ data class Cliente(
     val id: Int,
     @Column(name = "clie_nmcliente")
     val nome: String?,
+    @Column(name = "clie_nncpf")
+    val cpf: String?,
+    @Column(name = "clie_nncnpj")
+    val cnpj: String?,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "clie_id")

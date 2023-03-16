@@ -18,25 +18,16 @@ class ObterConsumoMinimoLigacao(
         val imovelDTO = imovelService.obterConsumoTarifaImovel(idImovel)
         val categorias = imovelService.obterDadosCategoriasPorImovel(idImovel)
         val consumoTarifaVigenciaDTO = consumoTarifaVigenciaService.obterTarifaVigenciaCorrente(imovelDTO.consumoTarifa!!)
-
-        return calcularConsumoMinimoPorCategoria(categorias, consumoTarifaVigenciaDTO)
-    }
-
-    private fun calcularConsumoMinimoPorCategoria(
-        categorias: List<CategoriaDTO>,
-        consumoTarifaVigenciaDTO: ConsumoTarifaVigenciaDTO,
-    ): Int {
         var consumoMinimoLigacao = 0
+
         categorias.forEach { categoria ->
             val consumoMinimoTarifaCategoria = consumoTarifaCategoriaService.obterNumeroConsumoMinimoTarifaCategoria(
                 consumoTarifaVigenciaDTO.id,
                 categoria.id!!
             )
-            categoria.quantidadeEconomias.let { economia ->
-                consumoMinimoLigacao += consumoMinimoTarifaCategoria * economia!!.toInt()
-            }
-
+            consumoMinimoLigacao += consumoMinimoTarifaCategoria * categoria.quantidadeEconomias!!.toInt()
         }
+
         return consumoMinimoLigacao
     }
 }

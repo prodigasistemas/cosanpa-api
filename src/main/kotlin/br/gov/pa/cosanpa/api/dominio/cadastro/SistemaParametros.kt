@@ -12,7 +12,9 @@ data class SistemaParametros(
     @Column(name = "parm_id")
     val id: Int,
     @Column(name = "parm_nnmesescalcmediacons")
-    val numeroMesesMediaConsumo: Int
+    val numeroMesesMediaConsumo: Int,
+    @Column(name = "parm_icnaomedidotarifa")
+    val indicadorNaoMedidoTarifa: Short
 ) {
     companion object {
         const val ID = 1

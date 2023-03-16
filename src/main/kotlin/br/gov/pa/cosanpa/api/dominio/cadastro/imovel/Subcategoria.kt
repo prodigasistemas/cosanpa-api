@@ -12,6 +12,16 @@ data class Subcategoria(
     val codigo: Int,
     @Column(name = "scat_dssubcategoria")
     val descricao: String,
+    @Column(name = "scat_dsabreviada")
+    val descricaoAbreviada: String?,
+    @Column(name = "scat_cdtarifasocial")
+    val codigoTarifaSocial: String?,
+    @Column(name = "scat_nnfatorfiscalizacao")
+    val numeroFatorFiscalizacao: Short,
+    @Column(name = "scat_ictarifaconsumo")
+    val indicadorTarifaConsumo: Short?,
+    @Column(name = "scat_icsazonalidade")
+    val indicadorSazonalidade: Short,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catg_id")

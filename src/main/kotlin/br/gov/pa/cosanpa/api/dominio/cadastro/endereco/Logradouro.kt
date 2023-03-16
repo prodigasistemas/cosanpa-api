@@ -7,17 +7,17 @@ import jakarta.persistence.*
 @Table(name = "logradouro", schema = "cadastro")
 data class Logradouro(
     @Id
-    @Column(name = "logr_id", insertable = false, updatable = false, nullable = false)
+    @Column(name = "logr_id")
     val id: Int,
     @Column(name = "logr_nmlogradouro")
     val nome: String,
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "logr_id", insertable = false, updatable = false)
+    @JoinColumn(name = "logr_id")
     val logradouroCep: List<LogradouroCep>?,
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "logr_id", insertable = false, updatable = false)
+    @JoinColumn(name = "logr_id")
     val logradouroBairro: List<LogradouroBairro>?,
 
     @ManyToOne(fetch = FetchType.LAZY)
