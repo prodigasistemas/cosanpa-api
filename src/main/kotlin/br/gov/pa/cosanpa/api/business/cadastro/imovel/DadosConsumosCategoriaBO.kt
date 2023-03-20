@@ -2,7 +2,7 @@ package br.gov.pa.cosanpa.api.business.cadastro.imovel
 
 import br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO
 
-class ObterDadosConsumosCategoria (
+class DadosConsumosCategoriaBO (
     private val categoria: CategoriaDTO
 ) {
     fun obterReferenciaAltoConsumo(): Int = categoria.consumoAlto!! * obterQuantidadeEconomias()

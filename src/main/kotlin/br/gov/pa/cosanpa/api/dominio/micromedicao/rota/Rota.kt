@@ -16,6 +16,8 @@ data class Rota(
     val codigo: Int,
     @Column(name = "rota_icuso")
     val indicadorUso: Short?,
+    @Column(name = "rota_icalternativa")
+    val indicadorRotaAlternativa: Short?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empr_id")

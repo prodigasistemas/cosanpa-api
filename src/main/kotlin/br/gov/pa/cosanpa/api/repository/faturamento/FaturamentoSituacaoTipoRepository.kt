@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.repository
+package br.gov.pa.cosanpa.api.repository.faturamento
 
 import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoSituacaoTipo
 import br.gov.pa.cosanpa.api.dto.faturamento.FaturamentoSituacaoTipoDTO
@@ -21,5 +21,5 @@ interface FaturamentoSituacaoTipoRepository: JpaRepository<FaturamentoSituacaoTi
                 " LEFT JOIN fst.leituraAnormalidadeLeituraComLeitura " +
                 " WHERE fst.id = :idFaturamentoSituacaoTipo"
     )
-    fun obterFaturamentoSituacaoTipo(idFaturamentoSituacaoTipo: Int): FaturamentoSituacaoTipoDTO
+    fun obterFaturamentoSituacaoTipo(idFaturamentoSituacaoTipo: Int): FaturamentoSituacaoTipoDTO?
 }

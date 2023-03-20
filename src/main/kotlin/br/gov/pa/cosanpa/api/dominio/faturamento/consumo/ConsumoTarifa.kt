@@ -1,9 +1,6 @@
 package br.gov.pa.cosanpa.api.dominio.faturamento.consumo
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "consumo_tarifa", schema = "faturamento")
@@ -12,5 +9,15 @@ data class ConsumoTarifa(
     @Column(name = "cstf_id")
     val id: Int,
     @Column(name = "cstf_dsconsumotarifa")
-    val descricao: String?
-)
+    val descricao: String?,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ttpc_id")
+    val tarifaTipoCalculo: TarifaTipoCalculo
+) {
+    companion object {
+        const val CONSUMO_NORMAL = 1
+        const val CONSUMO_SOCIAL = 2
+        const val AGUA_BRUTA_ADUTORA = 21
+    }
+}

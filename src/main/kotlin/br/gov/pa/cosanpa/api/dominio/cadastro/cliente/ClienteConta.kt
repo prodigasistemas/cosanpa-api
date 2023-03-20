@@ -2,6 +2,7 @@ package br.gov.pa.cosanpa.api.dominio.cadastro.cliente
 
 import br.gov.pa.cosanpa.api.dominio.faturamento.conta.Conta
 import jakarta.persistence.*
+import java.util.*
 
 @Entity
 @Table(name = "cliente_conta", schema = "cadastro")

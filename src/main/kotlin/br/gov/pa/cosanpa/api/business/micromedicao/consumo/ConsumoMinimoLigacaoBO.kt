@@ -1,7 +1,5 @@
 package br.gov.pa.cosanpa.api.business.micromedicao.consumo
 
-import br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO
-import br.gov.pa.cosanpa.api.dto.faturamento.consumo.ConsumoTarifaVigenciaDTO
 import br.gov.pa.cosanpa.api.service.cadastro.imovel.ImovelService
 import br.gov.pa.cosanpa.api.service.faturamento.consumo.ConsumoTarifaCategoriaService
 import br.gov.pa.cosanpa.api.service.faturamento.consumo.ConsumoTarifaVigenciaService
@@ -9,7 +7,7 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class ObterConsumoMinimoLigacao(
+class ConsumoMinimoLigacaoBO(
     private val imovelService: ImovelService,
     private val consumoTarifaVigenciaService: ConsumoTarifaVigenciaService,
     private val consumoTarifaCategoriaService: ConsumoTarifaCategoriaService

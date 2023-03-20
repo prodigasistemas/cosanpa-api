@@ -13,8 +13,11 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.QuadraFace
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
-import br.gov.pa.cosanpa.api.dominio.faturamento.conta.Conta
+import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoSituacaoTipo
 import br.gov.pa.cosanpa.api.dominio.faturamento.consumo.ConsumoTarifa
+import br.gov.pa.cosanpa.api.dominio.faturamento.conta.Conta
+import br.gov.pa.cosanpa.api.dominio.micromedicao.hidrometro.HidrometroInstalacaoHistorico
+import br.gov.pa.cosanpa.api.dominio.micromedicao.rota.Rota
 import jakarta.persistence.*
 
 @Entity
@@ -29,18 +32,36 @@ data class Imovel(
     val sublote: Int,
     @Column(name = "imov_nnimovel")
     val numero: String,
+    @Column(name = "imov_nmimovel")
+    val nome: String?,
     @Column(name = "imov_dscomplementoendereco")
     val complementoEndereco: String?,
+    @Column(name = "imov_nnmorador")
+    val numeroMorador: Short?,
     @Column(name = "imov_idimovelcondominio")
     val idImovelCondominio: Int?,
     @Column(name = "imov_icimovelcondominio")
     val indicadorImovelCondominio: Int,
+    @Column(name = "imov_icexclusao")
+    val indicadorExclusao: Short?,
     @Column(name = "imov_nnsequencialrota")
     val numeroSequencialRota: Int?,
+    @Column(name = "imov_cddebitoautomatico")
+    val codigoDebitoAutomatico: Int,
+    @Column(name = "imov_icimovelareacomum")
+    val indicadorImovelAreaComum: Short?,
+    @Column(name = "imov_icenviocontafisica")
+    val indicadorEnvioContaFisica: Short,
+    @Column(name = "imov_icparametrosconvenio")
+    val indicadorParametrosConvenio: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iper_id")
     val imovelPerfil: ImovelPerfil,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "imovel_idImovelCondominio")
+    val imovelCondominio: Imovel,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loca_id")
@@ -76,7 +97,7 @@ data class Imovel(
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
-    val clientes: List<ClienteImovel>?,
+    val clienteImoveis: List<ClienteImovel>?,
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")
@@ -116,5 +137,32 @@ data class Imovel(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "poco_id")
-    val pocoTipo: PocoTipo
-)
+    val pocoTipo: PocoTipo,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ftst_id")
+    val faturamentoSituacaoTipo: FaturamentoSituacaoTipo,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hidi_id")
+    val hidrometroInstalacaoHistorico: HidrometroInstalacaoHistorico,
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rota_idalternativa", referencedColumnName = "rota_id")
+    val rotaAlternativa: Rota
+) {
+    companion object {
+        const val INDICADOR_CONTA_RESPONSAVEL: Short = 1
+        const val INDICADOR_CONTA_IMOVEL: Short = 2
+        const val INDICADOR_CONTA_NAO_PAGAVEL_PARA_IMOVEL_PAGAVEL_PARA_RESPONSAVEL: Short = 3
+        const val IMOVEL_CONDOMINIO: Short = 1
+        const val IMOVEL_NAO_CONDOMINIO: Short = 2
+        const val IMOVEL_EXCLUIDO: Short = 1
+        const val INDICADOR_JARDIM_SIM: Short = 1
+        const val INDICADOR_DEBITO_AUTOMATICO: Short = 1
+        const val INDICADOR_NAO_DEBITO_AUTOMATICO: Short = 2
+        const val INDICADOR_ENVIO_CONTA_FISICA: Short = 1
+        const val INDICADOR_NAO_ENVIO_CONTA_FISICA: Short = 2
+    }
+}

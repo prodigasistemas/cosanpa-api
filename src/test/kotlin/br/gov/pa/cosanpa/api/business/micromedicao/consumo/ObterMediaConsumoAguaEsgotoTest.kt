@@ -26,10 +26,10 @@ class ObterMediaConsumoAguaEsgotoTest {
         )
     }
 
-    private val obterMediaConsumoAguaEsgoto = ObterMediaConsumoAguaEsgoto(sistemaParametros, consumoHistoricoService)
+    private val mediaConsumoAguaEsgoto = MediaConsumoAguaEsgotoBO(sistemaParametros, consumoHistoricoService)
     @Test
     fun `dados os parametros, retornar a media de consumo do imovel`(){
-        val media = obterMediaConsumoAguaEsgoto.obter(7389353, 202212, 1)
+        val media = mediaConsumoAguaEsgoto.obter(7389353, 202212, 1)
 
         assertEquals(15, media)
     }

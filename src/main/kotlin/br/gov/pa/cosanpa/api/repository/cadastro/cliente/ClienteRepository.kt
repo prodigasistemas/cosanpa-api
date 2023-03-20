@@ -1,11 +1,9 @@
 package br.gov.pa.cosanpa.api.repository.cadastro.cliente
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.Cliente
-import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteEndereco
 import br.gov.pa.cosanpa.api.dto.cadastro.endereco.EnderecoDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
-import kotlin.reflect.jvm.internal.impl.renderer.ClassifierNamePolicy.SHORT
 
 interface ClienteRepository : JpaRepository<Cliente, Int> {
     @Query(

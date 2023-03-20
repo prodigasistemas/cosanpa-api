@@ -26,7 +26,7 @@ class ObterConsumoMinimoLigacaoTest {
         every { obterNumeroConsumoMinimoTarifaCategoria(any(), any()) } returns 10
     }
 
-    private val obterConsumoMinimoLigacao = ObterConsumoMinimoLigacao(
+    private val obterConsumoMinimoLigacao = ConsumoMinimoLigacaoBO(
         imovelService = imovelService,
         consumoTarifaVigenciaService = consumoTarifaVigenciaService,
         consumoTarifaCategoriaService = consumoTarifaCategoriaService

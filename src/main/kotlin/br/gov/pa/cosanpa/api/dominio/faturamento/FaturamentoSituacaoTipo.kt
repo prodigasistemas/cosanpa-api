@@ -16,6 +16,10 @@ data class FaturamentoSituacaoTipo(
     val indicadorValidoAgua: Short?,
     @Column(name = "ftst_icvalidoesgoto")
     val indicadorValidoEsgoto: Short?,
+    @Column(name = "ftst_icfaturamentoparalisacao")
+    val indicadorParalisacaoFaturamento: Short?,
+    @Column(name = "ftst_icLeituraparalisacao")
+    val indicadorParalisacaoLeitura: Short?,
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "lacs_idconsacobrarcomleit", referencedColumnName = "lacs_id", insertable = false, updatable = false)
@@ -32,4 +36,14 @@ data class FaturamentoSituacaoTipo(
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "lacs_idconsacobrarsemleit", referencedColumnName = "lalt_id", insertable = false, updatable = false)
     val leituraAnormalidadeLeituraSemLeitura: LeituraAnormalidadeLeitura,
-)
+) {
+    companion object {
+        const val PARALISAR_EMISSAO_CONTAS = 1
+        const val PARALISAR_LEITURA_FATURAR_MEDIA = 2
+        const val PARALISAR_LEITURA_FATURAR_TAXA_MINIMA = 3
+        const val FATURAR_NORMAL = 5
+        const val PARALISAR_FATURAMENTO_DE_ESGOTO = 12
+        const val FATURAR_MEDIA_RECADASTRAMENTO = 14
+        const val SITUACAO_ESPECIAL_BOLSA_AGUA = 47
+    }
+}

@@ -12,5 +12,7 @@ data class ImovelPerfil(
     @Column(name = "iper_id")
     val id: Int,
     @Column(name = "iper_dsimovelperfil")
-    val descricao: String?
+    val descricao: String?,
+    @Column(name = "iper_icgerardadosleitura")
+    val indicadorGerarDadosLeitura: Short?
 )

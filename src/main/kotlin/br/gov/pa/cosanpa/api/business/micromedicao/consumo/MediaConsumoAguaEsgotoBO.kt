@@ -1,16 +1,14 @@
 package br.gov.pa.cosanpa.api.business.micromedicao.consumo
 
-import br.gov.pa.cosanpa.api.dto.micromedicao.consumo.ConsumoHistoricoDTO
 import br.gov.pa.cosanpa.api.extensions.util.converterReferenciaParaLocalDate
 import br.gov.pa.cosanpa.api.extensions.util.conveterLocalDateParaReferencia
 import br.gov.pa.cosanpa.api.service.cadastro.SistemaParametrosService
 import br.gov.pa.cosanpa.api.service.micromedicao.consumo.ConsumoHistoricoService
 import org.springframework.stereotype.Component
 import java.time.LocalDate
-import java.time.Period
 
 @Component
-class ObterMediaConsumoAguaEsgoto(
+class MediaConsumoAguaEsgotoBO(
     private val sistemaParametrosService: SistemaParametrosService,
     private val consumoHistoricoService: ConsumoHistoricoService
 ) {
