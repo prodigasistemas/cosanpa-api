@@ -22,8 +22,8 @@ class JWTAutenticacaoFilter(
         filterChain: FilterChain
     ) {
         val token = request.getHeader("Authorization")
-        val tokenDetail = getTokenDetail(token)
-        jwtUtil.recuperaUsuario(tokenDetail).let { usuario ->
+
+        jwtUtil.recuperarUsuario(getTokenDetail(token)).let { usuario ->
             val usuarioDetail = usuarioService.loadUserByUsername(usuario)
             val authentication = UsernamePasswordAuthenticationToken(
                 usuarioDetail.username,

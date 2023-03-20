@@ -13,6 +13,6 @@ class LeituristaController(
     private val service: LeituristaService
 ) {
 
-    @GetMapping("/porUsuarioId/{id}")
-    fun buscarPorUsuarioId(@PathVariable id: Int): ResponseEntity<*> = service.buscarLeituristaPorUsuarioId(id)
+    @GetMapping("/usuario/{id}")
+    fun buscarPorUsuario(@PathVariable id: Int): ResponseEntity<*> = service.buscarPorUsuario(id)
 }

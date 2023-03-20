@@ -18,8 +18,13 @@ class JWTLoginFilter(
 ) : UsernamePasswordAuthenticationFilter() {
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
-        val (login, senha) = ObjectMapper().readValue(request?.inputStream, Credentials::class.java)
+        val (login, senha) = ObjectMapper().readValue(
+            request?.inputStream,
+            Credentials::class.java
+        )
+
         val token = UsernamePasswordAuthenticationToken(login, senha)
+
         return authenticationManager.authenticate(token)
     }
 
@@ -29,17 +34,17 @@ class JWTLoginFilter(
         chain: FilterChain?,
         authResult: Authentication?
     ) {
-        val usuarioDetail = (authResult?.principal as UsuarioDetail)
+        val usuarioDetail = authResult?.principal as UsuarioDetail
         val generatedToken = jwtUtil.gerarToken(usuarioDetail)
+
         response?.contentType = "application/json;charset=UTF-8"
         response?.status = HttpServletResponse.SC_OK
         response?.writer?.write(
             JSONObject()
-                .put("idUsuario", usuarioDetail.id)
-                .put("token", "$generatedToken")
-                .put("tipo", "Bearer")
+                .put("id", usuarioDetail.id)
+                .put("nome", usuarioDetail.nome)
+                .put("token", generatedToken)
                 .toString()
         )
     }
-
 }

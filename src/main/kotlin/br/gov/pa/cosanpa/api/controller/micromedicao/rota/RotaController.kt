@@ -13,6 +13,6 @@ class RotaController(
     private val service: RotaService
 ) {
 
-    @GetMapping("/porLeituristaId/{id}")
-    fun buscarRotasPorLeituristaId(@PathVariable id: Int) : ResponseEntity<*> = service.buscarRotaPorLeituristaId(id)
+    @GetMapping("/leiturista/usuario/{id}")
+    fun buscarRotasPorUsuario(@PathVariable id: Int) : ResponseEntity<*> = service.buscarRotasPorUsuario(id)
 }
