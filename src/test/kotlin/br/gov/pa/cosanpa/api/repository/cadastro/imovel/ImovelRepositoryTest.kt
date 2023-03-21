@@ -33,8 +33,8 @@ class ImovelRepositoryTest {
 
         assertNotNull(imovelDTO)
         assertNotNull(imovelDTO.id)
-        assertNotNull(imovelDTO.consumoTarifa)
-        assertNull(imovelDTO.imovelPerfil)
+        assertNotNull(imovelDTO.idConsumoTarifa)
+        assertNull(imovelDTO.idImovelPerfil)
     }
 
     @Test
@@ -69,5 +69,10 @@ class ImovelRepositoryTest {
         assertNotNull(lista)
         assertFalse(lista.isEmpty())
         println(lista)
+    }
+
+    @Test
+    fun `dado uma matricula de imovel, entao retorna um DTO com informacoes relevantes a leitura`() {
+
     }
 }

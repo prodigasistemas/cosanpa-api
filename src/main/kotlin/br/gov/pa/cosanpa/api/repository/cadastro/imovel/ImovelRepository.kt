@@ -126,84 +126,153 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
     )
     fun obterDadosSubcategoriasPorImovel(idImovel: Int): List<SubcategoriaDTO>
 
+//    @Query(
+//        value = "SELECT gerenciaRegional.nome, " +
+//                " localidade.id, " +
+//                " localidade.descricao, " +
+//                " imovel.nome, " +
+//                " clienteUsuario.nome, " +
+//                " setorComercial.codigo, " +
+//                " quadra.numero, " +
+//                " imovel.lote, " +
+//                " imovel.sublote, " +
+//                " clienteResposanvel.id, " +
+//                " clienteResposanvel.nome, " +
+//                " ligacaoAguaSituacao.id, " +
+//                " ligacaoEsgotoSituacao.id, " +
+//                " ligacaoAgua.numeroConsumoMinimoAgua, " +
+//                " ligacaoEsgoto.numeroConsumoMinimoEsgoto, " +
+//                " ligacaoEsgoto.percentualAguaConsumidaColetada, " +
+//                " faturamentoSituacaoTipo.indicadorParalisacaoFaturamento, " +
+//                " faturamentoSituacaoTipo.indicadorValidoAgua, " +
+//                " faturamentoSituacaoTipo.indicadorValidoEsgoto, " +
+//                " imovelCondominio.id, " +
+//                " imovel.indicadorImovelCondominio, " +
+//                " imovelPerfil.id, " +
+//                " consumoTarifa.id, " +
+//                " imovel.id, " +
+//                " pocoTipo.id, " +
+//                " consumoTarifa.tarifaTipoCalculo.id, " +
+//                " setorComercial.id, " +
+//                " imovel.numeroSequencialRota, " +
+//                " gerenciaRegional.id, " +
+//                " ligacaoAguaSituacao.indicadorFaturamentoSituacao," +
+//                " ligacaoEsgotoSituacao.indicadorFaturamentoSituacao, " +
+//                " ice.id, " +
+//                " clienteUsuario.cpf, " +
+//                " clienteUsuario.cnpj, " +
+//                " hidAgua.id, " +
+//                " hidPoco.id, " +
+//                " ligacaoAguaSituacao.indicadorAbastecimento, " +
+//                " ligacaoAgua.id, " +
+//                " ligacaoAguaSituacao.descricao, " +
+//                " leiturista.id, " +
+//                " empresa.id, " +
+//                " quadraFace.id, " +
+//                " quadraFace.numero, " +
+//                " imovel.numeroMorador, " +
+//                " medTipoAgua.id, " +
+//                " medTipoPoco.id, " +
+//                " ligacaoAgua.numeroLacre, " +
+//                " logradouroBairro.id, " +
+//                " logradouro.id, " +
+//                " logradouro.nome, " +
+//                " bairro.nome, " +
+//                " imovel.numero, " +
+//                " imovel.complementoEndereco, " +
+//                " hidLocInsAgua.id, " +
+//                " hidAgua.dataInstalacao, " +
+//                " hidProtAgua.id, " +
+//                " hidLocInsPoco.id, " +
+//                " hidPoco.dataInstalacao, " +
+//                " hidProtPoco.id, " +
+//                " usu.login, " +
+//                " usu.senha, " +
+//                " faturamentoSituacaoTipo.id, " +
+//                " imovel.codigoDebitoAutomatico, " +
+//                " faturamentoSituacaoTipo.indicadorParalisacaoLeitura, " +
+//                " ligacaoAguaSituacao.indicadorConsumoReal, " +
+//                " ligacaoAguaSituacao.numeroDiasCorte, " +
+//                " ligacaoAgua.dataCorte, " +
+//                " imovel.indicadorImovelAreaComum, " +
+//                " ligacaoAgua.dataLigacao, " +
+//                " ligacaoEsgoto.dataLigacao, " +
+//                " clienteImoveisReposanvel.cliente.id, " +
+//                " clienteImoveisReposanvel.indicadorNomeConta, " +
+//                " clienteImoveisUsuario.cliente.id, " +
+//                " clienteImoveisUsuario.indicadorNomeConta, " +
+//                " imovel.indicadorEnvioContaFisica, " +
+//                " imovel.indicadorParametrosConvenio, " +
+//                " quadra.id " +
+//                " FROM Imovel imovel " +
+//                " INNER JOIN imovel.localidade localidade " +
+//                " INNER JOIN localidade.gerenciaRegional gerenciaRegional " +
+//                " INNER JOIN imovel.setorComercial setorComercial " +
+//                " INNER JOIN imovel.quadra quadra " +
+//                " INNER JOIN quadra.rota rota " +
+//                " INNER JOIN imovel.ligacaoAguaSituacao ligacaoAguaSituacao " +
+//                " INNER JOIN imovel.ligacaoEsgotoSituacao ligacaoEsgotoSituacao " +
+//                " INNER JOIN imovel.imovelPerfil imovelPerfil " +
+//                " INNER JOIN imovel.consumoTarifa consumoTarifa " +
+//                " LEFT JOIN imovel.quadraFace quadraFace " +
+//                " LEFT JOIN imovel.ligacaoAgua ligacaoAgua " +
+//                " LEFT JOIN ligacaoAgua.hidrometroInstalacaoHistorico hidAgua " +
+//                " LEFT JOIN hidAgua.medicaoTipo medTipoAgua " +
+//                " LEFT JOIN hidAgua.hidrometroLocalInstalacao hidLocInsAgua " +
+//                " LEFT JOIN hidAgua.hidrometroProtecao hidProtAgua " +
+//                " LEFT JOIN imovel.hidrometroInstalacaoHistorico hidPoco " +
+//                " LEFT JOIN hidPoco.medicaoTipo medTipoPoco " +
+//                " LEFT JOIN hidPoco.hidrometroLocalInstalacao hidLocInsPoco " +
+//                " LEFT JOIN hidPoco.hidrometroProtecao hidProtPoco " +
+//                " LEFT JOIN imovel.ligacaoEsgoto ligacaoEsgoto " +
+//                " LEFT JOIN imovel.pocoTipo pocoTipo " +
+//                " LEFT JOIN imovel.faturamentoSituacaoTipo faturamentoSituacaoTipo " +
+//                " LEFT JOIN imovel.imovelCondominio imovelCondominio " +
+//                " LEFT JOIN imovel.clienteImoveis clienteImoveisUsuario WITH " +
+//                " (clienteImoveisUsuario.clienteRelacaoTipo.id = :idClienteRelacaoTipoUsuario) AND clienteImoveisUsuario.dataFimRelacao IS NULL " +
+//                " LEFT JOIN clienteImoveisUsuario.cliente clienteUsuario " +
+//                " LEFT JOIN imovel.clienteImoveis clienteImoveisReposanvel WITH " +
+//                " (clienteImoveisReposanvel.clienteRelacaoTipo.id = :idClienteRelacaoTipoResponsavel) AND clienteImoveisReposanvel.dataFimRelacao IS NULL " +
+//                " LEFT JOIN clienteImoveisReposanvel.cliente clienteResposanvel " +
+//                " LEFT JOIN imovel.imovelContaEnvio ice " +
+//                " LEFT JOIN rota.leiturista leiturista " +
+//                " LEFT JOIN rota.empresa empresa " +
+//                " LEFT JOIN leiturista.usuario usu " +
+//                " LEFT JOIN imovel.logradouroBairro logradouroBairro " +
+//                " LEFT JOIN logradouroBairro.logradouro logradouro " +
+//                " LEFT JOIN logradouroBairro.bairro bairro " +
+//                " LEFT JOIN imovel.rotaAlternativa rotaAlternativa " +
+//                " WHERE  imovelPerfil.indicadorGerarDadosLeitura = 1 " +
+//                " AND imovel.indicadorExclusao <> :icExclusao " +
+//                " rota.id = :idRota " +
+//                " AND (imovelCondominio.id = :idImovelCondominio OR imovelCondominio.id IS NULL) " +
+//                " ORDER BY imovel.indicadorImovelCondominio,localidade.id, setorComercial.codigo,quadra.numero,imovel.lote,imovel.sublote"
+//    )
+//    fun obterImovelGerarDados(
+//        idRota: Int,
+//        icExclusao: Int,
+//        idImovelCondominio: Int?,
+//        idClienteRelacaoTipoUsuario: Int,
+//        idClienteRelacaoTipoResponsavel: Int
+//    )
+
     @Query(
-        value = "SELECT gerenciaRegional.nome, " +
-                " localidade.id, " +
-                " localidade.descricao, " +
-                " imovel.nome, " +
-                " clienteUsuario.nome, " +
-                " setorComercial.codigo, " +
-                " quadra.numero, " +
-                " imovel.lote, " +
-                " imovel.sublote, " +
-                " clienteResposanvel.id, " +
-                " clienteResposanvel.nome, " +
-                " ligacaoAguaSituacao.id, " +
-                " ligacaoEsgotoSituacao.id, " +
-                " ligacaoAgua.numeroConsumoMinimoAgua, " +
-                " ligacaoEsgoto.numeroConsumoMinimoEsgoto, " +
-                " ligacaoEsgoto.percentualAguaConsumidaColetada, " +
-                " faturamentoSituacaoTipo.indicadorParalisacaoFaturamento, " +
-                " faturamentoSituacaoTipo.indicadorValidoAgua, " +
-                " faturamentoSituacaoTipo.indicadorValidoEsgoto, " +
-                " imovelCondominio.id, " +
-                " imovel.indicadorImovelCondominio, " +
-                " imovelPerfil.id, " +
-                " consumoTarifa.id, " +
-                " imovel.id, " +
-                " pocoTipo.id, " +
-                " consumoTarifa.tarifaTipoCalculo.id, " +
-                " setorComercial.id, " +
-                " imovel.numeroSequencialRota, " +
-                " gerenciaRegional.id, " +
-                " ligacaoAguaSituacao.indicadorFaturamentoSituacao," +
-                " ligacaoEsgotoSituacao.indicadorFaturamentoSituacao, " +
-                " ice.id, " +
-                " clienteUsuario.cpf, " +
-                " clienteUsuario.cnpj, " +
-                " hidAgua.id, " +
-                " hidPoco.id, " +
-                " ligacaoAguaSituacao.indicadorAbastecimento, " +
-                " ligacaoAgua.id, " +
-                " ligacaoAguaSituacao.descricao, " +
-                " leiturista.id, " +
-                " empresa.id, " +
-                " quadraFace.id, " +
-                " quadraFace.numero, " +
-                " imovel.numeroMorador, " +
-                " medTipoAgua.id, " +
-                " medTipoPoco.id, " +
-                " ligacaoAgua.numeroLacre, " +
-                " logradouroBairro.id, " +
-                " logradouro.id, " +
-                " logradouro.nome, " +
-                " bairro.nome, " +
-                " imovel.numero, " +
-                " imovel.complementoEndereco, " +
-                " hidLocInsAgua.id, " +
-                " hidAgua.dataInstalacao, " +
-                " hidProtAgua.id, " +
-                " hidLocInsPoco.id, " +
-                " hidPoco.dataInstalacao, " +
-                " hidProtPoco.id, " +
-                " usu.login, " +
-                " usu.senha, " +
-                " faturamentoSituacaoTipo.id, " +
-                " imovel.codigoDebitoAutomatico, " +
-                " faturamentoSituacaoTipo.indicadorParalisacaoLeitura, " +
-                " ligacaoAguaSituacao.indicadorConsumoReal, " +
-                " ligacaoAguaSituacao.numeroDiasCorte, " +
-                " ligacaoAgua.dataCorte, " +
-                " imovel.indicadorImovelAreaComum, " +
-                " ligacaoAgua.dataLigacao, " +
-                " ligacaoEsgoto.dataLigacao, " +
-                " clienteImoveisReposanvel.cliente.id, " +
-                " clienteImoveisReposanvel.indicadorNomeConta, " +
-                " clienteImoveisUsuario.cliente.id, " +
-                " clienteImoveisUsuario.indicadorNomeConta, " +
-                " imovel.indicadorEnvioContaFisica, " +
-                " imovel.indicadorParametrosConvenio, " +
-                " quadra.id " +
+        value = "SELECT br.gov.pa.cosanpa.api.dto.cadastro.imovel.ImovelDTO( " +
+                " id as id, " +
+                " lote as lote, " +
+                " sublote as sublote, " +
+                " numero as numero, " +
+                " nome as nome, " +
+                " complementoEndereco as complementoEndereco, " +
+                " numeroMorador as numeroMorador, " +
+                " idImovelCondominio as idImovelCondominio, " +
+                " indicadorImovelCondominio as indicadorImovelCondominio, " +
+                " indicadorExclusao as indicadorExclusao, " +
+                " numeroSequencialRota as numeroSequencialRota, " +
+                " codigoDebitoAutomatico as codigoDebitoAutomatico, " +
+                " indicadorImovelAreaComum as indicadorImovelAreaComum, " +
+                " indicadorEnvioContaFisica as indicadorEnvioContaFisica, " +
+                " indicadorParametrosConvenio as indicadorParametrosConvenio) " +
                 " FROM Imovel imovel " +
                 " INNER JOIN imovel.localidade localidade " +
                 " INNER JOIN localidade.gerenciaRegional gerenciaRegional " +
@@ -215,47 +284,25 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
                 " INNER JOIN imovel.imovelPerfil imovelPerfil " +
                 " INNER JOIN imovel.consumoTarifa consumoTarifa " +
                 " LEFT JOIN imovel.quadraFace quadraFace " +
-                " LEFT JOIN imovel.ligacaoAgua ligacaoAgua " +
-                " LEFT JOIN ligacaoAgua.hidrometroInstalacaoHistorico hidAgua " +
-                " LEFT JOIN hidAgua.medicaoTipo medTipoAgua " +
-                " LEFT JOIN hidAgua.hidrometroLocalInstalacao hidLocInsAgua " +
-                " LEFT JOIN hidAgua.hidrometroProtecao hidProtAgua " +
-                " LEFT JOIN imovel.hidrometroInstalacaoHistorico hidPoco " +
-                " LEFT JOIN hidPoco.medicaoTipo medTipoPoco " +
-                " LEFT JOIN hidPoco.hidrometroLocalInstalacao hidLocInsPoco " +
-                " LEFT JOIN hidPoco.hidrometroProtecao hidProtPoco " +
                 " LEFT JOIN imovel.ligacaoEsgoto ligacaoEsgoto " +
                 " LEFT JOIN imovel.pocoTipo pocoTipo " +
                 " LEFT JOIN imovel.faturamentoSituacaoTipo faturamentoSituacaoTipo " +
-                " LEFT JOIN imovel.imovelCondominio imovelCondominio " +
-                " LEFT JOIN imovel.clienteImoveis clienteImoveisUsuario WITH " +
-                " (clienteImoveisUsuario.clienteRelacaoTipo.id = :idClienteRelacaoTipoUsuario) AND clienteImoveisUsuario.dataFimRelacao IS NULL " +
+                " LEFT JOIN imovel.clienteImoveis clienteImoveisUsuario WITH (clienteImoveisUsuario.clienteRelacaoTipo.id = :idClienteRelacaoTipoUsuario) " +
+                " AND clienteImoveisUsuario.dataFimRelacao IS NULL " +
                 " LEFT JOIN clienteImoveisUsuario.cliente clienteUsuario " +
-                " LEFT JOIN imovel.clienteImoveis clienteImoveisReposanvel WITH " +
-                " (clienteImoveisReposanvel.clienteRelacaoTipo.id = :idClienteRelacaoTipoResponsavel) AND clienteImoveisReposanvel.dataFimRelacao IS NULL " +
+                " LEFT JOIN imovel.clienteImoveis clienteImoveisReposanvel WITH (clienteImoveisReposanvel.clienteRelacaoTipo.id = :idClienteRelacaoTipoResponsavel) " +
+                " AND clienteImoveisReposanvel.dataFimRelacao IS NULL " +
                 " LEFT JOIN clienteImoveisReposanvel.cliente clienteResposanvel " +
-                " LEFT JOIN imovel.imovelContaEnvio ice " +
-                " LEFT JOIN rota.leiturista leiturista " +
-                " LEFT JOIN rota.empresa empresa " +
-                " LEFT JOIN leiturista.usuario usu " +
-                " LEFT JOIN imovel.logradouroBairro logradouroBairro " +
-                " LEFT JOIN logradouroBairro.logradouro logradouro " +
-                " LEFT JOIN logradouroBairro.bairro bairro " +
-                " LEFT JOIN imovel.rotaAlternativa rotaAlternativa " +
                 " WHERE  imovelPerfil.indicadorGerarDadosLeitura = 1 " +
-                " AND imovel.indicadorExclusao <> :icExclusao " +
-                " AND (rota.id = :idRota OR rota.id = :idRotaAlternativa) " +
-                " AND (rotaAlternativa.id = :idRotaAlternativa OR rotaAlternativa.id IS NULL) " +
-                " AND imovel.rotaAlternativa IS NULL" +
+                " AND imovel.indicadorExclusao <> 1 " +
+                " rota.id = :idRota " +
                 " AND (imovelCondominio.id = :idImovelCondominio OR imovelCondominio.id IS NULL) " +
                 " ORDER BY imovel.indicadorImovelCondominio,localidade.id, setorComercial.codigo,quadra.numero,imovel.lote,imovel.sublote"
     )
     fun obterImovelGerarDados(
-        idRota: Int?,
-        idRotaAlternativa: Int?,
-        icExclusao: Int,
+        idRota: Int,
         idImovelCondominio: Int?,
         idClienteRelacaoTipoUsuario: Int,
         idClienteRelacaoTipoResponsavel: Int
-    )
+    ): List<ImovelDTO>
 }

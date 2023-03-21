@@ -60,8 +60,8 @@ data class Imovel(
     val imovelPerfil: ImovelPerfil,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "imovel_idImovelCondominio")
-    val imovelCondominio: Imovel,
+    @JoinColumn(name = "imovel_idImovelCondominio", referencedColumnName = "imov_id")
+    val imovelCondominio: Imovel?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loca_id")
@@ -147,10 +147,10 @@ data class Imovel(
     @JoinColumn(name = "hidi_id")
     val hidrometroInstalacaoHistorico: HidrometroInstalacaoHistorico,
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rota_idalternativa", referencedColumnName = "rota_id")
     val rotaAlternativa: Rota
+
 ) {
     companion object {
         const val INDICADOR_CONTA_RESPONSAVEL: Short = 1

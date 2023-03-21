@@ -15,7 +15,7 @@ import java.util.*
 class ObterConsumoMinimoLigacaoTest {
 
     private val imovelService: ImovelService = mockk {
-        every { obterConsumoTarifaImovel(any()) } returns ImovelDTO(id = 7389353, consumoTarifa = 1)
+        every { obterConsumoTarifaImovel(any()) } returns ImovelDTO(id = 7389353, idConsumoTarifa = 1)
         every { obterDadosCategoriasPorImovel(any()) } returns listOf(CategoriaDTO(id = 1, descricao = "RESIDENCIAL", quantidadeEconomias = 3))
     }
     private val consumoTarifaVigenciaService: ConsumoTarifaVigenciaService = mockk {

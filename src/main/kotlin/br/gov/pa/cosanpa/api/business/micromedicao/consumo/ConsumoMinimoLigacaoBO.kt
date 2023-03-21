@@ -15,7 +15,7 @@ class ConsumoMinimoLigacaoBO(
     fun obter(idImovel: Int): Int {
         val imovelDTO = imovelService.obterConsumoTarifaImovel(idImovel)
         val categorias = imovelService.obterDadosCategoriasPorImovel(idImovel)
-        val consumoTarifaVigenciaDTO = consumoTarifaVigenciaService.obterTarifaVigenciaCorrente(imovelDTO.consumoTarifa!!)
+        val consumoTarifaVigenciaDTO = consumoTarifaVigenciaService.obterTarifaVigenciaCorrente(imovelDTO.idConsumoTarifa!!)
         var consumoMinimoLigacao = 0
 
         categorias.forEach { categoria ->
