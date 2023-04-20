@@ -23,4 +23,10 @@ class ClienteRepositoryTest {
         assertNotNull(enderecoDTO)
         print(enderecoDTO.formatarEndereco())
     }
+
+    @Test
+    fun `dado um id de cliente, retorna DTO com dados de cliente`(){
+        val dto = repo.obterDadosCliente(6759506)
+        assertNotNull(dto)
+    }
 }

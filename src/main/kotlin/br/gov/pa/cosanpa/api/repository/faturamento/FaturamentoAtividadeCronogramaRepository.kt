@@ -3,7 +3,7 @@ package br.gov.pa.cosanpa.api.repository.faturamento
 import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoAtividadeCronograma
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
-import java.util.Date
+import java.time.LocalDateTime
 
 interface FaturamentoAtividadeCronogramaRepository : JpaRepository<FaturamentoAtividadeCronograma, Int> {
 
@@ -16,5 +16,5 @@ interface FaturamentoAtividadeCronogramaRepository : JpaRepository<FaturamentoAt
                 " AND fa.id = :idFaturamentoAtividade " +
                 " AND fcm.anoMesReferencia = :anoMesReferencia"
     )
-    fun obterDataPrevista(idFaturamentoGrupo: Int, idFaturamentoAtividade: Int, anoMesReferencia: Int) : Date
+    fun obterDataPrevista(idFaturamentoGrupo: Int, idFaturamentoAtividade: Int, anoMesReferencia: Int) : LocalDateTime
 }

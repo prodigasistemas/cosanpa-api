@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.dominio.micromedicao.rota
+package br.gov.pa.cosanpa.api.dominio.micromedicao.leiturista
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.Empresa
 import br.gov.pa.cosanpa.api.dominio.seguranca.Usuario

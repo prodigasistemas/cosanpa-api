@@ -1,19 +1,15 @@
-package br.gov.pa.cosanpa.api.repository
+package br.gov.pa.cosanpa.api.repository.cobranca
 
 import br.gov.pa.cosanpa.api.dominio.cobranca.CobrancaDebitoSituacao
 import br.gov.pa.cosanpa.api.dominio.cobranca.DocumentoTipo
-import br.gov.pa.cosanpa.api.repository.cobranca.CobrancaDocumentoRepository
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.TestPropertySource
 import java.sql.Timestamp
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 
 @DataJpaTest
 @TestPropertySource(locations = ["/application.yml"])
@@ -24,7 +20,7 @@ class CobrancaDocumentoRepositoryTest {
     private lateinit var repo: CobrancaDocumentoRepository
 
     @Test
-    fun `dado os parametros corretos, retorna dto de cobrancaDocumento`() {
+    fun `dado os parametros corretos, entao retorna dto de cobrancaDocumento`() {
         val dto = repo.obterCobrancaDocumentoImpressaoSimultanea(
             2452162,
             DocumentoTipo.AVISO_CORTE,
@@ -33,5 +29,13 @@ class CobrancaDocumentoRepositoryTest {
         )
 
         assertNotNull(dto)
+    }
+
+    @Test
+    fun `dado o id de CobrancaDocumento, entao retorna dtos de cobrancaDocumentoitem`() {
+        //Cobranca Documento DE id 19149109 possui 36 registros para Id de Conta não nulo
+        val dtos = repo.obterCobrancaDocumentoItemReferenteConta(19149109)
+        assertNotNull(dtos)
+        assertEquals(36, dtos.size)
     }
 }

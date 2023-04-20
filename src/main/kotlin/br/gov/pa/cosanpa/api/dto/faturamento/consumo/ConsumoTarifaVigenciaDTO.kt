@@ -1,8 +1,8 @@
 package br.gov.pa.cosanpa.api.dto.faturamento.consumo
 
-import java.util.*
+import java.time.LocalDate
 
 data class ConsumoTarifaVigenciaDTO(
     val id: Int,
-    val dataVigencia: Date,
+    val dataVigencia: LocalDate,
 )

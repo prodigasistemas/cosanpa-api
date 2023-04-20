@@ -2,10 +2,10 @@ package br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua
 
 import br.gov.pa.cosanpa.api.dominio.micromedicao.hidrometro.HidrometroInstalacaoHistorico
 import jakarta.persistence.*
-import java.util.Date
+import java.time.LocalDate
 
 @Entity
-@Table(name = "ligacao_agua", schema = "atendimento_publico")
+@Table(name = "ligacao_agua", schema = "atendimentopublico")
 data class LigacaoAgua(
     @Id
     @Column(name = "lagu_id")
@@ -13,9 +13,9 @@ data class LigacaoAgua(
     @Column(name = "lagu_nnconsumominimoagua")
     val numeroConsumoMinimoAgua: Int?,
     @Column(name = "lagu_dtligacao")
-    val dataLigacao: Date,
+    val dataLigacao: LocalDate?,
     @Column(name = "lagu_dtcorte")
-    val dataCorte: Date,
+    val dataCorte: LocalDate?,
     @Column(name = "lagu_nnlacre")
     val numeroLacre: String?,
 

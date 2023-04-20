@@ -2,7 +2,7 @@ package br.gov.pa.cosanpa.api.dominio.arrecadacao
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
 import jakarta.persistence.*
-import java.util.Date
+import java.time.LocalDate
 
 @Entity
 @Table(name = "debito_automatico", schema = "arrecadacao")
@@ -13,7 +13,7 @@ data class DebitoAutomatico(
     @Column(name = "deba_dsidentificacaoclientebco")
     val identificacaoClienteBanco: String?,
     @Column(name = "deba_dtexclusao")
-    val dataExclusao: Date?,
+    val dataExclusao: LocalDate?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")

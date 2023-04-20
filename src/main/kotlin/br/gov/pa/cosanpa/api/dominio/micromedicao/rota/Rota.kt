@@ -3,7 +3,7 @@ package br.gov.pa.cosanpa.api.dominio.micromedicao.rota
 import br.gov.pa.cosanpa.api.dominio.cadastro.Empresa
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
 import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoGrupo
-import br.gov.pa.cosanpa.api.dominio.micromedicao.rota.Leiturista
+import br.gov.pa.cosanpa.api.dominio.micromedicao.leiturista.Leiturista
 import jakarta.persistence.*
 
 @Entity

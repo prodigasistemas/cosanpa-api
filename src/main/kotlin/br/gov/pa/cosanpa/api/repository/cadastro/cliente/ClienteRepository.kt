@@ -1,6 +1,7 @@
 package br.gov.pa.cosanpa.api.repository.cadastro.cliente
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.Cliente
+import br.gov.pa.cosanpa.api.dto.cadastro.cliente.ClienteDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.endereco.EnderecoDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
@@ -48,4 +49,17 @@ interface ClienteRepository : JpaRepository<Cliente, Int> {
                 " clienteEndereco.indicadorEnderecoCorrespondencia = :indicadorEnderecoCorrespondencia"
     )
     fun obterDadosEnderecoCorrespondencia(idCliente: Int, indicadorEnderecoCorrespondencia: Short) : EnderecoDTO
+
+    @Query(
+        value = " SELECT new br.gov.pa.cosanpa.api.dto.cadastro.cliente.ClienteDTO( " +
+                " cliente.id as id, " +
+                " cliente.nome as nome, " +
+                " cliente.cpf as cpf, " +
+                " cliente.cnpj as cnpj) " +
+                " FROM Cliente cliente " +
+                " WHERE cliente.id = :idCliente"
+    )
+    fun obterDadosCliente(idCliente: Int) : ClienteDTO
+
+
 }

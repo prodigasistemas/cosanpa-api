@@ -8,7 +8,7 @@ import java.math.BigDecimal
 import java.util.*
 
 @Entity
-@Table(name = "ligacao_esgoto", schema = "atendimento_publico")
+@Table(name = "ligacao_esgoto", schema = "atendimentopublico")
 data class LigacaoEsgoto(
     @Id
     @Column(name = "lesg_id")

@@ -1,6 +1,5 @@
 package br.gov.pa.cosanpa.api.dominio.cadastro.localidade
 
-import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.DadosEndereco
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.EnderecoReferencia
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroBairro
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.LogradouroCep
@@ -24,11 +23,11 @@ data class Localidade(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lgcp_id")
-    val logradouroCep: LogradouroCep,
+    val logradouroCep: LogradouroCep?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lgbr_id")
-    val logradouroBairro: LogradouroBairro,
+    val logradouroBairro: LogradouroBairro?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "edrf_id")
@@ -36,9 +35,9 @@ data class Localidade(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "greg_id")
-    val gerenciaRegional: GerencialRegional,
+    val gerenciaRegional: GerenciaRegional,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "muni_idprincipal")
-    val municipio: Municipio
+    val municipio: Municipio?
 )

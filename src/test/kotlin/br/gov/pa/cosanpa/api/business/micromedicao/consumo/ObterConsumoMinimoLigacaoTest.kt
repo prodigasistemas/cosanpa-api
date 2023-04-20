@@ -10,6 +10,7 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import java.time.LocalDate
 import java.util.*
 
 class ObterConsumoMinimoLigacaoTest {
@@ -19,7 +20,7 @@ class ObterConsumoMinimoLigacaoTest {
         every { obterDadosCategoriasPorImovel(any()) } returns listOf(CategoriaDTO(id = 1, descricao = "RESIDENCIAL", quantidadeEconomias = 3))
     }
     private val consumoTarifaVigenciaService: ConsumoTarifaVigenciaService = mockk {
-        every { obterTarifaVigenciaCorrente(any()) } returns ConsumoTarifaVigenciaDTO(id = 89, Date())
+        every { obterTarifaVigenciaCorrente(any()) } returns ConsumoTarifaVigenciaDTO(id = 89, LocalDate.now())
     }
 
     private val consumoTarifaCategoriaService: ConsumoTarifaCategoriaService = mockk {

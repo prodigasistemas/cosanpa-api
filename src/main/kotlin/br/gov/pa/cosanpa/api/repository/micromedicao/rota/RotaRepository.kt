@@ -11,5 +11,5 @@ interface RotaRepository: JpaRepository<Rota, Int> {
            "INNER JOIN r.leiturista l " +
            "INNER JOIN l.usuario u " +
            "WHERE u.id = :id")
-    fun buscarPorUsuario(id: Int): List<Rota>
+    fun obterRotasPorUsuario(id: Int): List<Rota>
 }

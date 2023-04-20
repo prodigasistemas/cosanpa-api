@@ -6,14 +6,12 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteConta
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.ImovelPerfil
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
-import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
-import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
-import br.gov.pa.cosanpa.api.dominio.faturamento.DebitoCreditoSituacao
 import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoGrupo
 import br.gov.pa.cosanpa.api.dominio.faturamento.consumo.ConsumoTarifa
+import br.gov.pa.cosanpa.api.dominio.faturamento.debito.DebitoCreditoSituacao
 import jakarta.persistence.*
 import java.math.BigDecimal
-import java.util.*
+import java.time.LocalDate
 
 @Entity
 @Table(name = "conta", schema = "faturamento")
@@ -21,19 +19,19 @@ data class Conta(
     @Id
     @Column(name = "cnta_id")
     val id: Int,
-    @Column(name = "cnta_dtvencimento")
-    val dataVencimento: Date,
-    @Column(name = "cnta_dtvalidade")
-    val dataValidade: Date,
+    @Column(name = "cnta_dtvencimentoconta")
+    val dataVencimento: LocalDate,
+    @Column(name = "cnta_dtvalidadeconta")
+    val dataValidade: LocalDate,
     @Column(name = "cnta_dgverificadorconta")
     val digitoVerificador: Int,
     @Column(name = "cnta_amreferenciaconta")
     val referencia: Int,
-    @Column(name = "imov_nnlote")
+    @Column(name = "cnta_nnlote")
     val lote: Int,
-    @Column(name = "imov_nnsublote")
+    @Column(name = "cnta_nnsublote")
     val sublote: Int,
-    @Column(name = "cnta_cdsetorcomerical")
+    @Column(name = "cnta_cdsetorcomercial")
     val codigoSetorComercial: Int?,
     @Column(name = "cnta_nnquadra")
     val quadra: Int?,

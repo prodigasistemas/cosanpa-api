@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.view.leiturista
 
-import br.gov.pa.cosanpa.api.dominio.micromedicao.rota.Leiturista
+import br.gov.pa.cosanpa.api.dominio.micromedicao.leiturista.Leiturista
 import br.gov.pa.cosanpa.api.util.Mapper
 import org.springframework.stereotype.Component
 

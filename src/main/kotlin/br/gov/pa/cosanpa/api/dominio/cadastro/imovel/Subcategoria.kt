@@ -30,6 +30,4 @@ data class Subcategoria(
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "scat_id")
     val imovelSubcategoria: List<ImovelSubcategoria>?
-) {
-
-}
+)

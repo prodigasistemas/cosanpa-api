@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.dominio.faturamento
+package br.gov.pa.cosanpa.api.dominio.faturamento.debito
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.TestPropertySource
-import java.util.*
+import java.time.LocalDate
 
 @DataJpaTest
 @TestPropertySource(locations = ["/application.yml"])
@@ -18,8 +18,8 @@ class ConsumoTarifaVigenciaRepositoryTest {
 
     @Test
     fun `dado um id vigencia e uma data atual, retorna lista de dtos com vigencia mais atual`() {
-        val lista = repo.obterConsumoTarifaVigencia(1, Date())
+        val lista = repo.obterConsumoTarifaVigencia(1, LocalDate.now())
         assertNotNull(lista)
-        print(lista)
+        println(lista)
     }
 }

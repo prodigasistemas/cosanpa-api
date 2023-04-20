@@ -14,5 +14,5 @@ class ConsumoHistoricoService(
         idLigacao: Int,
         amReferenciaInicial: Int,
         amReferenciaFinal: Int
-    ): List<ConsumoHistoricoDTO> = repository.obterVolumeMedioAguaEsgoto(idImovel, idLigacao, amReferenciaInicial, amReferenciaFinal)
+    ): List<ConsumoHistoricoDTO> = repository.obterConsumosEntreReferencias(idImovel, idLigacao, amReferenciaInicial, amReferenciaFinal)
 }

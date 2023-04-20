@@ -31,3 +31,10 @@ fun LocalDate.conveterLocalDateParaReferencia(): Int {
 fun Any?.isNullOuVazio(): Boolean {
     return this == null || this == ""
 }
+
+fun Int.subtrairAnos(qtAnos: Int): Int = converterReferenciaParaLocalDate()
+    .minusYears(qtAnos.toLong())
+    .conveterLocalDateParaReferencia()
+    .toString()
+    .substring(0, 4)
+    .toInt()

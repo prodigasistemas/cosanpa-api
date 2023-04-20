@@ -7,7 +7,7 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "gerencia_regional", schema = "cadastro")
-data class GerencialRegional(
+data class GerenciaRegional(
     @Id
     @Column(name = "greg_id")
     val id: Int,

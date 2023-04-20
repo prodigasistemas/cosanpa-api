@@ -1,7 +1,7 @@
 package br.gov.pa.cosanpa.api.repository.micromedicao.consumohistorico
 
-import br.gov.pa.cosanpa.api.repository.micromedicao.consumohistorico.ConsumoHistoricoRepository
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
@@ -19,7 +19,7 @@ class ConsumoHistoricoRepositoryTest {
     @Test
     fun `dado uma matricula, deve retornar lista de consumo historico`() {
         val matricula = 7389353
-        val lista = repo.obterVolumeMedioAguaEsgoto(
+        val lista = repo.obterConsumosEntreReferencias(
             idImovel = matricula,
             idLigacao = 1,
             amReferenciaInicial = 202209,
@@ -27,7 +27,17 @@ class ConsumoHistoricoRepositoryTest {
         )
 
         assertNotNull(lista)
-        assertEquals(3, lista.size)
+        assertEquals(4, lista.size)
+        print(lista)
+    }
+
+    @Test
+    fun `dado uma matricula, deve retornar ultimos seis dados de consumo historico`() {
+        val matricula = 7389353
+        val lista = repo.obterUltimosConsumos(idImovel = matricula, idLigacao = 1)
+
+        assertNotNull(lista)
+        assertEquals(6, lista.size)
         print(lista)
     }
 }

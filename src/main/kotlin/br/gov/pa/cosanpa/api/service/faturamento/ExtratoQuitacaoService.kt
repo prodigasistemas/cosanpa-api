@@ -2,6 +2,7 @@ package br.gov.pa.cosanpa.api.service.faturamento
 
 import br.gov.pa.cosanpa.api.extensions.util.converterReferenciaParaLocalDate
 import br.gov.pa.cosanpa.api.extensions.util.conveterLocalDateParaReferencia
+import br.gov.pa.cosanpa.api.extensions.util.subtrairAnos
 import br.gov.pa.cosanpa.api.repository.faturamento.ExtratoQuitacaoRepository
 import br.gov.pa.cosanpa.api.util.ConstantesSistema
 import org.springframework.stereotype.Service
@@ -12,7 +13,7 @@ class ExtratoQuitacaoService(
 ) {
 
     fun obterMensagemExtratoQuitacaoImovel(idImovel: Int, anoReferencia: Int): String {
-        val anoAnterior = obterAnoAnterior(anoReferencia)
+        val anoAnterior = anoReferencia.subtrairAnos(1)
         val dto = repository.obterExtratoQuitacaoImovel(idImovel, anoAnterior)
 
         val mensagem: String = if (dto.indicadorImpressaoNaConta == ConstantesSistema.NAO) {
@@ -23,10 +24,5 @@ class ExtratoQuitacaoService(
         return mensagem
     }
 
-    private fun obterAnoAnterior(anoReferencia: Int) = anoReferencia.converterReferenciaParaLocalDate()
-                                                        .minusYears(1)
-                                                        .conveterLocalDateParaReferencia()
-                                                        .toString()
-                                                        .substring(0, 4)
-                                                        .toInt()
+
 }

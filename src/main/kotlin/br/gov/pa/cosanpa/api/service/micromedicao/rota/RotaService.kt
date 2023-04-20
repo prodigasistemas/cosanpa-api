@@ -13,7 +13,7 @@ class RotaService(
 ) {
 
     fun buscarRotasPorUsuario(id: Int): ResponseEntity<List<RotaView>> {
-        val rotas = repository.buscarPorUsuario(id)
+        val rotas = repository.obterRotasPorUsuario(id)
         val listaRotasView = rotas.map { rota ->
             viewMapper.map(rota)
         }

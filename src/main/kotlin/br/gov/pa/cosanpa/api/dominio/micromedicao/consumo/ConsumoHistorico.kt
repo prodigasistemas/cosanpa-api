@@ -18,7 +18,9 @@ data class ConsumoHistorico(
     @Column(name = "cshi_amfaturamento")
     val referencia: Int,
     @Column(name = "cshi_nnconsumocalculomedia")
-    val numeroCalculoConsumoMedia: Int,
+    val numeroCalculoConsumoMedia: Int?,
+    @Column(name = "cshi_nnconsumofaturadomes")
+    val numeroConsumoFaturadoMes: Int?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imov_id")

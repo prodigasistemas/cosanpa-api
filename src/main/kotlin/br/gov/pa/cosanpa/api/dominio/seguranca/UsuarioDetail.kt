@@ -4,7 +4,7 @@ import org.springframework.security.core.userdetails.UserDetails
 
 class UsuarioDetail(private val usuario: Usuario) : UserDetails {
 
-    val id: Int? = usuario.id
+    val id: Int = usuario.id
 
     val nome: String = usuario.nome
 

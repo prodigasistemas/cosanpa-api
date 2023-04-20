@@ -10,7 +10,7 @@ import org.springframework.test.context.TestPropertySource
 @DataJpaTest
 @TestPropertySource(locations = ["/application.yml"])
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class ConsumoTarifaCategoriaRepositoryTest() {
+class ConsumoTarifaCategoriaRepositoryTest {
 
     @Autowired
     private lateinit var repo: ConsumoTarifaCategoriaRepository

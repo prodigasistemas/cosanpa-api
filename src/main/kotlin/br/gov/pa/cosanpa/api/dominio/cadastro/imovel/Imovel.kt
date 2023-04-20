@@ -38,8 +38,6 @@ data class Imovel(
     val complementoEndereco: String?,
     @Column(name = "imov_nnmorador")
     val numeroMorador: Short?,
-    @Column(name = "imov_idimovelcondominio")
-    val idImovelCondominio: Int?,
     @Column(name = "imov_icimovelcondominio")
     val indicadorImovelCondominio: Int,
     @Column(name = "imov_icexclusao")
@@ -52,15 +50,15 @@ data class Imovel(
     val indicadorImovelAreaComum: Short?,
     @Column(name = "imov_icenviocontafisica")
     val indicadorEnvioContaFisica: Short,
-    @Column(name = "imov_icparametrosconvenio")
-    val indicadorParametrosConvenio: Int,
+    @Column(name = "imov_idparametrosconvenio")
+    val idParametrosConvenio: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iper_id")
     val imovelPerfil: ImovelPerfil,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "imovel_idImovelCondominio", referencedColumnName = "imov_id")
+    @JoinColumn(name = "imov_idimovelcondominio", referencedColumnName = "imov_id")
     val imovelCondominio: Imovel?,
 
     @ManyToOne(fetch = FetchType.LAZY)
