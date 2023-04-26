@@ -1,5 +1,7 @@
 package br.gov.pa.cosanpa.api.extensions.util
 
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -38,3 +40,5 @@ fun Int.subtrairAnos(qtAnos: Int): Int = converterReferenciaParaLocalDate()
     .toString()
     .substring(0, 4)
     .toInt()
+
+fun BigDecimal.arredondar(): Int = setScale(0, RoundingMode.CEILING).toInt()

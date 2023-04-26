@@ -16,8 +16,5 @@ data class TarifaTipoCalculo(
 ) {
     companion object {
         const val CALCULO_PROPORCIONAL = 1
-        const val CALCULO_SEM_FAIXA_CAER = 2
-        const val CALCULO_POR_REFERENCIA = 3
-        const val CALCULO_DIRETO_NA_FAIXA = 4
     }
 }

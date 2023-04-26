@@ -1,6 +1,5 @@
 package br.gov.pa.cosanpa.api.repository.micromedicao.hidrometro
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,5 +20,12 @@ class HidrometroInstalacaoHistoricoRepositoryTest {
         val dataInstalacaoHIdrometro = repo.obterDataInstalacaoHIdrometroPorImovelId(2474506)
         assertNotNull(dataInstalacaoHIdrometro)
         dataInstalacaoHIdrometro?.let { println(it) }
+    }
+
+    @Test
+    fun `dado um id de imovel, retorna dto de dados do hidrometro caso exista`() {
+        val dto = repo.obterDadosHidrometro(2474506)
+        assertNotNull(dto)
+        println(dto)
     }
 }
