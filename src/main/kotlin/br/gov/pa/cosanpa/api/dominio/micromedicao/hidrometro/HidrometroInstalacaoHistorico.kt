@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.dominio.micromedicao.hidrometro
 
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua.LigacaoAgua
+import br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoagua.LigacaoAgua
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
 import br.gov.pa.cosanpa.api.dominio.micromedicao.RateioTipo
 import br.gov.pa.cosanpa.api.dominio.micromedicao.medicao.MedicaoTipo

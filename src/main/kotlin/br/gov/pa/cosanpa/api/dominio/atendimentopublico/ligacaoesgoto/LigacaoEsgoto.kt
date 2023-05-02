@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoesgoto
+package br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoesgoto
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

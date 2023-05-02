@@ -13,4 +13,6 @@ data class CategoriaDTO(
     val vezesMediaAltoConsumo: BigDecimal? = null,
     val vezesMediaEstouro: BigDecimal? = null,
     val porcentagemMediaBaixoConsumo: BigDecimal? = null,
+    val idSubcategoria: Int? = null,
+    val descricaoSubcategoria: String? = null
 )

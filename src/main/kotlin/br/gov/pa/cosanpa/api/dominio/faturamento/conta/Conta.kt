@@ -1,7 +1,7 @@
 package br.gov.pa.cosanpa.api.dominio.faturamento.conta
 
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua.LigacaoAguaSituacao
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoesgoto.LigacaoEsgotoSituacao
+import br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoagua.LigacaoAguaSituacao
+import br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoesgoto.LigacaoEsgotoSituacao
 import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteConta
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.ImovelPerfil

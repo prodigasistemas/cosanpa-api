@@ -1,6 +1,7 @@
 package br.gov.pa.cosanpa.api.dominio.faturamento
 
 import jakarta.persistence.*
+import java.time.LocalDate
 import java.util.*
 
 @Entity
@@ -10,7 +11,7 @@ data class FaturamentoAtividadeCronograma(
     @Column(name = "ftac_id")
     val id: Int,
     @Column(name = "ftac_dtprevista")
-    val dataPrevista: Date?,
+    val dataPrevista: LocalDate?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ftat_id")

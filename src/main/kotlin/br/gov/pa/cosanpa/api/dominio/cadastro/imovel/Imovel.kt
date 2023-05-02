@@ -1,9 +1,9 @@
 package br.gov.pa.cosanpa.api.dominio.cadastro.imovel
 
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua.LigacaoAgua
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua.LigacaoAguaSituacao
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoesgoto.LigacaoEsgoto
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoesgoto.LigacaoEsgotoSituacao
+import br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoagua.LigacaoAgua
+import br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoagua.LigacaoAguaSituacao
+import br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoesgoto.LigacaoEsgoto
+import br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoesgoto.LigacaoEsgotoSituacao
 import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteImovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.EnderecoReferencia
 import br.gov.pa.cosanpa.api.dominio.cadastro.endereco.Logradouro

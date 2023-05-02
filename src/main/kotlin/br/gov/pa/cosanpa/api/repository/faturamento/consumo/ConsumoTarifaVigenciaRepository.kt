@@ -5,7 +5,6 @@ import br.gov.pa.cosanpa.api.dto.faturamento.consumo.ConsumoTarifaVigenciaDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import java.time.LocalDate
-import java.util.Date
 
 interface ConsumoTarifaVigenciaRepository : JpaRepository<ConsumoTarifaVigencia, Int> {
 
@@ -21,5 +20,6 @@ interface ConsumoTarifaVigenciaRepository : JpaRepository<ConsumoTarifaVigencia,
                 + "INNER JOIN ctv2.consumoTarifa ct2 "
                 + "WHERE ct2.id = :idConsumoTarifa and ctv2.dataVigencia  <= :dataCorrente)"
     )
-    fun obterConsumoTarifaVigencia(idConsumoTarifa: Int?, dataCorrente: LocalDate): ConsumoTarifaVigenciaDTO
+    fun obterDataVigente(idConsumoTarifa: Int, dataCorrente: LocalDate): ConsumoTarifaVigenciaDTO
+
 }

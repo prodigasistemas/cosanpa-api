@@ -11,7 +11,6 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
-import java.util.*
 
 class ObterConsumoMinimoLigacaoTest {
 

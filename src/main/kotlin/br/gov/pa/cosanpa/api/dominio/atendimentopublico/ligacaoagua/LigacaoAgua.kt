@@ -1,4 +1,4 @@
-package br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua
+package br.gov.pa.cosanpa.api.dominio.atendimentopublico.ligacaoagua
 
 import br.gov.pa.cosanpa.api.dominio.micromedicao.hidrometro.HidrometroInstalacaoHistorico
 import jakarta.persistence.*

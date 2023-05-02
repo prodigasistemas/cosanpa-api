@@ -1,13 +1,13 @@
 package br.gov.pa.cosanpa.api.dto.faturamento.conta
 
 import java.math.BigDecimal
-import java.util.*
+import java.time.LocalDate
 
 data class ContaDTO(
     val id: Int? = null,
     val referencia: Int? = null,
-    val dataVencimento: Date? = null,
-    val dataValidade: Date? = null,
+    val dataVencimento: LocalDate? = null,
+    val dataValidade: LocalDate? = null,
     val digitoVerificador: Int? = null,
     val lote: Int? = null,
     val sublote: Int? = null,

@@ -1,6 +1,5 @@
 package br.gov.pa.cosanpa.api.dto.micromedicao.medicao
 
-import br.gov.pa.cosanpa.api.dominio.atendimento_publico.ligacaoagua.LigacaoAgua
 import java.time.LocalDate
 
 data class MedicaoHistoricoDTO(

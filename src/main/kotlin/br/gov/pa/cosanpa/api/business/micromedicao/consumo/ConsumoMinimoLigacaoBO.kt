@@ -20,7 +20,7 @@ class ConsumoMinimoLigacaoBO(
 
         categorias.forEach { categoria ->
             val consumoMinimoTarifaCategoria = consumoTarifaCategoriaService.obterNumeroConsumoMinimoTarifaCategoria(
-                consumoTarifaVigenciaDTO.id,
+                consumoTarifaVigenciaDTO.id!!,
                 categoria.id!!
             )
             consumoMinimoLigacao += consumoMinimoTarifaCategoria * categoria.quantidadeEconomias!!.toInt()
