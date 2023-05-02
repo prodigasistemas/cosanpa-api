@@ -37,7 +37,7 @@ class ConsumoTarifaCategoriaRepositoryTest {
     @Test
     fun `dado os parametros corretos, entao retorna dados de ConsumoTarifa Proporcional`(){
         val tarifaCategoriaDTO = repo.obterDadosConsumoTarifaProporcional(
-            LocalDate.now().minusDays(30),
+            LocalDate.now().minusYears(3),
             LocalDate.now(),
             1,
             1
