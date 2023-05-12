@@ -17,7 +17,8 @@ interface DebitoAutomaticoRepository : JpaRepository<DebitoAutomatico, Int> {
                 " FROM DebitoAutomatico deba " +
                 " INNER JOIN deba.agencia ag " +
                 " INNER JOIN deba.imovel imovel " +
-                " WHERE imovel.id = :idImovel"
+                " WHERE imovel.id = :idImovel " +
+                " AND deba.dataExclusao is null "
     )
     fun obterDadosDebitoAutomaticoPorImovelId(idImovel: Int) : DebitoAutomaticoDTO?
 }

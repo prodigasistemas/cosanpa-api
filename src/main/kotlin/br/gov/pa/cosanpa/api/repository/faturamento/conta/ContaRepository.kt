@@ -44,7 +44,7 @@ interface ContaRepository: JpaRepository<Conta, Int> {
                 " AND debitoCreditoSituacaoAtual.id = ${DebitoCreditoSituacao.PRE_FATURADA} " +
                 " and not exists ( from MovimentoContaPrefaturada mcpf where mcpf.anoMesReferenciaPreFaturamento = fg.referencia and imovel.id = mcpf.imovel.id  )"
     )
-    fun obterContasPreFaturadasGerarDados(idImovel: Int, anoMesReferencia: Int) : ContaDTO
+    fun obterContaPreFaturada(idImovel: Int, anoMesReferencia: Int) : ContaDTO
     
     @Query(
         value = " SELECT new br.gov.pa.cosanpa.api.dto.cadastro.cliente.ClienteImovelContaDTO( " +

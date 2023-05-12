@@ -15,8 +15,8 @@ data class ClienteRelacaoTipo(
     val descricao: String?
 ) {
     companion object{
-        const val PROPRIETARIO: Short = 1
-        const val USUARIO: Short = 2
-        const val RESPONSAVEL: Short = 3
+        const val PROPRIETARIO= 1
+        const val USUARIO= 2
+        const val RESPONSAVEL= 3
     }
 }

@@ -72,18 +72,32 @@ class ImovelRepositoryTest {
     }
 
     @Test
-    fun `dado um id de rota e condominio nulo, entao retorna um DTO com informacoes relevantes a leitura`() {
+    fun `dado um id de rota , entao retorna ulista de ids de imoveis`() {
         //Rota com Id 2026 possui 21 Imóveis
-        val dtoList = repo.obterDadosImovelGerarDados(2026)
+        val dtoList = repo.obterIdsImoveis(2026)
         
         assertNotNull(dtoList)
         assertEquals(21, dtoList.size)
     }
 
     @Test
-    fun `dado um ide de rota e id de condominio, entao retorna um DTO com informacoes relevantes a leitura`() {
+    fun `dado um id de imovel, entao retorna um DTO com informacoes relevantes clientes imoveis`() {
         val dtoList = repo.obterClienteImoveis( 2096889)
         assertNotNull(dtoList)
         println(dtoList)
+    }
+
+    @Test
+    fun `dado um id de imovel, entao retorna um DTO com informacoes relevantes do imovel`() {
+        val dto = repo.obterDadosImovelGerarDados( 2096889)
+        assertNotNull(dto)
+        println(dto)
+    }
+
+    @Test
+    fun `dado um id de ImovelContaEnvio, entao retorna id e descricao`() {
+        val dto = repo.obterDadosImovelContaEnvio(2)
+        assertNotNull(dto)
+        assertEquals("ENVIAR PARA O IMÓVEL", dto.descricao)
     }
 }

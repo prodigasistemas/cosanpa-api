@@ -63,7 +63,7 @@ interface LocalidadeRepository : JpaRepository<Localidade, Int> {
     @Query(
         value = " SELECT new br.gov.pa.cosanpa.api.dto.DTO( " +
                 " gr.id as id, " +
-                " gr.nome as nome) " +
+                " gr.nome as descricao) " +
                 " FROM GerenciaRegional gr " +
                 " WHERE gr.id = :idGerenciaRegional"
     )

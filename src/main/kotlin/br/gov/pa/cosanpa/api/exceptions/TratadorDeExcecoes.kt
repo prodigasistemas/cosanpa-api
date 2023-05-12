@@ -3,7 +3,6 @@ package br.gov.pa.cosanpa.api.exceptions
 import br.gov.pa.cosanpa.api.exceptions.view.ErrorView
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus
-import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus

@@ -12,4 +12,5 @@ interface RotaRepository: JpaRepository<Rota, Int> {
            "INNER JOIN l.usuario u " +
            "WHERE u.id = :id")
     fun obterRotasPorUsuario(id: Int): List<Rota>
+
 }

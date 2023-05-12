@@ -12,7 +12,7 @@ data class LigacaoAgua(
     val id: Int,
     @Column(name = "lagu_nnconsumominimoagua")
     val numeroConsumoMinimoAgua: Int?,
-    @Column(name = "lagu_dtligacao")
+    @Column(name = "lagu_dtligacaoagua")
     val dataLigacao: LocalDate?,
     @Column(name = "lagu_dtcorte")
     val dataCorte: LocalDate?,

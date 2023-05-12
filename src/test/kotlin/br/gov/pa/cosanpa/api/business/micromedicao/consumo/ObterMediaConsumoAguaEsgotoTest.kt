@@ -12,7 +12,13 @@ import org.junit.jupiter.api.Test
 class ObterMediaConsumoAguaEsgotoTest {
 
     private val sistemaParametros: SistemaParametrosService = mockk {
-        every { retornaParametrosDoSistema() } returns SistemaParametros(1, 6, 2)
+        every { retornaParametrosDoSistema() } returns SistemaParametros(
+            id = 1,
+            numeroMesesMediaConsumo = 6,
+            indicadorNaoMedidoTarifa = 2,
+            referenciaArrecadacao = 202211,
+            referenciaFaturamento = 202211
+        )
     }
 
     private val consumoHistoricoService: ConsumoHistoricoService = mockk {
@@ -27,8 +33,9 @@ class ObterMediaConsumoAguaEsgotoTest {
     }
 
     private val mediaConsumoAguaEsgoto = MediaConsumoAguaEsgotoBO(sistemaParametros, consumoHistoricoService)
+
     @Test
-    fun `dados os parametros, retornar a media de consumo do imovel`(){
+    fun `dados os parametros, retornar a media de consumo do imovel`() {
         val media = mediaConsumoAguaEsgoto.obter(7389353, 202212, 1)
 
         assertEquals(15, media)

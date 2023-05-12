@@ -4,8 +4,7 @@ import br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.imovel.ImovelDTO
 import br.gov.pa.cosanpa.api.dto.faturamento.consumo.ConsumoTarifaVigenciaDTO
 import br.gov.pa.cosanpa.api.service.cadastro.imovel.ImovelService
-import br.gov.pa.cosanpa.api.service.faturamento.consumo.ConsumoTarifaCategoriaService
-import br.gov.pa.cosanpa.api.service.faturamento.consumo.ConsumoTarifaVigenciaService
+import br.gov.pa.cosanpa.api.service.faturamento.consumo.ConsumoTarifaService
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -18,11 +17,11 @@ class ObterConsumoMinimoLigacaoTest {
         every { obterConsumoTarifaImovel(any()) } returns ImovelDTO(id = 7389353, idConsumoTarifa = 1)
         every { obterDadosCategoriasPorImovel(any()) } returns listOf(CategoriaDTO(id = 1, descricao = "RESIDENCIAL", quantidadeEconomias = 3))
     }
-    private val consumoTarifaVigenciaService: ConsumoTarifaVigenciaService = mockk {
+    private val consumoTarifaVigenciaService: ConsumoTarifaService = mockk {
         every { obterTarifaVigenciaCorrente(any()) } returns ConsumoTarifaVigenciaDTO(id = 89, LocalDate.now())
     }
 
-    private val consumoTarifaCategoriaService: ConsumoTarifaCategoriaService = mockk {
+    private val consumoTarifaCategoriaService: ConsumoTarifaService = mockk {
         every { obterNumeroConsumoMinimoTarifaCategoria(any(), any()) } returns 10
     }
 

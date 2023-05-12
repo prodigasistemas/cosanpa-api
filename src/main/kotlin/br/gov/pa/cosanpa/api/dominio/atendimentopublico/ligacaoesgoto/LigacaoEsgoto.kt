@@ -5,7 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import java.math.BigDecimal
-import java.util.*
+import java.time.LocalDate
 
 @Entity
 @Table(name = "ligacao_esgoto", schema = "atendimentopublico")
@@ -18,5 +18,5 @@ data class LigacaoEsgoto(
     @Column(name = "lesg_pccoleta")
     val percentualAguaConsumidaColetada: BigDecimal?,
     @Column(name = "lesg_dtligacao")
-    val dataLigacao: Date,
+    val dataLigacao: LocalDate?,
 )

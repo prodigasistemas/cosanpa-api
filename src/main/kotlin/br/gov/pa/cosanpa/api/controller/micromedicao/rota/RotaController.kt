@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 class RotaController(
     private val service: RotaService
 ) {
-
     @GetMapping("/leiturista/usuario/{id}")
     fun buscarRotasPorUsuario(@PathVariable id: Int) : ResponseEntity<*> = service.buscarRotasPorUsuario(id)
 }

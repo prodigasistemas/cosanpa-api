@@ -30,7 +30,12 @@ fun LocalDate.conveterLocalDateParaReferencia(): Int {
     return data.substring(0, 6).toInt()
 }
 
-fun Any?.isNullOuVazio(): Boolean {
+fun LocalDate.conveterLocalDateParaddMMyyyyComBarras(): String {
+    val data = this.format(DateTimeFormatter.BASIC_ISO_DATE) // yyyyMMdd
+    return data.substring(6,8) + "/" + data.substring(4,6) + "/" + data.substring(0,4)
+}
+
+fun Any?.ehNullOuVazio(): Boolean {
     return this == null || this == ""
 }
 

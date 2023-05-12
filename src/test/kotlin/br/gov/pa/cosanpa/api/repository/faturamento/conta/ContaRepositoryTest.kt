@@ -17,7 +17,7 @@ class ContaRepositoryTest {
 
     @Test
     fun `dado o id do Imovel e a Referencia, entao retorna dados de conta em DTO`(){
-        val dto = repo.obterContasPreFaturadasGerarDados(7389353, 202303)
+        val dto = repo.obterContaPreFaturada(7389353, 202303)
         assertNotNull(dto)
         println(dto)
     }

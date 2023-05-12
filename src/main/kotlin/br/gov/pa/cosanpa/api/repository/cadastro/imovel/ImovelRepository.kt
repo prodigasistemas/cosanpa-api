@@ -1,6 +1,7 @@
 package br.gov.pa.cosanpa.api.repository.cadastro.imovel
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
+import br.gov.pa.cosanpa.api.dto.DTO
 import br.gov.pa.cosanpa.api.dto.cadastro.cliente.ClienteImovelContaDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.endereco.EnderecoDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO
@@ -176,10 +177,10 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
                 " LEFT JOIN imovel.faturamentoSituacaoTipo faturamentoSituacaoTipo " +
                 " WHERE imovelPerfil.indicadorGerarDadosLeitura = ${ConstantesSistema.SIM} " +
                 " AND imovel.indicadorExclusao <> ${Imovel.IMOVEL_EXCLUIDO} " +
-                " AND rota.id = :idRota " +
+                " AND imovel.id = :idImovel " +
                 " ORDER BY imovel.indicadorImovelCondominio,localidade.id, setorComercial.codigo,quadra.numero,imovel.lote,imovel.sublote"
     )
-    fun obterDadosImovelGerarDados(idRota: Int): List<ImovelDTO>
+    fun obterDadosImovelGerarDados(idImovel: Int): ImovelDTO?
 
     @Query(
         value = " SELECT new br.gov.pa.cosanpa.api.dto.cadastro.cliente.ClienteImovelContaDTO( " +
@@ -197,4 +198,21 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
                 " AND clienteImovel.dataFimRelacao IS NULL"
     )
     fun obterClienteImoveis(idImovel: Int) : List<ClienteImovelContaDTO>
+
+    @Query(
+        value = " SELECT imovel.id FROM Imovel imovel " +
+                " INNER JOIN imovel.quadra q " +
+                " INNER JOIN q.rota r " +
+                " WHERE r.id = :idRota "
+    )
+    fun obterIdsImoveis(idRota: Int): List<Int>
+
+    @Query(
+        value = " SELECT new br.gov.pa.cosanpa.api.dto.DTO( " +
+                " ice.id as id, " +
+                " ice.descricao as descricao) " +
+                " FROM ImovelContaEnvio ice " +
+                " WHERE ice.id = :idImovelContaEnvio "
+    )
+    fun obterDadosImovelContaEnvio(idImovelContaEnvio: Int) : DTO
 }

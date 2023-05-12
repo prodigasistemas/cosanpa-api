@@ -1,7 +1,6 @@
 package br.gov.pa.cosanpa.api.repository.faturamento.consumo
 
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
@@ -12,15 +11,15 @@ import java.time.LocalDate
 @DataJpaTest
 @TestPropertySource(locations = ["/application.yml"])
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class ConsumoTarifaCategoriaRepositoryTest {
+class ConsumoTarifaRepositoryTest {
 
     @Autowired
-    private lateinit var repo: ConsumoTarifaCategoriaRepository
-    
+    private lateinit var repo: ConsumoTarifaRepository
+
     @Test
     fun `dado um id de tarifa vigencia e categoria, entao retorna numero consumo minimo`() {
         val numeroConsumoMinimo = repo.obterConsumoMinimoTarifaCategoria(1, 1)
-        assertNotNull(numeroConsumoMinimo)
+        Assertions.assertNotNull(numeroConsumoMinimo)
     }
 
     @Test
@@ -30,7 +29,7 @@ class ConsumoTarifaCategoriaRepositoryTest {
             1,
             1
         )
-        assertNotNull(tarifaCategoriaDTO)
+        Assertions.assertNotNull(tarifaCategoriaDTO)
         println(tarifaCategoriaDTO)
     }
 
@@ -42,7 +41,21 @@ class ConsumoTarifaCategoriaRepositoryTest {
             1,
             1
         )
-        assertNotNull(tarifaCategoriaDTO)
+        Assertions.assertNotNull(tarifaCategoriaDTO)
         println(tarifaCategoriaDTO)
+    }
+
+    @Test
+    fun `dado uma lista de ids de ConsumoTarifaCategoria, entao retorna dados referentes a ConsumoTarifaFaixa`(){
+        val tarifaFaixaDTOList = repo.obterDados(listOf(150))
+        Assertions.assertNotNull(tarifaFaixaDTOList)
+        println(tarifaFaixaDTOList)
+    }
+
+    @Test
+    fun `dado um id vigencia e uma data atual, retorna lista de dtos com vigencia mais atual`() {
+        val lista = repo.obterDataVigente(1, LocalDate.now())
+        Assertions.assertNotNull(lista)
+        println(lista)
     }
 }

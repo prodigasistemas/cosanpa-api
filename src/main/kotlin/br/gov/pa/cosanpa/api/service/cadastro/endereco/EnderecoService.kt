@@ -14,12 +14,12 @@ class EnderecoService(
     val localidadeRepository: LocalidadeRepository
 ) {
 
-    fun pesquisarEnderecoFormatadoImovel(idImovel: Int): String {
+    fun obterEnderecoFormatadoImovel(idImovel: Int): String {
         val enderecoDTO = imovelRepository.obterDadosEndereco(idImovel)
         return enderecoDTO.formatarEndereco()
     }
 
-    fun pesquisarEnderecoCorrespondenciaCliente(idCliente: Int): String {
+    fun obterEnderecoCorrespondenciaCliente(idCliente: Int): String {
         val enderecoDTO = clienteRepository.obterDadosEnderecoCorrespondencia(
             idCliente,
             ClienteEndereco.INDICADOR_ENDERECO_CORRESPONDENCIA
@@ -27,7 +27,7 @@ class EnderecoService(
         return enderecoDTO.formatarEndereco()
     }
 
-    fun pesquisarEnderecoAtendimentoLocalidade(idLocalidade: Int): String {
+    fun obterEnderecoAtendimentoLocalidade(idLocalidade: Int): String {
         val enderecoDTO = localidadeRepository.obterDadosEnderecoAtendimento(idLocalidade)
         return enderecoDTO.formatarEndereco()
     }

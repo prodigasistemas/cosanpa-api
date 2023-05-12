@@ -33,6 +33,6 @@ class LocalidadeRepositoryTest {
     fun `dado um id de Gerencia Regional, entao retorna DTO generico com dados de id e nome`() {
         val dto = repo.obterDadosGerenciaRegional(1)
         assertNotNull(dto)
-        assertEquals("METROPOLITANA", dto.nome)
+        assertEquals("METROPOLITANA", dto.descricao)
     }
 }
