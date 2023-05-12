@@ -13,6 +13,7 @@ import br.gov.pa.cosanpa.api.service.faturamento.consumo.ConsumoTarifaService
 import br.gov.pa.cosanpa.api.view.GerarDadosView
 import br.gov.pa.cosanpa.api.view.View
 import br.gov.pa.cosanpa.api.view.cadastro.imovel.ImovelViewMapper
+import org.json.JSONObject
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
@@ -34,7 +35,7 @@ class ImovelService(
     
     fun obterDadosCategoriasPorImovel(idImovel: Int) = repository.obterDadosCategoriasPorImovel(idImovel)
 
-    fun buscarImoveisPorRota(idRota: Int) : ResponseEntity<List<GerarDadosView>> {
+    fun gerarDadosImoveisPorRota(idRota: Int) : ResponseEntity<List<GerarDadosView>> {
         val idsImoveis = obterIdsImovelPorRota(idRota)
 
         return gerarDadosImoveis(idsImoveis)
@@ -83,5 +84,31 @@ class ImovelService(
             return viewMapper.mapDtoGenerico(obterDadosImovelContaEnvio(it))
         }
         return null
+    }
+
+    fun obterImoveisEnderecoPorRota(idRota: Int): ResponseEntity<MutableMap<String, Any>> {
+        val retorno : MutableMap<String, Any> = mutableMapOf()
+        val listaDados = mutableListOf<MutableMap<String, Any>>()
+
+        val idsImoveis = repository.obterIdsImoveis(idRota)
+        idsImoveis.forEach { idImovel ->
+            obterDadosImovel(idImovel)?.let { imovelDTO ->
+                val body = LinkedHashMap<String, Any>()
+
+                body["rotaId"] = idRota
+                body["matricula"] = imovelDTO.id ?: 0
+                body["endereco"] = imovelDTO.id?.let { enderecoService.obterEnderecoFormatadoImovel(it) } ?: ""
+
+                listaDados.add(body)
+            }
+        }
+
+        retorno["imoveis"] = listaDados
+
+        return if (retorno.isEmpty()) {
+            ResponseEntity.noContent().build()
+        } else {
+            ResponseEntity.ok().body(retorno)
+        }
     }
 }
