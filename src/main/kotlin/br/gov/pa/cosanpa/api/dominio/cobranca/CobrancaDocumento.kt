@@ -4,7 +4,7 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import jakarta.persistence.*
 import java.math.BigDecimal
-import java.sql.Timestamp
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "cobranca_documento", schema = "cobranca")
@@ -17,7 +17,7 @@ data class CobrancaDocumento(
     @Column(name = "cbdo_nnsequenciadocumento")
     val numeroSequencialDocumento: Int,
     @Column(name = "cbdo_tmemissao")
-    val emissao: Timestamp,
+    val emissao: LocalDateTime,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loca_id")

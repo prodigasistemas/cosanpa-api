@@ -18,8 +18,8 @@ class QualidadeAguaRepositoryTest {
     private lateinit var repo: QualidadeAguaRepository
 
     @Test
-    fun `dado uma referencia e id de sistema de abastecimento, entao retorna DTO`(){
-        val dto = repo.obterQualidadeAgua(null, null, 4, 202212)
+    fun `dado uma referencia e id de sistema de abastecimento, entao retorna Dto`(){
+        val dto = repo.obterQualidadeAgua(202303, null, null, 4)
         assertNotNull(dto)
     }
 }

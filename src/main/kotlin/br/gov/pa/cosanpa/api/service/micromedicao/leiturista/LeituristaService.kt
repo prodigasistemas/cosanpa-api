@@ -1,8 +1,8 @@
 package br.gov.pa.cosanpa.api.service.micromedicao.leiturista
 
 import br.gov.pa.cosanpa.api.repository.micromedicao.leiturista.LeituristaRepository
-import br.gov.pa.cosanpa.api.view.leiturista.LeituristaView
-import br.gov.pa.cosanpa.api.view.leiturista.LeituristaViewMapper
+import br.gov.pa.cosanpa.api.view.micromedicao.leiturista.LeituristaView
+import br.gov.pa.cosanpa.api.view.micromedicao.leiturista.LeituristaViewMapper
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 

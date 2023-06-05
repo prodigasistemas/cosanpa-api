@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.TestPropertySource
-import java.sql.Timestamp
+import java.time.LocalDateTime
 
 @DataJpaTest
 @TestPropertySource(locations = ["/application.yml"])
@@ -25,7 +25,7 @@ class CobrancaDocumentoRepositoryTest {
             2452162,
             DocumentoTipo.AVISO_CORTE,
             CobrancaDebitoSituacao.PENDENTE,
-            Timestamp.valueOf("2022-12-08 07:56:22.796")
+            LocalDateTime.of(2022,12, 8, 7,56,22,796)
         )
 
         assertNotNull(dto)
@@ -37,5 +37,12 @@ class CobrancaDocumentoRepositoryTest {
         val dtos = repo.obterCobrancaDocumentoItemReferenteConta(19149109)
         assertNotNull(dtos)
         assertEquals(36, dtos.size)
+    }
+
+    @Test
+    fun `dado o id de DocumentoTipo, entao retorna dto de dados de documento tipo`() {
+        val dto = repo.obterDocumentoTipo(12)
+        assertNotNull(dto)
+        assertEquals("AVISO DE CORTE", dto.descricao)
     }
 }

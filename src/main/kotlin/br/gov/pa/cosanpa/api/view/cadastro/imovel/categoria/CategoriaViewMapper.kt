@@ -2,13 +2,13 @@ package br.gov.pa.cosanpa.api.view.cadastro.imovel.categoria
 
 import br.gov.pa.cosanpa.api.business.cadastro.imovel.DadosConsumosCategoriaBO
 import br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO
-import br.gov.pa.cosanpa.api.util.Mapper
+import br.gov.pa.cosanpa.api.view.DtoViewMapper
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
 
 @Component
-class CategoriaViewMapper : Mapper<CategoriaDTO, CategoriaView> {
-    override fun map(entity: CategoriaDTO): CategoriaView {
+class CategoriaViewMapper : DtoViewMapper {
+    fun mapCategoria(entity: CategoriaDTO): CategoriaView {
         return CategoriaView(
             idCategoria = entity.id ?: 0,
             descricaoCategoria = entity.descricao ?: "",

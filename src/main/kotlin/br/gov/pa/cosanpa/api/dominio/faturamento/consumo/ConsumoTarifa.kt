@@ -18,6 +18,5 @@ data class ConsumoTarifa(
     companion object {
         const val CONSUMO_NORMAL = 1
         const val CONSUMO_SOCIAL = 2
-        const val AGUA_BRUTA_ADUTORA = 21
     }
 }

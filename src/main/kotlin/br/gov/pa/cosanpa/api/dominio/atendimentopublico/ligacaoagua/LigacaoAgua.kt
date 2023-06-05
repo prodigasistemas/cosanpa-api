@@ -14,8 +14,12 @@ data class LigacaoAgua(
     val numeroConsumoMinimoAgua: Int?,
     @Column(name = "lagu_dtligacaoagua")
     val dataLigacao: LocalDate?,
+    @Column(name = "lagu_dtsupressaoagua")
+    val dataSupressao: LocalDate?,
     @Column(name = "lagu_dtcorte")
     val dataCorte: LocalDate?,
+    @Column(name = "lagu_dtreligacaoagua")
+    val dataReligacao: LocalDate?,
     @Column(name = "lagu_nnlacre")
     val numeroLacre: String?,
 

@@ -18,13 +18,13 @@ class BancoRepositoryTeste {
     private lateinit var repo: BancoRepository
 
     @Test
-    fun `dado o id do banco, retorna DTO de dados`() {
+    fun `dado o id do banco, retorna Dto de dados`() {
         val dto = repo.obterDadosBanco(1)
         assertNotNull(dto)
     }
 
     @Test
-    fun `dado o id da agencia, retorna DTO de dados da agencia com banco`() {
+    fun `dado o id da agencia, retorna Dto de dados da agencia com banco`() {
         // Id Agencia: 407, Banco Bradesco: 237, Codigo Agencia: 3109
         val agenciaDTO = repo.obterDadosAgencia(407)
         assertNotNull(agenciaDTO)

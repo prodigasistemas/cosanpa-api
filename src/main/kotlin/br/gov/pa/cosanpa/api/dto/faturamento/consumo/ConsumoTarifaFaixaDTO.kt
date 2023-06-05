@@ -8,7 +8,5 @@ data class ConsumoTarifaFaixaDTO(
     val numeroConsumoFaixaInicio: Int? = null,
     val numeroConsumoFaixaFim: Int? = null,
     val valorConsumoTarifa: BigDecimal? = null,
-    val idConsumoTarifa: Int? = null,
-    val dataVigenciaConsumoTarifaVigencia: LocalDate? = null,
-    val idCategoria: Int? = null
+    val idConsumoTarifaCategoria: Int? = null
 )

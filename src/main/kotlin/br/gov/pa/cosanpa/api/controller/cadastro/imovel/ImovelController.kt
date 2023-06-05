@@ -12,6 +12,4 @@ import org.springframework.web.bind.annotation.RestController
 class ImovelController(
     private val service: ImovelService
 ) {
-    @GetMapping("/rota/{id}")
-    fun buscarImoveisPorRota(@PathVariable id: Int) : ResponseEntity<*> = service.buscarImoveisPorRota(id)
 }

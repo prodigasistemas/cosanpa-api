@@ -11,7 +11,7 @@ data class CreditoRealizado(
     @Column(name = "crrz_id")
     val id: Int,
     @Column(name = "crrz_amreferenciacredito")
-    val anoMesReferenciaCredito: Int,
+    val referencia: Int,
     @Column(name = "crrz_vlcredito")
     val valorCredito: BigDecimal,
     @Column(name = "crrz_nnprestacao")

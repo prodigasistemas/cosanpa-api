@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import org.json.JSONObject
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
@@ -36,15 +35,13 @@ class JWTLoginFilter(
     ) {
         val usuarioDetail = authResult?.principal as UsuarioDetail
         val generatedToken = jwtUtil.gerarToken(usuarioDetail)
+        val mapUsuario = mutableMapOf<String, Any>()
+        mapUsuario["id"] = usuarioDetail.id
+        mapUsuario["nome"] = usuarioDetail.nome
+        mapUsuario["token"] = generatedToken
 
         response?.contentType = "application/json;charset=UTF-8"
         response?.status = HttpServletResponse.SC_OK
-        response?.writer?.write(
-            JSONObject()
-                .put("id", usuarioDetail.id)
-                .put("nome", usuarioDetail.nome)
-                .put("token", generatedToken)
-                .toString()
-        )
+        response?.writer?.write(mapUsuario.toString())
     }
 }

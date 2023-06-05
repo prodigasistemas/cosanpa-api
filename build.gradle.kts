@@ -4,9 +4,9 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 plugins {
 	id("org.springframework.boot") version "3.0.5"
 	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.8.10"
-	kotlin("plugin.spring") version "1.8.10"
-	kotlin("plugin.jpa") version "1.8.10"
+	kotlin("jvm") version "1.8.20"
+	kotlin("plugin.spring") version "1.8.20"
+	kotlin("plugin.jpa") version "1.8.20"
 }
 
 repositories {
@@ -31,7 +31,6 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("com.h2database:h2:2.1.214")
 	implementation("com.auth0:java-jwt:4.3.0")
-	implementation("org.json:json:20230227")
 	testImplementation("io.mockk:mockk:1.13.4")
 }
 

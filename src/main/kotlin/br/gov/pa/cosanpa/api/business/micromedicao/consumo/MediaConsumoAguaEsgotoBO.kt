@@ -14,12 +14,12 @@ class MediaConsumoAguaEsgotoBO(
 ) {
 
     fun obter(idImovel: Int, anoMesReferencia: Int, idLigacaoTipo: Int): Int {
-        val sp = sistemaParametrosService.retornaParametrosDoSistema()
+        val sp = sistemaParametrosService.obterParametrosDoSistema()
 
         val amReferenciaFinal: LocalDate = anoMesReferencia.converterReferenciaParaLocalDate().minusMonths(1)
         val amReferenciaInicial: LocalDate = amReferenciaFinal.minusMonths(sp.numeroMesesMediaConsumo.toLong())
 
-        val consumoHistoricoList = consumoHistoricoService.obterListaConsumos(
+        val consumoHistoricoList = consumoHistoricoService.obterColecaoConsumosHistoricoEntreReferencias(
             idImovel,
             idLigacaoTipo,
             amReferenciaInicial.conveterLocalDateParaReferencia(),

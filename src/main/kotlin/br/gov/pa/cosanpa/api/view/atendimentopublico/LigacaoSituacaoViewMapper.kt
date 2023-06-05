@@ -1,24 +1,17 @@
 package br.gov.pa.cosanpa.api.view.atendimentopublico
 
 import br.gov.pa.cosanpa.api.dto.atendimentopublico.ligacaoagua.LigacaoAguaSituacaoDTO
-import br.gov.pa.cosanpa.api.dto.atendimentopublico.ligacaoesgoto.LigacaoEsgotoSituacaoDTO
-import br.gov.pa.cosanpa.api.util.Mapper
-import br.gov.pa.cosanpa.api.view.View
+import br.gov.pa.cosanpa.api.view.DtoViewMapper
+import br.gov.pa.cosanpa.api.view.atendimentopublico.ligacaoagua.LigacaoAguaSituacaoView
 import org.springframework.stereotype.Component
 
 @Component
-class LigacaoSituacaoViewMapper : Mapper<LigacaoAguaSituacaoDTO, View> {
-    override fun map(entity: LigacaoAguaSituacaoDTO): View {
-        return View(
+class LigacaoSituacaoViewMapper : DtoViewMapper {
+    fun mapLigacaoAguaSituacao(entity: LigacaoAguaSituacaoDTO): LigacaoAguaSituacaoView {
+        return LigacaoAguaSituacaoView(
             id = entity.id ?: 0,
-            descricao = entity.descricao ?: ""
-        )
-    }
-
-    fun mapLigacaoEsgotoSituacao(entity: LigacaoEsgotoSituacaoDTO): View {
-        return View(
-            id = entity.id ?: 0,
-            descricao = entity.descricao ?: ""
+            descricao = entity.descricao ?: "",
+            indicadorAbastecimento = entity.indicadorAbastecimento ?: 0
         )
     }
 }

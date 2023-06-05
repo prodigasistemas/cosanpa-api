@@ -1,7 +1,10 @@
 package br.gov.pa.cosanpa.api.dto.arrecadacao.banco
 
+import br.gov.pa.cosanpa.api.dto.IDto
+
 data class AgenciaDTO(
-    val id: Int? = null,
-    val codigo: String? = null,
+    override val id: Int? = null,
+    override val codigo: String? = null,
     val idBanco: Int? = null
-)
+) : IDto
+

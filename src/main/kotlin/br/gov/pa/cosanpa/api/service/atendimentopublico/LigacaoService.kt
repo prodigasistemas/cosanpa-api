@@ -27,10 +27,10 @@ class LigacaoService(
 
     fun obterDadosLigacaoAguaSituacao(idLigacaoAguaSituacao: Int) = repository.obterDadosLigacaoAguaSituacao(idLigacaoAguaSituacao)
 
-    fun obterLigacaoAguaSituacaoView(idLigacaoAguaSituacao: Int) = ligacaoSituacaoViewMapper.map(obterDadosLigacaoAguaSituacao(idLigacaoAguaSituacao))
+    fun obterLigacaoAguaSituacaoView(idLigacaoAguaSituacao: Int) = ligacaoSituacaoViewMapper.mapLigacaoAguaSituacao(obterDadosLigacaoAguaSituacao(idLigacaoAguaSituacao))
 
     fun obterDadosLigacaoEsgotoSituacao(idLigacaoEsgotoSituacao: Int) = repository.obterDadosLigacaoEsgotoSituacao(idLigacaoEsgotoSituacao)
 
-    fun obterLigacaoEsgotoSituacaoView(idLigacaoEsgotoSituacao: Int) = ligacaoSituacaoViewMapper.mapLigacaoEsgotoSituacao(obterDadosLigacaoEsgotoSituacao(idLigacaoEsgotoSituacao))
+    fun obterLigacaoEsgotoSituacaoView(idLigacaoEsgotoSituacao: Int) = ligacaoSituacaoViewMapper.map(obterDadosLigacaoEsgotoSituacao(idLigacaoEsgotoSituacao))
 
 }

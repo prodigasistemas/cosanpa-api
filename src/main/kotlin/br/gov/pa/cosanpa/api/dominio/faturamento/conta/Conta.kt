@@ -6,7 +6,7 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteConta
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.ImovelPerfil
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
-import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoGrupo
+import br.gov.pa.cosanpa.api.dominio.faturamento.grupo.FaturamentoGrupo
 import br.gov.pa.cosanpa.api.dominio.faturamento.consumo.ConsumoTarifa
 import br.gov.pa.cosanpa.api.dominio.faturamento.debito.DebitoCreditoSituacao
 import jakarta.persistence.*

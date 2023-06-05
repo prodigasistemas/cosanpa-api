@@ -13,7 +13,7 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.QuadraFace
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
-import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoSituacaoTipo
+import br.gov.pa.cosanpa.api.dominio.faturamento.situacao.FaturamentoSituacaoTipo
 import br.gov.pa.cosanpa.api.dominio.faturamento.consumo.ConsumoTarifa
 import br.gov.pa.cosanpa.api.dominio.faturamento.conta.Conta
 import br.gov.pa.cosanpa.api.dominio.micromedicao.hidrometro.HidrometroInstalacaoHistorico

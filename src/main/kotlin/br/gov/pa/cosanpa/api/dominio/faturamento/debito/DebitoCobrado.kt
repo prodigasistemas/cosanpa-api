@@ -11,6 +11,8 @@ data class DebitoCobrado(
     @Id
     @Column(name = "dbcb_id")
     val id: Int,
+    @Column(name = "dbcb_amreferenciadebito")
+    val referencia: Int,
     @Column(name = "dbcb_vlprestacao")
     val valorPrestacao: BigDecimal,
     @Column(name = "dbcb_nnprestacao")

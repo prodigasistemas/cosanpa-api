@@ -13,8 +13,8 @@ class LigacaoAguaViewMapper : Mapper<LigacaoAguaDTO, LigacaoAguaView> {
             numeroConsumoMinimoAgua = entity.numeroConsumoMinimoAgua ?: 0,
             dataLigacao = entity.dataLigacao?.conveterLocalDateParaddMMyyyyComBarras() ?: "",
             dataCorte = entity.dataCorte?.conveterLocalDateParaddMMyyyyComBarras() ?: "",
-            numeroLacre = entity.numeroLacre ?: "",
-            idHidrometroInstalacaoHistorico = entity.idHidrometroInstalacaoHistorico ?: 0
+            dataReligacao = entity.dataReligacao?.conveterLocalDateParaddMMyyyyComBarras() ?: "",
+            numeroLacre = entity.numeroLacre ?: ""
         )
     }
 }

@@ -17,5 +17,7 @@ data class MedicaoHistoricoDTO(
     val idLigacaoAgua: Int? = null,
     val idMedicaoTipo: Int? = null,
     val idLeituraSituacaoAnterior: Int? = null,
-    val idLeituraSituacaoAtual: Int? = null
+    val idLeituraSituacaoAtual: Int? = null,
+    val idLeituraAnormalidadeFaturamento: Int? = null,
+    val idLeituraAnormalidadeInformada: Int? = null
 )

@@ -18,14 +18,14 @@ class ClienteRepositoryTest {
     private lateinit var repo: ClienteRepository
 
     @Test
-    fun `dado um id de cliente, retorna DTO com informações de endereco`() {
+    fun `dado um id de cliente, retorna Dto com informações de endereco`() {
         val enderecoDTO = repo.obterDadosEnderecoCorrespondencia(6759506, ClienteEndereco.INDICADOR_ENDERECO_CORRESPONDENCIA)
         assertNotNull(enderecoDTO)
         print(enderecoDTO.formatarEndereco())
     }
 
     @Test
-    fun `dado um id de cliente, retorna DTO com dados de cliente`(){
+    fun `dado um id de cliente, retorna Dto com dados de cliente`(){
         val dto = repo.obterDadosCliente(6759506)
         assertNotNull(dto)
     }

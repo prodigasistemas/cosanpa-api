@@ -17,8 +17,14 @@ class ExtratoQuitacaoRepositoryTest {
     private lateinit var repo: ExtratoQuitacaoRepository
 
     @Test
-    fun `dado um idImovel e anoReferencia validos, retorna um ExtratoQuitacaoDto`(){
+    fun `dado um idImovel e anoReferencia validos, entao retorna um ExtratoQuitacaoDto`(){
         val dto = repo.obterExtratoQuitacaoImovel(2082292, 2010)
         assertNotNull(dto)
+    }
+
+    @Test
+    fun `dado um idImovel e anoReferencia invalidos, entao retorna um null`(){
+        val dto = repo.obterExtratoQuitacaoImovel(7007493, 2010)
+        assertNull(dto)
     }
 }

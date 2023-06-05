@@ -1,13 +1,10 @@
 package br.gov.pa.cosanpa.api.repository.cadastro.imovel
 
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.Imovel
-import br.gov.pa.cosanpa.api.dto.DTO
+import br.gov.pa.cosanpa.api.dto.Dto
 import br.gov.pa.cosanpa.api.dto.cadastro.cliente.ClienteImovelContaDTO
 import br.gov.pa.cosanpa.api.dto.cadastro.endereco.EnderecoDTO
-import br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO
-import br.gov.pa.cosanpa.api.dto.cadastro.imovel.ImovelDTO
-import br.gov.pa.cosanpa.api.dto.cadastro.imovel.InscricaoDTO
-import br.gov.pa.cosanpa.api.dto.cadastro.imovel.SubcategoriaDTO
+import br.gov.pa.cosanpa.api.dto.cadastro.imovel.*
 import br.gov.pa.cosanpa.api.util.ConstantesSistema
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
@@ -57,12 +54,12 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
 
 
     @Query(
-        value = "SELECT new br.gov.pa.cosanpa.api.dto.cadastro.imovel.ImovelDTO(imovel.id as id, consumoTarifa.id as idConsumoTarifa) " +
-                "FROM Imovel imovel " +
-                "LEFT JOIN imovel.consumoTarifa consumoTarifa " +
-                "WHERE imovel.id = :id"
+        value = " SELECT consumoTarifa.id " +
+                " FROM Imovel imovel " +
+                " INNER JOIN imovel.consumoTarifa consumoTarifa " +
+                " WHERE imovel.id = :idImovel"
     )
-    fun obterConsumoTarifa(id: Int): ImovelDTO
+    fun obterIdConsumoTarifaPorImovel(idImovel: Int): Int
 
     @Query(
         value = " SELECT new br.gov.pa.cosanpa.api.dto.cadastro.imovel.CategoriaDTO " +
@@ -89,7 +86,7 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
                 " c.fatorEconomias, c.categoriaTipo.id, c.categoriaTipo.descricao, sb.id, sb.descricao " +
                 " ORDER BY c.id "
     )
-    fun obterDadosCategoriasPorImovel(id: Int): List<CategoriaDTO>
+    fun obterColecaoDadosCategoriasPorImovel(id: Int): List<CategoriaDTO>
 
     @Query(
             value = " SELECT new br.gov.pa.cosanpa.api.dto.cadastro.imovel.InscricaoDTO( " +
@@ -129,7 +126,7 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
                 " sb.descricaoAbreviada " +
                 " HAVING isb.imovel.id = :idImovel "
     )
-    fun obterDadosSubcategoriasPorImovel(idImovel: Int): List<SubcategoriaDTO>
+    fun obterColecaoDadosSubcategoriasPorImovel(idImovel: Int): List<SubcategoriaDTO>
 
     @Query(
         value = "SELECT new br.gov.pa.cosanpa.api.dto.cadastro.imovel.ImovelDTO(" +
@@ -197,7 +194,7 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
                 " WHERE imovel.id = :idImovel " +
                 " AND clienteImovel.dataFimRelacao IS NULL"
     )
-    fun obterClienteImoveis(idImovel: Int) : List<ClienteImovelContaDTO>
+    fun obterColecaoClienteImoveis(idImovel: Int) : List<ClienteImovelContaDTO>
 
     @Query(
         value = " SELECT imovel.id FROM Imovel imovel " +
@@ -205,14 +202,59 @@ interface ImovelRepository: JpaRepository<Imovel, Int> {
                 " INNER JOIN q.rota r " +
                 " WHERE r.id = :idRota "
     )
-    fun obterIdsImoveis(idRota: Int): List<Int>
+    fun obterColecaoIdsImoveis(idRota: Int): List<Int>
 
     @Query(
-        value = " SELECT new br.gov.pa.cosanpa.api.dto.DTO( " +
+        value = " SELECT new br.gov.pa.cosanpa.api.dto.Dto( " +
                 " ice.id as id, " +
                 " ice.descricao as descricao) " +
                 " FROM ImovelContaEnvio ice " +
                 " WHERE ice.id = :idImovelContaEnvio "
     )
-    fun obterDadosImovelContaEnvio(idImovelContaEnvio: Int) : DTO
+    fun obterDadosImovelContaEnvio(idImovelContaEnvio: Int) : Dto
+
+    @Query(
+        value = " SELECT new br.gov.pa.cosanpa.api.dto.Dto( " +
+                " pt.id as id, " +
+                " pt.descricao as descricao) " +
+                " FROM PocoTipo pt " +
+                " WHERE pt.id = :idPocoTipo "
+    )
+    fun obterDadosPocoTipo(idPocoTipo: Int): Dto
+
+    @Query(
+        value = " SELECT grupo.id FROM Imovel imovel " +
+                " INNER JOIN imovel.quadra quadra " +
+                " INNER JOIN quadra.rota rota " +
+                " INNER JOIN rota.grupo grupo " +
+                " WHERE imovel.id = :idImovel"
+    )
+    fun obterGrupoFaturamentoDoImovel(idImovel: Int): Int
+
+    @Query(
+        value = " SELECT sistemaAbastecimento.id FROM Imovel imovel " +
+                " LEFT JOIN imovel.quadraFace quadraFace " +
+                " LEFT JOIN quadraFace.distritoOperacional " +
+                " LEFT JOIN distritoOperacional.setorAbastecimento " +
+                " LEFT JOIN setorAbastecimento.sistemaAbastecimento sistemaAbastecimento " +
+                " WHERE imovel.id = :idImovel "
+    )
+    fun obterSistemaAbastecimentoImovel(idImovel: Int): Int?
+
+    @Query(
+        value = " SELECT new br.gov.pa.cosanpa.api.dto.Dto( " +
+                " cg.id as id, " +
+                " cg.descricao as descricao) " +
+                " FROM Categoria cg " +
+                " Where cg.indicadorUso = ${ConstantesSistema.INDICADOR_USO_ATIVO}" +
+                " ORDER BY cg.id "
+    )
+    fun obterColecaoIdDescricaoCategoriasEmUso() : List<Dto>
+
+    @Query(
+        value = " SELECT DISTINCT ct.id " +
+                " FROM Imovel imovel " +
+                " INNER JOIN imovel.consumoTarifa ct "
+    )
+    fun obterColecaoIdConsumoTarifaEmUso(): List<Int>
 }

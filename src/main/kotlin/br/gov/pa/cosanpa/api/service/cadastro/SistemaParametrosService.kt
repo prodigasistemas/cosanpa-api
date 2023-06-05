@@ -8,6 +8,5 @@ import org.springframework.stereotype.Service
 class SistemaParametrosService(
     private val repository: SistemaParametrosRepository
 ) {
-
-    fun retornaParametrosDoSistema() = repository.getReferenceById(SistemaParametros.ID)
+    fun obterParametrosDoSistema() = repository.getReferenceById(SistemaParametros.ID)
 }

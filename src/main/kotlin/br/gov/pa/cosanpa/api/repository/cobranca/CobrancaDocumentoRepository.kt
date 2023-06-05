@@ -1,11 +1,14 @@
 package br.gov.pa.cosanpa.api.repository.cobranca
 
 import br.gov.pa.cosanpa.api.dominio.cobranca.CobrancaDocumento
+import br.gov.pa.cosanpa.api.dto.Dto
+import br.gov.pa.cosanpa.api.dto.IDto
 import br.gov.pa.cosanpa.api.dto.cobranca.CobrancaDocumentoDTO
 import br.gov.pa.cosanpa.api.dto.cobranca.CobrancaDocumentoItemDTO
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import java.sql.Timestamp
+import java.time.LocalDateTime
 
 interface CobrancaDocumentoRepository : JpaRepository<CobrancaDocumento, Int> {
     
@@ -31,7 +34,7 @@ interface CobrancaDocumentoRepository : JpaRepository<CobrancaDocumento, Int> {
         idImovel: Int,
         idDocumentoTipo: Int,
         idCobrancaDebitoSituacao: Int,
-        dataEmissao: Timestamp
+        dataEmissao: LocalDateTime
     ): CobrancaDocumentoDTO?
 
     @Query(
@@ -43,9 +46,7 @@ interface CobrancaDocumentoRepository : JpaRepository<CobrancaDocumento, Int> {
                 " cdit.numeroParcelasAntecipadas as numeroParcelasAntecipadas, " +
                 " cdit.cobrancaDocumento.id as idCobrancaDocumento, " +
                 " cdit.documentoTipo.id as idDocumentoTipo, " +
-                " cnta.id as idConta, " +
-                " cnta.referencia as referenciaConta, " +
-                " cnta.dataVencimento as dataVencimentoConta) " +
+                " cnta.id as idConta) " +
                 " FROM CobrancaDocumentoItem  cdit " +
                 " LEFT JOIN cdit.conta cnta " +
                 " LEFT JOIN cnta.debitoCreditoSituacaoAtual " +
@@ -54,4 +55,13 @@ interface CobrancaDocumentoRepository : JpaRepository<CobrancaDocumento, Int> {
                 " ORDER BY cdit.conta.referencia "
     )
     fun obterCobrancaDocumentoItemReferenteConta(idCobrancaDocumento: Int) : List<CobrancaDocumentoItemDTO>
+
+    @Query(
+        value = " SELECT new br.gov.pa.cosanpa.api.dto.Dto( " +
+                " dt.id as id, " +
+                " dt.descricao as descricao) " +
+                " FROM DocumentoTipo dt " +
+                " WHERE dt.id = :idDocumentoTipo "
+    )
+    fun obterDocumentoTipo(idDocumentoTipo: Int): Dto
 }

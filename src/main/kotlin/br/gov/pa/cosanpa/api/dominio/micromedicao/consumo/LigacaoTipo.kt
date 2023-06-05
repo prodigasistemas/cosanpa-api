@@ -13,4 +13,9 @@ data class LigacaoTipo(
     val id: Int,
     @Column(name = "lgti_dsligacaotipo")
     val descricao: String?
-)
+) {
+    companion object {
+        const val LIGACAO_AGUA = 1
+        const val LIGACAO_ESGOTO = 2
+    }
+}

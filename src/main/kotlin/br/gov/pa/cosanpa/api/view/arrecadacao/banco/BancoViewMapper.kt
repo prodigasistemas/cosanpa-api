@@ -1,26 +1,18 @@
 package br.gov.pa.cosanpa.api.view.arrecadacao.banco
 
-import br.gov.pa.cosanpa.api.dto.DTO
+import br.gov.pa.cosanpa.api.dto.Dto
 import br.gov.pa.cosanpa.api.dto.arrecadacao.banco.AgenciaDTO
 import br.gov.pa.cosanpa.api.util.Mapper
+import br.gov.pa.cosanpa.api.view.DtoViewMapper
 import br.gov.pa.cosanpa.api.view.View
 import org.springframework.stereotype.Component
 
 @Component
-class BancoViewMapper : Mapper<DTO, View> {
-
-    override fun map(entity: DTO): View {
-        return View(
-            id = entity.id ?: 0,
-            descricao = entity.nome ?: ""
-        )
+class BancoViewMapper : DtoViewMapper {
+    fun mapAgencia(entity: AgenciaDTO): LinkedHashMap<String, Any> {
+        val retorno = LinkedHashMap<String, Any>()
+        retorno["id"] = entity.id ?: 0
+        retorno["codigo"]  = entity.codigo ?: ""
+        return retorno
     }
-
-    fun mapAgencia(entity: AgenciaDTO) : View {
-        return View (
-            id = entity.id ?: 0,
-            descricao = entity.codigo.toString()
-        )
-    }
-
 }

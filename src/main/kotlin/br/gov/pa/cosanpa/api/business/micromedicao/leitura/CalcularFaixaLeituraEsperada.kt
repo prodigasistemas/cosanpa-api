@@ -9,8 +9,8 @@ import kotlin.math.pow
 
 class CalcularFaixaLeituraEsperada(
     private val media: Int,
-    private val hidrometro: HidrometroDTO,
-    medicaoHistorico: MedicaoHistoricoDTO,
+    private val hidrometroDTO: HidrometroDTO,
+    private val medicaoHistorico: MedicaoHistoricoDTO?,
     private val leituraAnteriorPesquisada: Int?
 ) {
 
@@ -18,8 +18,8 @@ class CalcularFaixaLeituraEsperada(
         BigDecimal(leituraAnteriorPesquisada)
     } ?: BigDecimal(obterLeituraAnterior(medicaoHistorico))
 
-    private fun obterLeituraAnterior(medicaoHistorico: MedicaoHistoricoDTO): Int {
-        medicaoHistorico.leituraAnteriorInformada?.let { leitAntInfor ->
+    private fun obterLeituraAnterior(medicaoHistorico: MedicaoHistoricoDTO?): Int {
+        medicaoHistorico?.leituraAnteriorInformada?.let { leitAntInfor ->
             medicaoHistorico.leituraAtualInformada?.let { leitAtualFatu ->
                 if (leitAntInfor == leitAtualFatu) return leitAntInfor
                 else return medicaoHistorico.leituraAnterioFaturamento ?: 0
@@ -28,7 +28,7 @@ class CalcularFaixaLeituraEsperada(
         return 0
     }
 
-    private fun calcular(): FaixaLeituraDTO {
+    fun calcular(): FaixaLeituraDTO {
         val faixaInicial: BigDecimal
         val faixaFinal: BigDecimal
         val mediaConsumo = BigDecimal(media)
@@ -52,7 +52,7 @@ class CalcularFaixaLeituraEsperada(
 
         val faixaLeituraDTO = FaixaLeituraDTO(faixaInicial.arredondar(), faixaFinal.arredondar())
 
-        return verificarViradaHidrometroFaixaEsperada(hidrometro, faixaLeituraDTO)
+        return verificarViradaHidrometroFaixaEsperada(hidrometroDTO, faixaLeituraDTO)
     }
 
     private fun verificarViradaHidrometroFaixaEsperada(

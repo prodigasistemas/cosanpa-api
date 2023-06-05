@@ -1,6 +1,6 @@
 package br.gov.pa.cosanpa.api.repository.faturamento.consumo
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
@@ -19,17 +19,17 @@ class ConsumoTarifaRepositoryTest {
     @Test
     fun `dado um id de tarifa vigencia e categoria, entao retorna numero consumo minimo`() {
         val numeroConsumoMinimo = repo.obterConsumoMinimoTarifaCategoria(1, 1)
-        Assertions.assertNotNull(numeroConsumoMinimo)
+        assertNotNull(numeroConsumoMinimo)
     }
 
     @Test
     fun `dado os parametros corretos, entao retorna dados de ConsumoTarifa`(){
-        val tarifaCategoriaDTO = repo.obterDadosConsumoTarifaPorDataVigencia(
+        val tarifaCategoriaDTO = repo.obterDadosConsumoTarifaCategoriaPorDataVigencia(
             LocalDate.of(2022,11,28),
             1,
             1
         )
-        Assertions.assertNotNull(tarifaCategoriaDTO)
+        assertNotNull(tarifaCategoriaDTO)
         println(tarifaCategoriaDTO)
     }
 
@@ -41,21 +41,36 @@ class ConsumoTarifaRepositoryTest {
             1,
             1
         )
-        Assertions.assertNotNull(tarifaCategoriaDTO)
+        assertNotNull(tarifaCategoriaDTO)
         println(tarifaCategoriaDTO)
     }
 
     @Test
     fun `dado uma lista de ids de ConsumoTarifaCategoria, entao retorna dados referentes a ConsumoTarifaFaixa`(){
-        val tarifaFaixaDTOList = repo.obterDados(listOf(150))
-        Assertions.assertNotNull(tarifaFaixaDTOList)
+        val tarifaFaixaDTOList = repo.obterDadosConsumoTarifaFaixaPorCategoria(1)
+        assertNotNull(tarifaFaixaDTOList)
         println(tarifaFaixaDTOList)
     }
 
     @Test
     fun `dado um id vigencia e uma data atual, retorna lista de dtos com vigencia mais atual`() {
-        val lista = repo.obterDataVigente(1, LocalDate.now())
-        Assertions.assertNotNull(lista)
-        println(lista)
+        val date = repo.obterDataConsumoTarifaVigente(1, LocalDate.now())
+        assertNotNull(date)
+        println(date)
+    }
+
+    @Test
+    fun `dado um id de consumo tarifa, retorna dtos de dados`() {
+        val dto = repo.obterDadosConsumoTarifa(1)
+        assertNotNull(dto)
+        assertEquals("TARIFA NORMAL", dto.descricao)
+    }
+
+    @Test
+    fun `dado a chamada da consulta, entao retorna dtos de dados de taria ipo calculo em uso`() {
+        val dtos = repo.obterColecaoTarifaTipoCaluloEmUso()
+        assertNotNull(dtos)
+        assertFalse(dtos.isEmpty())
+        println(dtos)
     }
 }

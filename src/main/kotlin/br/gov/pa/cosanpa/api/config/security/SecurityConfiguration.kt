@@ -4,7 +4,6 @@ import br.gov.pa.cosanpa.api.config.security.jwt.JWTAutenticacaoFilter
 import br.gov.pa.cosanpa.api.config.security.jwt.JWTLoginFilter
 import br.gov.pa.cosanpa.api.config.security.jwt.JWTUtil
 import jakarta.servlet.http.HttpServletResponse
-import org.json.JSONObject
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -56,14 +55,12 @@ class SecurityConfiguration (
 
     private fun tratamentoFalhaAutenticacao(
         response: HttpServletResponse) {
+        val map = mutableMapOf<String, Any>()
+        map["data"] = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm"))
+        map["mensagem"] = "Falha na Autenticacao"
         response.contentType = "application/json;charset=UTF-8"
         response.status = HttpServletResponse.SC_UNAUTHORIZED
-        response.writer.write(
-            JSONObject()
-                .put("data", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm")))
-                .put("mensagem", "Falha na Autenticacao")
-                .toString()
-        )
+        response.writer.write(map.toString())
     }
 
     @Bean

@@ -23,30 +23,31 @@ class ImovelRepositoryTest {
 
 
     @BeforeEach
-    fun preparacao(){
+    fun preparacao() {
         matricula = 7389353
     }
 
     @Test
     fun `dado uma matricula de imovel, deve retornar uma instancia ImovelView com id e ConsumoTarifaId`() {
-        val imovelDTO = repo.obterConsumoTarifa(matricula)
+        val idConsumoTarifa = repo.obterIdConsumoTarifaPorImovel(matricula)
 
-        assertNotNull(imovelDTO)
-        assertNotNull(imovelDTO.id)
-        assertNotNull(imovelDTO.idConsumoTarifa)
-        assertNull(imovelDTO.idImovelPerfil)
+        assertNotNull(idConsumoTarifa)
+        assertEquals(1, idConsumoTarifa)
     }
 
     @Test
-    fun `dado uma matricula de imovel, deve retornar uma instancia ImovelView com atributos`() {
-        val enderecoDTO = repo.obterDadosEndereco(2326426)
+    fun `dado uma matricula de imovel, deve retornar dados de endereco`() {
+        val enderecoDTO = repo.obterDadosEndereco(8378878)
         assertNotNull(enderecoDTO)
-        println(enderecoDTO.formatarEndereco())
+        assertEquals(
+            "AVENIDA PEDRO MIRANDA NUMERO 729 CA 006 FUNDOS PEDREIRA 66085-021, ENTRE TV VILETA E HUMAITA",
+            enderecoDTO.formatarEndereco()
+        )
     }
 
     @Test
-    fun `dado uma matricula de imovel, entao retorna lista de dtos de categorias do imovel`(){
-        val lista = repo.obterDadosCategoriasPorImovel(matricula)
+    fun `dado uma matricula de imovel, entao retorna lista de dtos de categorias do imovel`() {
+        val lista = repo.obterColecaoDadosCategoriasPorImovel(matricula)
 
         assertNotNull(lista)
         assertFalse(lista.isEmpty())
@@ -54,7 +55,7 @@ class ImovelRepositoryTest {
     }
 
     @Test
-    fun `dado uma matricula de imovel, entao retorna DTO com dados de Inscricao`(){
+    fun `dado uma matricula de imovel, entao retorna Dto com dados de Inscricao`() {
         val dto = repo.obterDadosInscricao(2658984)
         assertNotNull(dto)
 
@@ -63,8 +64,8 @@ class ImovelRepositoryTest {
     }
 
     @Test
-    fun `dado uma matricula de imovel, entao retorna lista de dtos de subcategorias do imovel`(){
-        val lista = repo.obterDadosSubcategoriasPorImovel(matricula)
+    fun `dado uma matricula de imovel, entao retorna lista de dtos de subcategorias do imovel`() {
+        val lista = repo.obterColecaoDadosSubcategoriasPorImovel(matricula)
 
         assertNotNull(lista)
         assertFalse(lista.isEmpty())
@@ -74,22 +75,22 @@ class ImovelRepositoryTest {
     @Test
     fun `dado um id de rota , entao retorna ulista de ids de imoveis`() {
         //Rota com Id 2026 possui 21 Imóveis
-        val dtoList = repo.obterIdsImoveis(2026)
-        
+        val dtoList = repo.obterColecaoIdsImoveis(2026)
+
         assertNotNull(dtoList)
         assertEquals(21, dtoList.size)
     }
 
     @Test
-    fun `dado um id de imovel, entao retorna um DTO com informacoes relevantes clientes imoveis`() {
-        val dtoList = repo.obterClienteImoveis( 2096889)
+    fun `dado um id de imovel, entao retorna um Dto com informacoes relevantes clientes imoveis`() {
+        val dtoList = repo.obterColecaoClienteImoveis(2096889)
         assertNotNull(dtoList)
         println(dtoList)
     }
 
     @Test
-    fun `dado um id de imovel, entao retorna um DTO com informacoes relevantes do imovel`() {
-        val dto = repo.obterDadosImovelGerarDados( 2096889)
+    fun `dado um id de imovel, entao retorna um Dto com informacoes relevantes do imovel`() {
+        val dto = repo.obterDadosImovelGerarDados(2096889)
         assertNotNull(dto)
         println(dto)
     }
@@ -99,5 +100,48 @@ class ImovelRepositoryTest {
         val dto = repo.obterDadosImovelContaEnvio(2)
         assertNotNull(dto)
         assertEquals("ENVIAR PARA O IMÓVEL", dto.descricao)
+    }
+
+    @Test
+    fun `dado um id de PocoTipo, entao retorna id e descricao`() {
+        val dto = repo.obterDadosPocoTipo(1)
+        assertNotNull(dto)
+        assertEquals("POCO ABERTO (AMAZONAS)", dto.descricao)
+    }
+
+    @Test
+    fun `dado um id de imovel, entao retorna id do grupo do imovel`() {
+        val idGrupo = repo.obterGrupoFaturamentoDoImovel(8705887)
+        assertNotNull(idGrupo)
+        assertEquals(202, idGrupo)
+    }
+
+    @Test
+    fun `dado um id de imovel valido, entao retorna id de isstema de abastecimento`() {
+        val idSabs = repo.obterSistemaAbastecimentoImovel(8705887)
+        assertNotNull(idSabs)
+        assertEquals(1, idSabs)
+    }
+
+    @Test
+    fun `dado um id de imovel invalido, entao retorna null`() {
+        val idSabs = repo.obterSistemaAbastecimentoImovel(7007493)
+        assertNull(idSabs)
+    }
+
+    @Test
+    fun `dado a chamada do metodo, retorna lista de ids e descricao de categoria`() {
+        val ids = repo.obterColecaoIdDescricaoCategoriasEmUso()
+        assertNotNull(ids)
+        assertFalse(ids.isEmpty())
+        println(ids)
+    }
+
+    @Test
+    fun `dado a chamada do metodo, retorna lista de ids de consumo tarifa em uso`() {
+        val ids = repo.obterColecaoIdConsumoTarifaEmUso()
+        assertNotNull(ids)
+        assertFalse(ids.isEmpty())
+        println(ids)
     }
 }

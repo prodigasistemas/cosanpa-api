@@ -3,9 +3,7 @@ package br.gov.pa.cosanpa.api.extensions.cadastro.endereco
 import br.gov.pa.cosanpa.api.dto.cadastro.endereco.EnderecoDTO
 
 fun EnderecoDTO.formatarEndereco(): String {
-    var endereco = ""
-
-    endereco += (logradouroTipoDescricao?.let { it.trim() } ?: "") +
+    return  (logradouroTipoDescricao?.trim() ?: "") +
             (logradouroTituloDescricao?.let { " ${it.trim()}"} ?: "") +
             (logradouroNome?.let { " ${it.trim()}"} ?: "") +
             (enderecoReferenciaDescricao?.let { " ${it.trim()}" } ?: "") +
@@ -14,14 +12,14 @@ fun EnderecoDTO.formatarEndereco(): String {
             (bairroNome?.let { " ${it.trim()}" } ?: "") +
             (municipioNome?.let { " ${it.trim()}" } ?: "") +
             (unidadeFederacaoSigla?.let { " ${it.trim()}" } ?: "") +
-            cepCodigo?.let { codigo ->
+            (cepCodigo?.let { codigo ->
                 " ${codigo.toString().substring(0, 5) + "-" + codigo.toString().substring(5, 8)}"
-            } + formatarPerimetro(endereco)
+            }) + formatarPerimetro()
 
-    return endereco
+
 }
 
-fun EnderecoDTO.formatarPerimetro(endereco: String): String {
+fun EnderecoDTO.formatarPerimetro(): String {
 
     var perimetroInicial = perimetroInicialLogradouroTipoDescricaoAbreviada?.let {", ENTRE ${it.trim()}"} ?: ""
 
@@ -39,5 +37,5 @@ fun EnderecoDTO.formatarPerimetro(endereco: String): String {
         perimetroFinalNome?.let { " E ${it.trim()}" } ?: ""
     }
 
-    return endereco+perimetroInicial+perimetroFinal
+    return (perimetroInicial + perimetroFinal)
 }

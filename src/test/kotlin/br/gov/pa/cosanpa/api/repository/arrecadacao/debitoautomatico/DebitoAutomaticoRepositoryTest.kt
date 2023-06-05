@@ -17,13 +17,13 @@ class DebitoAutomaticoRepositoryTest {
     private lateinit var repo: DebitoAutomaticoRepository
 
     @Test
-    fun `dado um id de imovel que nao possui debito automatico, entao retorna DTO null`() {
+    fun `dado um id de imovel que nao possui debito automatico, entao retorna Dto null`() {
         val dto = repo.obterDadosDebitoAutomaticoPorImovelId(2326426)
         assertNull(dto)
     }
 
     @Test
-    fun `dado um id de imovel que possui debito, entao retorna DTO de dados validos`() {
+    fun `dado um id de imovel que possui debito, entao retorna Dto de dados validos`() {
         val dto = repo.obterDadosDebitoAutomaticoPorImovelId(3640469)
         assertNotNull(dto)
     }

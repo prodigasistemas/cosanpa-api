@@ -6,6 +6,6 @@ data class LigacaoAguaView(
     val numeroConsumoMinimoAgua: Int,
     val dataLigacao: String,
     val dataCorte: String,
+    val dataReligacao: String,
     val numeroLacre: String,
-    val idHidrometroInstalacaoHistorico: Int
 )

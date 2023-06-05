@@ -1,6 +1,7 @@
 package br.gov.pa.cosanpa.api.repository.faturamento
 
-import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoAtividade
+import br.gov.pa.cosanpa.api.dominio.faturamento.atividade.FaturamentoAtividade
+import br.gov.pa.cosanpa.api.repository.faturamento.atividade.FaturamentoAtividadeRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,10 +15,10 @@ import org.springframework.test.context.TestPropertySource
 class FaturamentoAtividadeCronogramaRepositoryTest {
 
     @Autowired
-    private lateinit var repo: FaturamentoAtividadeCronogramaRepository
+    private lateinit var repo: FaturamentoAtividadeRepository
 
     @Test
-    fun `dado uma id de FaturamentoSituacaoTipo, entao retorna DTO com informacoes referentes`(){
+    fun `dado uma id de FaturamentoSituacaoTipo, entao retorna Dto com informacoes referentes`(){
         val data = repo.obterDataPrevista(201, FaturamentoAtividade.EFETUAR_LEITURA, 202211)
         Assertions.assertNotNull(data)
         println(data)

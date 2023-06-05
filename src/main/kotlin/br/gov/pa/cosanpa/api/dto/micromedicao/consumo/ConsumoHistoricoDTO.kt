@@ -5,8 +5,8 @@ data class ConsumoHistoricoDTO(
     val referencia: Int? = null,
     val numeroCalculoConsumoMedia: Int? = null,
     val numeroConsumoFaturadoMes: Int? = null,
-    val imovel: Int? = null,
-    val consumoTipo: Int? = null,
+    val idImovel: Int? = null,
+    val idConsumoTipo: Int? = null,
     val idConsumoAnormalidade: Int? = null,
     val idLigacaoTipo: Int? = null
 )

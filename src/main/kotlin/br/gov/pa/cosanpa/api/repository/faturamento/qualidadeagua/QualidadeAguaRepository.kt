@@ -46,19 +46,20 @@ interface QualidadeAguaRepository: JpaRepository<QualidadeAgua, Int> {
                 " qualidadeAgua.quantidadeAlcalinidadeExigidas as quantidadeAlcalinidadeExigidas," +
                 " qualidadeAgua.quantidadeAlcalinidadeAnalisadas as quantidadeAlcalinidadeAnalisadas," +
                 " qualidadeAgua.quantidadeAlcalinidadeConforme as quantidadeAlcalinidadeConforme," +
-                " fonteCaptacao.descricao as descricaoFonteCaptacao) " +
+                " fonteCaptacao.id as idFonteCaptacao," +
+                " fonteCaptacao.descricao as descricaoFonteCaptacao)" +
                 " FROM QualidadeAgua qualidadeAgua " +
                 " LEFT JOIN qualidadeAgua.localidade localidade " +
                 " LEFT JOIN qualidadeAgua.setorComercial setorComercial " +
                 " LEFT JOIN qualidadeAgua.sistemaAbastecimento sistemaAbastecimento " +
                 " LEFT JOIN qualidadeAgua.fonteCaptacao fonteCaptacao " +
                 " WHERE (localidade.id = :idLocalidade OR localidade.id IS NULL) " +
-                " AND (setorComercial.id = :idSetor OR setorComercial.id IS NULL) " +
+                " AND (setorComercial.id = :idSetorComercial OR setorComercial.id IS NULL) " +
                 " AND (sistemaAbastecimento.id = :idSistemaAbastecimento OR sistemaAbastecimento.id IS NULL) " +
                 " AND qualidadeAgua.anoMesReferencia = :anoMesReferencia"
     )
-    fun obterQualidadeAgua(idLocalidade: Int?,
-                           idSetor: Int?,
-                           idSistemaAbastecimento: Int?,
-                           anoMesReferencia: Int): QualidadeAguaDTO
+    fun obterQualidadeAgua(anoMesReferencia: Int,
+                           idLocalidade: Int?,
+                           idSetorComercial: Int?,
+                           idSistemaAbastecimento: Int?): QualidadeAguaDTO?
 }

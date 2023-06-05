@@ -40,5 +40,6 @@ data class QualidadeAguaDTO(
     val quantidadeAlcalinidadeExigidas: Int? = null,
     val quantidadeAlcalinidadeAnalisadas: Int? = null,
     val quantidadeAlcalinidadeConforme: Int? = null,
-    val descricaoFonteCaptacao: String? = ""
+    val idFonteCaptacao: Int? = null,
+    val descricaoFonteCaptacao: String? = null
 )

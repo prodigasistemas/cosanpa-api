@@ -28,6 +28,8 @@ data class Categoria(
     val vezesMediaEstouro: BigDecimal?,
     @Column(name = "catg_pcmediabaixoconsumo")
     val porcentagemMediaBaixoConsumo: BigDecimal?,
+    @Column(name = "catg_icuso")
+    val indicadorUso: Short,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cgtp_id")

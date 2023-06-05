@@ -9,5 +9,4 @@ data class ContaImpostosDeduzidosDTO(
     val percentualAliquota: BigDecimal? = null,
     val idConta: Int? = null,
     val idImpostoTipo: Int? = null,
-    val descricaoImpostoTipo: String? = null
 )

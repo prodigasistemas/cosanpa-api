@@ -7,6 +7,7 @@ data class LigacaoAguaDTO(
     val numeroConsumoMinimoAgua: Int? = null,
     val dataLigacao: LocalDate? = null,
     val dataCorte: LocalDate? = null,
+    val dataReligacao: LocalDate? = null,
     val numeroLacre: String? = null,
     val idHidrometroInstalacaoHistorico: Int? = null
 )

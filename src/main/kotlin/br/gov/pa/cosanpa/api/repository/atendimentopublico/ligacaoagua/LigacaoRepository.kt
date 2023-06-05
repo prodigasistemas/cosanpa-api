@@ -39,6 +39,7 @@ interface LigacaoRepository : JpaRepository<LigacaoAguaSituacao, Int> {
                 " lagu.numeroConsumoMinimoAgua as numeroConsumoMinimoAgua, " +
                 " lagu.dataLigacao as dataLigacao, " +
                 " lagu.dataCorte as dataCorte, " +
+                " lagu.dataReligacao as dataReligacao, " +
                 " lagu.numeroLacre as numeroLacre," +
                 " lagu.hidrometroInstalacaoHistorico.id as idHidrometroInstalacaoHistorico) " +
                 " FROM LigacaoAgua lagu " +

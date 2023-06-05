@@ -4,7 +4,7 @@ import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.GerenciaRegional
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Localidade
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.Quadra
 import br.gov.pa.cosanpa.api.dominio.cadastro.localidade.SetorComercial
-import br.gov.pa.cosanpa.api.dominio.faturamento.FaturamentoGrupo
+import br.gov.pa.cosanpa.api.dominio.faturamento.grupo.FaturamentoGrupo
 import jakarta.persistence.*
 
 @Entity

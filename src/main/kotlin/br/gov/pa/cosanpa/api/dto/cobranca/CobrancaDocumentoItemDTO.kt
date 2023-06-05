@@ -11,7 +11,5 @@ data class CobrancaDocumentoItemDTO(
     val numeroParcelasAntecipadas: Int? = null,
     val idCobrancaDocumento: Int? = null,
     val idDocumentoTipo: Int? = null,
-    val idConta: Int? = null,
-    val referenciaConta: Int? = null,
-    val dataVencimentoConta: LocalDate? = null
+    val idConta: Int? = null
 )

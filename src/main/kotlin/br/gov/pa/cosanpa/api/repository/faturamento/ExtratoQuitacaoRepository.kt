@@ -17,5 +17,5 @@ interface ExtratoQuitacaoRepository: JpaRepository<ExtratoQuitacao, Int> {
                 " WHERE extrato.anoReferencia = :anoReferencia " +
                 " AND imovel.id = :idImovel"
     )
-    fun obterExtratoQuitacaoImovel(idImovel: Int, anoReferencia: Int): ExtratoQuitacaoDTO
+    fun obterExtratoQuitacaoImovel(idImovel: Int, anoReferencia: Int): ExtratoQuitacaoDTO?
 }

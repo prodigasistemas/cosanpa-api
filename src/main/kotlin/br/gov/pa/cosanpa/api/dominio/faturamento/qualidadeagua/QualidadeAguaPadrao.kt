@@ -9,7 +9,7 @@ import jakarta.persistence.Table
 @Table(name = "qualidade_agua_padrao", schema = "faturamento")
 data class QualidadeAguaPadrao(
     @Id
-    @Column(name = "")
+    @Column(name = "qlap_id")
     val id: Int,
     @Column(name = "qlap_dspadraoturbidez")
     val descricaoPadraoTurbidez: String?,
