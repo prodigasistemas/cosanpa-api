@@ -1,0 +1,38 @@
+package br.gov.pa.cosanpa.api.dto.cadastro.imovel
+
+data class ImovelDTO(
+    val id: Int? = null,
+    val lote: Int? = null,
+    val sublote: Int? = null,
+    val numero: String? = null,
+    val nome: String? = null,
+    val complementoEndereco: String? = null,
+    val numeroMorador: Short? = null,
+    val indicadorImovelCondominio: Int? = null,
+    val indicadorExclusao: Short? = null,
+    val numeroSequencialRota: Int? = null,
+    val codigoDebitoAutomatico: Int? = null,
+    val indicadorImovelAreaComum: Short? = null,
+    val indicadorEnvioContaFisica: Short? = null,
+    val idParametrosConvenio: Int? = null,
+    val idImovelPerfil: Int? = null,
+    val idImovelCondominioImovel: Int? = null,
+    val idLocalidade: Int? = null,
+    val idQuadra: Int? = null,
+    val idQuadraFace: Int? = null,
+    val idSetorComercial: Int? = null,
+    val idLigacaoAguaSituacao: Int? = null,
+    val idLigacaoEsgotoSituacao: Int? = null,
+    val idLogradouroCep: Int? = null,
+    val idLogradouroBairro: Int? = null,
+    val idEnderecoReferencia: Int? = null,
+    val idPerimetroInicial: Int? = null,
+    val idPerimetroFinal: Int? = null,
+    val idConsumoTarifa: Int? = null,
+    val idImovelContaEnvio: Int? = null,
+    val idPocoTipo: Int? = null,
+    val idFaturamentoSituacaoTipo: Int? = null,
+    val idHidrometroInstalacaoHistorico: Int? = null,
+    val idRotaAlternativa: Int? = null
+)
+

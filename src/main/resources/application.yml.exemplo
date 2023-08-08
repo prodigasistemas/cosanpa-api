@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    username: [USUARIO]
+    password: [SENHA]
+    url: jdbc:postgresql://[ENDEREÇO_BANCO]:5432/[NOME_BANCO]
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format-sql: true
+    show-sql: true
+api:
+  security:
+    token:
+      secret:
+server:
+  error:
+    include-stacktrace: never
