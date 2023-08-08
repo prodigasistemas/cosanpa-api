@@ -1,61 +1,80 @@
 package br.gov.pa.cosanpa.api.business.faturamento.impressaosimultanea
 
 import br.gov.pa.cosanpa.api.dominio.faturamento.atividade.FaturamentoAtividade
-import br.gov.pa.cosanpa.api.dto.Dto
 import br.gov.pa.cosanpa.api.dto.faturamento.consumo.ConsumoTarifaCategoriaDTO
 import br.gov.pa.cosanpa.api.service.cadastro.SistemaParametrosService
 import br.gov.pa.cosanpa.api.service.cadastro.imovel.CategoriaService
 import br.gov.pa.cosanpa.api.service.cadastro.imovel.ImovelService
 import br.gov.pa.cosanpa.api.service.faturamento.atividade.FaturamentoAtividadeService
 import br.gov.pa.cosanpa.api.service.faturamento.consumo.ConsumoTarifaService
+import br.gov.pa.cosanpa.api.view.faturamento.consumo.ConsumoTarifaFaixaView
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 
 @Component
 class DadosConsumoTarifaBO(
-    private val sistemaParametrosService: SistemaParametrosService,
+    sistemaParametrosService: SistemaParametrosService,
     private val consumoTarifaService: ConsumoTarifaService,
     private val faturamentoAtividadeService: FaturamentoAtividadeService,
     private val categoriaService: CategoriaService,
     private val imovelService: ImovelService
 ) {
-    private var mapConsumoTarifaCategoria = mutableMapOf<String, Any>()
     private val sistemaParametros = sistemaParametrosService.obterParametrosDoSistema()
 
     fun obter(idGrupo: Int): MutableMap<String, Any> {
         val mapPorCategoria = mutableMapOf<String, Any>()
         categoriaService.obterColecaoIdDescricaoCategorias().forEach { categoriaDto ->
             categoriaDto.id?.let { idCategoria ->
-                imovelService.obterColecaoIdConsumoTarifaEmUso().forEach { idConsumoTarifa ->
-                    mapConsumoTarifaCategoria = mutableMapOf()
-                    adicionarDadosConsumoTarifaCategoria(idGrupo, idCategoria, idConsumoTarifa)
-                }
-                categoriaDto.descricao?.let { mapPorCategoria[it] = mapConsumoTarifaCategoria }
+                mapPorCategoria[categoriaDto.descricao!!] = imovelService.obterColecaoIdConsumoTarifaEmUso().map { idConsumoTarifa ->
+                        retornaDadosPorConsumoTarifa(idConsumoTarifa, idGrupo, idCategoria)
+                    }
             }
         }
         return mapPorCategoria
     }
 
-    private fun adicionarDadosConsumoTarifaCategoria(idGrupo: Int, idCategoria: Int, idConsumoTarifa: Int) {
+    private fun retornaDadosPorConsumoTarifa(
+        idConsumoTarifa: Int,
+        idGrupo: Int,
+        idCategoria: Int
+    ): MutableMap<String, Any> {
+        val mapPorConsumoTarifa1: MutableMap<String, Any> = mutableMapOf()
+        val consumoTarifaView = consumoTarifaService.obterDadosConsumoTarifaView(idConsumoTarifa)
+        mapPorConsumoTarifa1[consumoTarifaView.descricao] = retornaColecaoDadosConsumoTarifaCategoria(idGrupo, idCategoria, idConsumoTarifa)
+        return mapPorConsumoTarifa1
+    }
+
+    private fun retornaColecaoDadosConsumoTarifaCategoria(
+        idGrupo: Int,
+        idCategoria: Int,
+        idConsumoTarifa: Int
+    ): MutableList<MutableMap<String, Any>> {
         val dataLeituraAnterior = obterDataLeituraAnterior(idGrupo)
-        listaConsumoTarifaCategoria(
+        val lista = mutableListOf<MutableMap<String, Any>>()
+            listaConsumoTarifaCategoria(
             dataLeituraAnterior,
             idCategoria,
             idConsumoTarifa
-        ).forEach { consumoTarifaCategoriaDTO ->
-            mapConsumoTarifaCategoria["consumoTarifaCategoria"] =
-                consumoTarifaService.obterConsumoTarifaCategoriaView(consumoTarifaCategoriaDTO)
+        ).map { consumoTarifaCategoriaDTO ->
+            val map = mutableMapOf<String, Any>()
+
+            map["consumoTarifaCategoria"] = consumoTarifaService.obterConsumoTarifaCategoriaView(consumoTarifaCategoriaDTO)
 
             consumoTarifaCategoriaDTO.id?.let {
-                adicionarDadosConsumoTarifaFaixa(it)
+                map["consumoTarifaFaixa"] = retornaColecaoDadosConsumoTarifaFaixa(it)
             }
+            lista += map
         }
+        return lista
     }
 
-    private fun adicionarDadosConsumoTarifaFaixa(idConsumoTarifaCategoria: Int) {
-        consumoTarifaService.obterColecaoConsumoTarifaFaixaPorCategoria(idConsumoTarifaCategoria).forEach { _ ->
-            mapConsumoTarifaCategoria["consumoTarifaFaixa"] = consumoTarifaService.obterConsumoTarifaFaixaView(idConsumoTarifaCategoria)
+    private fun retornaColecaoDadosConsumoTarifaFaixa(idConsumoTarifaCategoria: Int): MutableList<ConsumoTarifaFaixaView> {
+        var consumosTarifaFaixa = mutableListOf<ConsumoTarifaFaixaView>()
+        repeat(consumoTarifaService.obterColecaoConsumoTarifaFaixaPorCategoria(idConsumoTarifaCategoria).size) {
+            consumosTarifaFaixa = mutableListOf()
+            consumosTarifaFaixa += consumoTarifaService.obterConsumoTarifaFaixaView(idConsumoTarifaCategoria)
         }
+        return consumosTarifaFaixa
     }
 
     private fun listaConsumoTarifaCategoria(
@@ -63,21 +82,18 @@ class DadosConsumoTarifaBO(
         idCategoria: Int,
         idConsumoTarifa: Int
     ): List<ConsumoTarifaCategoriaDTO> {
-        var listaConsumoTarifaCategoria =  consumoTarifaService.obterDadosConsumoTarifaCategoriaProporcional(
+
+        val listaConsumoTarifaCategoria = consumoTarifaService.obterDadosConsumoTarifaCategoriaProporcional(
             dataLeituraAnterior = dataLeituraAnterior,
             idCategoria = idCategoria,
             idConsumoTarifa = idConsumoTarifa
+        ).toMutableList()
+
+        listaConsumoTarifaCategoria += consumoTarifaService.obterDadosConsumoTarifaCategoriaPorDataVingente(
+            dataVigencia = dataLeituraAnterior,
+            idCategoria = idCategoria,
+            idConsumoTarifa = idConsumoTarifa
         )
-
-        val dataTarifaVigenciaCorrente = consumoTarifaService.obterDataTarifaVigenciaCorrente(idConsumoTarifa).dataVigencia!!
-
-        if (listaConsumoTarifaCategoria.isEmpty()) {
-            listaConsumoTarifaCategoria = consumoTarifaService.obterDadosConsumoTarifaCategoriaPorDataVingente(
-                dataVigencia = dataTarifaVigenciaCorrente,
-                idCategoria = idCategoria,
-                idConsumoTarifa = idConsumoTarifa
-            )
-        }
 
         return listaConsumoTarifaCategoria
     }

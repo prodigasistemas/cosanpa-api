@@ -33,13 +33,14 @@ interface ConsumoTarifaRepository : JpaRepository<ConsumoTarifa, Int> {
                 " INNER JOIN ctcg.consumoTarifaVigencia ctv " +
                 " INNER JOIN ctv.consumoTarifa ct " +
                 " INNER JOIN ctcg.categoria catg " +
-                " where ctv.dataVigencia = :dataVigencia " +
+                " where ctv.dataVigencia <= :dataFaturamento " +
                 " AND ct.id = :idConsumoTarifa " +
                 " AND catg.id = :idCategoria " +
-                " ORDER BY ctv.dataVigencia DESC"
+                " ORDER BY ctv.dataVigencia DESC" +
+                " LIMIT 1"
     )
     fun obterDadosConsumoTarifaCategoriaPorDataVigencia(
-        dataVigencia: LocalDate,
+        dataFaturamento: LocalDate,
         idConsumoTarifa: Int,
         idCategoria: Int,
     ) : List<ConsumoTarifaCategoriaDTO>

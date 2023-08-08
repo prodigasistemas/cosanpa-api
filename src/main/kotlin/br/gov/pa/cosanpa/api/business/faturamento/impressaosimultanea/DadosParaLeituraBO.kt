@@ -2,7 +2,7 @@ package br.gov.pa.cosanpa.api.business.faturamento.impressaosimultanea
 
 import br.gov.pa.cosanpa.api.business.micromedicao.consumo.ConsumoMinimoLigacaoBO
 import br.gov.pa.cosanpa.api.business.micromedicao.consumo.MediaConsumoAguaEsgotoBO
-import br.gov.pa.cosanpa.api.business.micromedicao.leitura.CalcularFaixaLeituraEsperada
+import br.gov.pa.cosanpa.api.business.micromedicao.leitura.CalcularFaixaLeituraEsperadaBO
 import br.gov.pa.cosanpa.api.dominio.cadastro.cliente.ClienteRelacaoTipo
 import br.gov.pa.cosanpa.api.dominio.cadastro.imovel.ImovelContaEnvio
 import br.gov.pa.cosanpa.api.dto.cadastro.cliente.ClienteImovelContaDTO
@@ -62,16 +62,11 @@ class DadosParaLeituraBO(
     private val cobrancaDocumentoService: CobrancaDocumentoService,
     private val sistemaParametrosService: SistemaParametrosService
 ) {
-    private val gerarDados = DadosLeituraView(mutableMapOf(), mutableMapOf())
+    private val gerarDados = DadosLeituraView(mutableMapOf())
     private val referenciaFaturamento = sistemaParametrosService.obterParametrosDoSistema().referenciaFaturamento
 
     fun obterPorImovel(idImovel: Int): DadosLeituraView {
         adicionarDadosPorImovel(idImovel)
-        return gerarDados
-    }
-
-    fun gerarPorConta(idConta: Int): DadosLeituraView {
-        adicionarDadosPorImovel(idConta)
         return gerarDados
     }
 
@@ -80,9 +75,11 @@ class DadosParaLeituraBO(
     }
 
     private fun adicionarDadosPorImovel(idImovel: Int) {
-        val imovelDto = imovelService.obterDadosImovel(idImovel)
+        val imovelDto = imovelService.obterImovelGerarDados(idImovel)
         imovelDto?.run {
             adicionarDadosImovel(id)
+            adicionarDadosConta(id)
+            adicionarEnderecoInscricao(id)
             adicionarDadosLocalidade(idLocalidade)
             adicionarDadosCategoria(id)
             processarClienteImovel(id, idImovelContaEnvio)
@@ -108,18 +105,27 @@ class DadosParaLeituraBO(
 
     private fun adicionarDadosImovel(idImovel: Int?) {
         idImovel?.let {
-            imovelService.obterImovelView(it)?.let { imovelView ->
+            imovelService.obterImovelViewGerarDados(it)?.let { imovelView ->
                 adicionarDadoAoMap("imovel", imovelView)
-                adicionarEnderecoInscricao(it)
             }
         }
     }
 
-    private fun adicionarEnderecoInscricao(idImovel: Int) {
-        val endereco = enderecoService.obterEnderecoFormatadoImovel(idImovel)
-        adicionarDadoAoMap("endereco", endereco)
-        val inscricao = imovelService.obterDadosInscricao(idImovel)
-        adicionarDadoAoMap("inscricao", inscricao)
+    private fun adicionarEnderecoInscricao(idImovel: Int?) {
+        idImovel?.let {
+            val endereco = enderecoService.obterEnderecoFormatadoImovel(idImovel)
+            adicionarDadoAoMap("endereco", endereco)
+            val inscricao = imovelService.obterDadosInscricao(idImovel)
+            adicionarDadoAoMap("inscricao", inscricao)
+        }
+    }
+
+    private fun adicionarDadosConta(idImovel: Int?) {
+        idImovel?.let {
+            contaService.obterDadosContaPreFaturadaView(it, referenciaFaturamento)?.let { contaView ->
+                adicionarDadoAoMap("conta", contaView)
+            } ?: adicionarDadoAoMap("conta", "")
+        }
     }
 
     private fun adicionarDadosCategoria(idImovel: Int?) {
@@ -484,7 +490,8 @@ class DadosParaLeituraBO(
                     cobrancaDocumentoService.obterColecaoCobrancaDocumentoItem(idCobrancaDocumento)
                         .forEach { cobrancaDocumentoItemDTO ->
                             map = mutableMapOf()
-                            map["documentoItem"] = cobrancaDocumentoService.obterCobrancaDocumentoItemView(cobrancaDocumentoItemDTO)
+                            map["documentoItem"] =
+                                cobrancaDocumentoService.obterCobrancaDocumentoItemView(cobrancaDocumentoItemDTO)
                             map["documentoTipo"] = this.idDocumentoTipo?.let { idDocTipo ->
                                 cobrancaDocumentoService.obterDocumentoTipoView(idDocTipo)
                             } ?: ""
@@ -519,7 +526,8 @@ class DadosParaLeituraBO(
             ?.let { medicaoHistoricoDTO ->
                 map = mutableMapOf()
                 map["medicaoHistorico"] = medicaoHistoricoService.obterMedicaoHistoricoView(medicaoHistoricoDTO)
-                map["medicaoTipo"] = medicaoHistoricoDTO.idMedicaoTipo?.let { medicaoHistoricoService.obterMedicaoTipoView(it) } ?: ""
+                map["medicaoTipo"] =
+                    medicaoHistoricoDTO.idMedicaoTipo?.let { medicaoHistoricoService.obterMedicaoTipoView(it) } ?: ""
             }
         return map
     }
@@ -527,34 +535,42 @@ class DadosParaLeituraBO(
     private fun adicionarDadosHidrometro(idImovel: Int?) {
         var map = mutableMapOf<String, Any>()
         idImovel?.let {
-            hidrometroService.obterDadosHidrometroInstalacaoHistoricoPorImovel(it)?.let { hidrometroInstalacaoHistoricoDTO ->
-                map = mutableMapOf()
-                map["historicoInstalacao"] = hidrometroService.obterHidrometroInstalacaoHistoricoView(hidrometroInstalacaoHistoricoDTO)
+            hidrometroService.obterDadosHidrometroInstalacaoHistoricoPorImovel(it)
+                ?.let { hidrometroInstalacaoHistoricoDTO ->
+                    map = mutableMapOf()
+                    map["historicoInstalacao"] =
+                        hidrometroService.obterHidrometroInstalacaoHistoricoView(hidrometroInstalacaoHistoricoDTO)
 
-                var hidrometroDto = HidrometroDTO(null, null, null)
+                    var hidrometroDto = HidrometroDTO(null, null, null)
 
-                map["hidrometro"] = hidrometroInstalacaoHistoricoDTO.idHidrometro?.let { it1 ->
-                    hidrometroDto = hidrometroService.obterDadosHidrometro(it1)
-                    hidrometroService.obterHidrometroView(it1)
-                } ?: ""
-                map["hidrometroProtecao"] = hidrometroInstalacaoHistoricoDTO.idHidrometroProtecao?.let { it1 ->
-                    hidrometroService.obterHidrometroProtecaoView(it1)
-                } ?: ""
+                    map["hidrometro"] = hidrometroInstalacaoHistoricoDTO.idHidrometro?.let { it1 ->
+                        hidrometroDto = hidrometroService.obterDadosHidrometro(it1)
+                        hidrometroService.obterHidrometroView(it1)
+                    } ?: ""
+                    map["hidrometroProtecao"] = hidrometroInstalacaoHistoricoDTO.idHidrometroProtecao?.let { it1 ->
+                        hidrometroService.obterHidrometroProtecaoView(it1)
+                    } ?: ""
 
-                map["hidrometroLocalInstalacao"] = hidrometroInstalacaoHistoricoDTO.idHidrometroLocalInstalacao?.let { it1 ->
-                    hidrometroService.obterHidrometroLocalInstalacaoView(it1)
-                } ?: ""
+                    map["hidrometroLocalInstalacao"] =
+                        hidrometroInstalacaoHistoricoDTO.idHidrometroLocalInstalacao?.let { it1 ->
+                            hidrometroService.obterHidrometroLocalInstalacaoView(it1)
+                        } ?: ""
 
-                val mediaConsumo = obterConsumoMedioHidrometro(it, hidrometroInstalacaoHistoricoDTO)
-                map["consumoMedioHidrometro"] = mediaConsumo
+                    val mediaConsumo = obterConsumoMedioHidrometro(it, hidrometroInstalacaoHistoricoDTO)
+                    map["consumoMedioHidrometro"] = mediaConsumo
 
-                val leituraAnteriorFaturamento = medicaoHistoricoService.obterDadosMedicaoHistorico(idImovel, referenciaFaturamento)?.leituraAnterioFaturamento
+                    val leituraAnteriorFaturamento = medicaoHistoricoService.obterDadosMedicaoHistorico(
+                        idImovel,
+                        referenciaFaturamento
+                    )?.leituraAnterioFaturamento
 
-                map["faixaLeituraEsperada"] = CalcularFaixaLeituraEsperada(media = mediaConsumo,
-                                                                            hidrometroDTO = hidrometroDto,
-                                                                             medicaoHistorico = null,
-                                                                             leituraAnteriorPesquisada = leituraAnteriorFaturamento).calcular()
-            }
+                    map["faixaLeituraEsperada"] = CalcularFaixaLeituraEsperadaBO(
+                        media = mediaConsumo,
+                        hidrometroDTO = hidrometroDto,
+                        medicaoHistorico = null,
+                        leituraAnteriorPesquisada = leituraAnteriorFaturamento
+                    ).calcular()
+                }
         }
         adicionarDadoAoMap("dadosHidrometro", map)
     }
@@ -565,7 +581,11 @@ class DadosParaLeituraBO(
         hidrometroInstalacaoHistoricoDTO: HidrometroInstalacaoHistoricoDTO
     ): Int {
         return hidrometroInstalacaoHistoricoDTO.idMedicaoTipo?.let {
-            MediaConsumoAguaEsgotoBO(sistemaParametrosService, consumoHistoricoService).obter(idImovel, referenciaFaturamento, it)
+            MediaConsumoAguaEsgotoBO(sistemaParametrosService, consumoHistoricoService).obter(
+                idImovel,
+                referenciaFaturamento,
+                it
+            )
         } ?: ConsumoMinimoLigacaoBO(imovelService, categoriaService, consumoTarifaService).obter(idImovel)
     }
 }

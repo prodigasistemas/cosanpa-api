@@ -15,9 +15,9 @@ class ImovelService(
 
     fun obterIdsImovelPorRota(idRota: Int) = repository.obterColecaoIdsImoveis(idRota)
 
-    fun obterDadosImovel(idImovel: Int) = repository.obterDadosImovelGerarDados(idImovel)
+    fun obterImovelGerarDados(idImovel: Int) = repository.obterDadosImovelGerarDados(idImovel)
 
-    fun obterImovelView(idImovel: Int) = obterDadosImovel(idImovel)?.let { viewMapper.mapImovel(it) }
+    fun obterImovelViewGerarDados(idImovel: Int) = obterImovelGerarDados(idImovel)?.let { viewMapper.mapImovel(it) }
 
     fun obterDadosClienteImovel(idImovel: Int) = repository.obterColecaoClienteImoveis(idImovel)
 

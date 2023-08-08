@@ -1,10 +1,12 @@
 package br.gov.pa.cosanpa.api.service.faturamento.conta
 
 import br.gov.pa.cosanpa.api.dominio.faturamento.conta.ComunicadoEmitirConta
+import br.gov.pa.cosanpa.api.dto.faturamento.conta.ContaDTO
 import br.gov.pa.cosanpa.api.dto.faturamento.conta.ContaImpostosDeduzidosDTO
 import br.gov.pa.cosanpa.api.repository.faturamento.conta.ContaRepository
 import br.gov.pa.cosanpa.api.util.ConstantesSistema
 import br.gov.pa.cosanpa.api.view.faturamento.conta.ContaImpostosDeduzidosView
+import br.gov.pa.cosanpa.api.view.faturamento.conta.ContaView
 import br.gov.pa.cosanpa.api.view.faturamento.conta.ContaViewMapper
 import org.springframework.stereotype.Service
 
@@ -13,9 +15,13 @@ class ContaService(
     private val repository: ContaRepository,
     private val viewMapper: ContaViewMapper
 ) {
+    fun obterContaPreFaturadaPorImovelId(idImovel: Int, anoMesReferencia: Int): ContaDTO? {
+        return repository.obterContaPreFaturada(idImovel, anoMesReferencia)
+    }
 
-    fun obterContaPreFaturadaPorImovelId(idImovel: Int, anoMesReferencia: Int) =
-        repository.obterContaPreFaturada(idImovel, anoMesReferencia)
+    fun obterDadosContaPreFaturadaView(idImovel: Int, anoMesReferencia: Int): ContaView? {
+        return obterContaPreFaturadaPorImovelId(idImovel, anoMesReferencia)?.let { viewMapper.mapConta(it) }
+    }
 
     fun possuiComunicadoNaoEmitidoAlteracaoCadastral(idImovel: Int, referencia: Int): Boolean {
         return repository.quantidadeComunicadoEmitido(

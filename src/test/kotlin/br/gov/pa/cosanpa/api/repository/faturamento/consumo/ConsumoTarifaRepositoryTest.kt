@@ -24,25 +24,25 @@ class ConsumoTarifaRepositoryTest {
 
     @Test
     fun `dado os parametros corretos, entao retorna dados de ConsumoTarifa`(){
-        val tarifaCategoriaDTO = repo.obterDadosConsumoTarifaCategoriaPorDataVigencia(
-            LocalDate.of(2022,11,28),
+        val consumoTarifaCategoriaDTOS = repo.obterDadosConsumoTarifaCategoriaPorDataVigencia(
+            LocalDate.now().minusDays(30),
             1,
             1
         )
-        assertNotNull(tarifaCategoriaDTO)
-        println(tarifaCategoriaDTO)
+        assertNotNull(consumoTarifaCategoriaDTOS)
+        println(consumoTarifaCategoriaDTOS)
     }
 
     @Test
     fun `dado os parametros corretos, entao retorna dados de ConsumoTarifa Proporcional`(){
-        val tarifaCategoriaDTO = repo.obterDadosConsumoTarifaProporcional(
-            LocalDate.now().minusYears(3),
+        val consumoTarifaCategoriaDTOS = repo.obterDadosConsumoTarifaProporcional(
+            LocalDate.now().minusDays(30),
             LocalDate.now(),
             1,
             1
         )
-        assertNotNull(tarifaCategoriaDTO)
-        println(tarifaCategoriaDTO)
+        assertNotNull(consumoTarifaCategoriaDTOS)
+        println(consumoTarifaCategoriaDTOS)
     }
 
     @Test
